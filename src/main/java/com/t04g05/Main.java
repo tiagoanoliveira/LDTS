@@ -1,7 +1,8 @@
-package com.t04g05;
+import com.t04g05.Game;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Game game = new Game();
+        game.run();
     }
 }

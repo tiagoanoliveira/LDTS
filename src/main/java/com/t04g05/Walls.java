@@ -4,24 +4,6 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-abstract class Element {
-    private Position position;
-
-    public Element(int x, int y) {
-        position = new Position(x, y);
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public abstract void draw(TextGraphics screen);
-}
-
 public class Wall extends Element {
 
     public Wall(int x, int y) {
@@ -40,7 +22,6 @@ public class Wall extends Element {
     public boolean equals(Object o) {
         if (o == null || this.getClass() != o.getClass()) return false;
 
-        return (this == o ||
-                this.getPosition().equals(((Wall) o).getPosition()));
+        return (this == o || this.getPosition().equals(((Wall) o).getPosition()));
     }
 }

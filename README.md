@@ -1,32 +1,24 @@
-<<<<<<< HEAD
 
-=======
-## LDTS - T04_G05 - <PROJECT NAME>
+## LDTS - T04_G05
 
-> I don't know about what is this project. This project was proposed by the Faculty of Engineering of the University of Porto ([FEUP](https://sigarra.up.pt/feup/pt/web_page.inicial)) in the curricular unit of Drawing Laboratory and Software Testing ([LDTS](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=484407)).
 > This project was made by Beatriz Bastos [(202303793)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202303793), Luís Ferreira [(202208429)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202208429) and Tiago Oliveira [(2020207448)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202007448).
 
-# NOTHING BELOW THIS LINE WAS BEEN EDITED
+# Heroman and the Dungeon of Disgrace
 
-**Example**:
-
-In this exciting platform game you can help KangarooBoy save the world, by collecting all the coins throughout ten different levels in which you will […].
-
-This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*jane.doe*@fe.up.pt) for LPOO 2018⁄19.
+In this thrilling yet simple game, a hero tries to escape a mysterious and dangerous dungeon filled with all kinds of wild creatures and traps, collecting coins along the way.
 
 ### IMPLEMENTED FEATURES
-
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
-
-**Examples**:
-
-- **Jumping** - The game character will jump when the space bar key is pressed.
-- **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
+- **Hero** 
+  - **Movement** - The movement of the hero is defined by the arrows (up, left, right) or the keys W, A and D. This keys correspond respectively to jumping, going left and going right.
+  - **HP** - When the Heroman touches a wild creature his HP goes down by one. If it eventually reaches 0, its game over.
+- **Getting hidden coins** - When the Heroman touches one of the three coins available per level he collects it.
+- **Progression** - To complete a level, the Heroman has to reach the final door to progress to a different level.
+- **Score** - The score depends on the level reached and the amount of coins collected across the levels.
 
 ### PLANNED FEATURES
-
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
-
+- **Menu**
+  - **Start Game** - Upon selection, begins a new playthrough.
+  - **Exit** - A simple button to exit the game.
 ### DESIGN
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
@@ -81,10 +73,3 @@ The use of the State Pattern in the current design allows the following benefits
 
 ### SELF-EVALUATION
 
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
-
-**Example**:
-
-- John Doe: 40%
-- Jane Doe: 60%
->>>>>>> ecfd71423bfb2a4a7fa41f8c10091847d7c158f9

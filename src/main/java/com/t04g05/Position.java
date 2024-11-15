@@ -12,12 +12,12 @@ public class Position {
         return x;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
     public int getY() {
         return y;
+    }
+
+    public void setX(int x) {
+        this.x = x;
     }
 
     public void setY(int y) {
@@ -26,7 +26,10 @@ public class Position {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || o.getClass() != this.getClass()) return false;
-        return (this == o) || (this.x == ((Position) o).x && this.y == ((Position) o).y);
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Position position = (Position) o;
+        return x == position.x && y == position.y;
     }
 }

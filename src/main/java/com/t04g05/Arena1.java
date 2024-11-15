@@ -80,6 +80,10 @@ public class Arena1 {
         }
         //Isto tem que ser alterado depois de criarmos o Character
         screen.setCharacter(x, y, TextCharacter.fromCharacter('X')[0]);
+
+        // Coloquei um "O" no final do labirinto
+        screen.setCharacter(20, 15, TextCharacter.fromCharacter('O')[0]);
+
         screen.refresh();
     }
 

@@ -21,6 +21,7 @@ In this thrilling yet simple game, a hero tries to escape a mysterious and dange
 - **Menu**
   - **Start Game** - Upon selection, begins a new playthrough.
   - **Exit** - A simple button to exit the game.
+  - **Change Binds** - Another button that allows the player to altern between the arrow keys or the A,W and D keys.
 
 - **Extras**
   - **Score** - The score depends on the level reached and the amount of coins collected across the levels.
@@ -28,11 +29,14 @@ In this thrilling yet simple game, a hero tries to escape a mysterious and dange
 ### MOCKUPS
 
 ![Level Mockup](Mockups/Levelmockup.png)
+
 Our visualization of the game would consist in a set of different levels, each one with its own unique course and different 
 types of obstacles and enemies. In addition, each level would be a mixture of avoiding getting killed and collect every one of the 
 three coins present throughout the level, which would lead to a higher score.
 
-Concerning the menu, it would be a simple menu with an option to play, another to quit the game two more to see the score and to change the binds, in 
+![Menu Mockup](Mockups/Menumockup.png)
+
+Concerning the menu, it would be a simple menu with an option to play, another to quit the game and two more to see the score and to change the binds, in 
 other words, the keys used to play.
 ### MODEL
 

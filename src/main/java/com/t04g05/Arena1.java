@@ -104,7 +104,7 @@ public class Arena1 {
             while (true) {
                 draw();
                 if (checkGoal()) {
-                    System.out.println("Parabéns! Você alcançou o objetivo!");
+                    System.out.println("É isso mesmo, nivel 1 concluído!");
                     break;
                 }
                 KeyStroke key = screen.readInput(); // Lê entrada do usuário

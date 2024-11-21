@@ -1,16 +1,10 @@
 package com.t04g05;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
-import com.googlecode.lanterna.screen.Screen;
-import com.googlecode.lanterna.screen.TerminalScreen;
-import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.TextColor;
-import java.io.IOException;
 import java.util.Set;
 
 public class Character {
@@ -22,10 +16,6 @@ public class Character {
 
     public Position getPosition(){
         return position;
-    }
-
-    public void setPosition(Position position){
-        this.position = position;
     }
 
     public void processKey(KeyStroke key, Set<Walls> walls) {

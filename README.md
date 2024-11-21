@@ -4,22 +4,40 @@
 > This project was made by Beatriz Bastos [(202303793)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202303793), Luís Ferreira [(202208429)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202208429) and Tiago Oliveira [(2020207448)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202007448).
 
 # Heroman and the Dungeon of Disgrace
+### DESCRIPTION
 
-In this thrilling yet simple game, a hero tries to escape a mysterious and dangerous dungeon filled with all kinds of wild creatures and traps, collecting coins along the way.
+In this thrilling yet simple game, a hero tries to escape a mysterious and dangerous dungeon filled with all kinds of wild creatures and traps, while collecting coins which makes his adventure even more interesting. To survive each different dungeon, he has to find the exit without getting killed.
 
 ### IMPLEMENTED FEATURES
 - **Hero** 
   - **Movement** - The movement of the hero is defined by the arrows (up, left, right) or the keys W, A and D. This keys correspond respectively to jumping, going left and going right.
   - **HP** - When the Heroman touches a wild creature his HP goes down by one. If it eventually reaches 0, its game over.
-- **Getting hidden coins** - When the Heroman touches one of the three coins available per level he collects it.
-- **Progression** - To complete a level, the Heroman has to reach the final door to progress to a different level.
-- **Score** - The score depends on the level reached and the amount of coins collected across the levels.
+
+- **Extras**
+  - **Getting hidden coins** - When the Heroman touches one of the three coins available per level he collects it.
+  - **Progression** - To complete a level, the Heroman has to reach the final door to progress to a different level.
 
 ### PLANNED FEATURES
 - **Menu**
   - **Start Game** - Upon selection, begins a new playthrough.
   - **Exit** - A simple button to exit the game.
-### DESIGN
+
+- **Extras**
+  - **Score** - The score depends on the level reached and the amount of coins collected across the levels.
+
+### MOCKUPS
+
+![Level Mockup](Mockups/Levelmockup.png)
+Our visualization of the game would consist in a set of different levels, each one with its own unique course and different 
+types of obstacles and enemies. In addition, each level would be a mixture of avoiding getting killed and collect every one of the 
+three coins present throughout the level, which would lead to a higher score.
+
+Concerning the menu, it would be a simple menu with an option to play, another to quit the game two more to see the score and to change the binds, in 
+other words, the keys used to play.
+### MODEL
+
+### DOCUMENTATION
+
 
 > This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
 
@@ -62,14 +80,10 @@ The use of the State Pattern in the current design allows the following benefits
 - We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
 - There are now more classes and instances to manage, but still in a reasonable number.
 
-#### KNOWN CODE SMELLS
 
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation.
 
 ### TESTING
 
 - Screenshot of coverage report.
 - Link to mutation testing report.
-
-### SELF-EVALUATION
 

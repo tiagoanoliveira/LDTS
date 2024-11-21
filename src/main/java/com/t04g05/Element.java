@@ -1,8 +1,9 @@
 package com.t04g05;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-abstract class Element {
-    private Position position;
+public abstract class Element {
+    private Position position = null;
 
     public Element(int x, int y) {
         position = new Position(x, y);
@@ -12,9 +13,5 @@ abstract class Element {
         return position;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public abstract void draw(TextGraphics screen);
+    public abstract void draw(TextGraphics graphics);
 }

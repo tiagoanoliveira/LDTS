@@ -1,29 +1,30 @@
 package com.t04g05;
-import com.googlecode.lanterna.SGR;
+
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Walls {
-    private Position position;
-
+public class Walls extends Element {
     public Walls(int x, int y) {
-        this.position = new Position(x, y);
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void draw(TextGraphics screen) {
-        screen.setForegroundColor(TextColor.Factory.fromString("#333366"));
-        screen.putString(new TerminalPosition(position.getX(), position.getY()), "#");
+        super(x, y);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Walls wall = (Walls) o;
-        return position.equals(wall.position);
+    public void draw(TextGraphics graphics) {
+        graphics.setForegroundColor(TextColor.Factory.fromString("#333366")); // Cor azul escuro
+        graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "#"); // Representa a parede como "#"
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Walls wall = (Walls) obj;
+        return getPosition().equals(wall.getPosition());
+    }
+
+    @Override
+    public int hashCode() {
+        return getPosition().hashCode();
     }
 }

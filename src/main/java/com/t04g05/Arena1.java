@@ -10,20 +10,20 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
+
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Arena1 {
     private Screen screen;
-    private int x = 54; // Initial position for x, we can change this after
-    private int y = 5; // Initial position for y
-    private ArrayList<Walls> walls = new ArrayList<>();
-
+    private Set<Walls> walls = new HashSet<>(); // HashSet para paredes
+    private Character character;
+    private Position goal;
 
     public Arena1() {
+        goal = new Position(20, 15);
         try {
             TerminalSize terminalSize = new TerminalSize(60, 30);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
@@ -33,12 +33,14 @@ public class Arena1 {
             screen.startScreen();
             screen.doResizeIfNecessary();
 
-            createMaze();
+            createMaze(); // Cria as paredes do labirinto
+            character = new Character(54, 5); // Inicializa o personagem
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
-    // Metodo para definir as paredes do labirinto
+
     private void createMaze() {
         // Paredes superior e inferior
         for (int i = 0; i < 60; i++) {
@@ -64,68 +66,34 @@ public class Arena1 {
         }
     }
 
+    // Desenhar o jogo
     private void draw() throws IOException {
         if (screen == null) return;
         screen.clear();
 
         // Configurar fundo castanho para todo o mapa
         TextGraphics graphics = screen.newTextGraphics();
-
-        // Preencher o fundo com castanho
         graphics.setBackgroundColor(TextColor.Factory.fromString("#6E522C"));
         graphics.fill(' ');
 
+        // Desenhar as paredes
         for (Walls wall : walls) {
             wall.draw(graphics);
         }
-        //Isto tem que ser alterado depois de criarmos o Character
-        screen.setCharacter(x, y, TextCharacter.fromCharacter('X')[0]);
 
-        // Coloquei um "O" no final do labirinto
+        // Desenhar o personagem
+        character.draw(graphics);
+
+        // Colocar um objetivo no final do labirinto
         screen.setCharacter(20, 15, TextCharacter.fromCharacter('O')[0]);
 
         screen.refresh();
     }
-
-    private boolean isWall(int x, int y) {
-        for (Walls wall : walls) {
-            if (wall.getPosition().getX() == x && wall.getPosition().getY() == y) {
-                return true;
-            }
-        }
-        return false;
+    private boolean checkGoal(){
+        return character.getPosition().equals(goal);
     }
 
-    private void processKey(KeyStroke key) {
-        int newX = x;
-        int newY = y;
-
-        switch (key.getKeyType()) {
-            case ArrowUp -> y = Math.max(1, newY - 1);
-            case ArrowDown -> y = Math.min(28, newY + 1);
-            case ArrowLeft -> x = Math.max(1, newX - 1);
-            case ArrowRight -> x = Math.min(58, newX + 1);
-        }
-        if (key.getKeyType() == KeyType.Character) {
-            char character = key.getCharacter();
-            switch (character) {
-                case 'W', 'w' -> y = Math.max(1, newY - 1);
-                case 'S', 's' -> y = Math.min(28, newY + 1);
-                case 'A', 'a' -> x = Math.max(1, newX - 1);
-                case 'D', 'd' -> x = Math.min(58, newX + 1);
-            }
-        }
-
-
-        if (!isWall(newX, newY)) {
-            System.out.println("Movendo para: (" + newX + ", " + newY + ")");
-            x = newX;
-            y = newY;
-        } else {
-            System.out.println("Movimento bloqueado por parede.");
-        }
-    }
-
+    // Loop principal do jogo
     public void run() {
         if (screen == null) {
             System.out.println("Screen was not initialized. Exiting.");
@@ -135,12 +103,17 @@ public class Arena1 {
         try {
             while (true) {
                 draw();
-                KeyStroke key = screen.readInput();
-                processKey(key);
+                if (checkGoal()) {
+                    System.out.println("Parabéns! Você alcançou o objetivo!");
+                    break;
+                }
+                KeyStroke key = screen.readInput(); // Lê entrada do usuário
                 if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
                     System.out.println("Exiting game...");
                     break;
                 }
+                // Delegar o movimento ao personagem, passando as paredes
+                character.processKey(key, walls); // Aqui as paredes são passadas corretamente
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -155,4 +128,5 @@ public class Arena1 {
             }
         }
     }
+
 }

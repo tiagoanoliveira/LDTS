@@ -1,4 +1,5 @@
 package com.t04g05;
+
 public class Position {
     private int x;
     private int y;
@@ -25,11 +26,15 @@ public class Position {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Position position = (Position) o;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Position position = (Position) obj;
         return x == position.x && y == position.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * x + y; // Simples cálculo do hash code
     }
 }

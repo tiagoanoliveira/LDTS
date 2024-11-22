@@ -24,17 +24,17 @@ public class Character {
 
         switch (key.getKeyType()) {
             case ArrowUp -> newY = Math.max(1, newY - 1);
-            case ArrowDown -> newY = Math.min(28, newY + 1);
+            case ArrowDown -> newY = Math.min(29, newY + 1);
             case ArrowLeft -> newX = Math.max(1, newX - 1);
-            case ArrowRight -> newX = Math.min(58, newX + 1);
+            case ArrowRight -> newX = Math.min(59, newX + 1);
         }
         if (key.getKeyType() == KeyType.Character) {
             char character = key.getCharacter();
             switch (character) {
                 case 'W', 'w' -> newY = Math.max(1, newY - 1);
-                case 'S', 's' -> newY = Math.min(28, newY + 1);
+                case 'S', 's' -> newY = Math.min(29, newY + 1);
                 case 'A', 'a' -> newX = Math.max(1, newX - 1);
-                case 'D', 'd' -> newX = Math.min(58, newX + 1);
+                case 'D', 'd' -> newX = Math.min(59, newX + 1);
             }
         }
 

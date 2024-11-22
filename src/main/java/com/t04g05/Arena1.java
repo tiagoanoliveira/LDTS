@@ -1,7 +1,6 @@
 package com.t04g05;
 
 import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -23,9 +22,9 @@ public class Arena1 {
     private Position goal;
 
     public Arena1() {
-        goal = new Position(20, 15);
+        goal = new Position(45, 13);
         try {
-            TerminalSize terminalSize = new TerminalSize(60, 30);
+            TerminalSize terminalSize = new TerminalSize(60, 31);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
             screen = new TerminalScreen(terminal);
@@ -34,36 +33,56 @@ public class Arena1 {
             screen.doResizeIfNecessary();
 
             createMaze(); // Cria as paredes do labirinto
-            character = new Character(54, 5); // Inicializa o personagem
+            character = new Character(54, 3); // Inicializa o personagem
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-
+    //Construção do labirinto definindo as paredes exteriores e interiores
     private void createMaze() {
         // Paredes superior e inferior
         for (int i = 0; i < 60; i++) {
             walls.add(new Walls(i, 0));
-            walls.add(new Walls(i, 29));
+            walls.add(new Walls(i, 30));
         }
 
         // Paredes laterais esquerda e direita
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 31; i++) {
             walls.add(new Walls(0, i));
             walls.add(new Walls(59, i));
         }
 
         // Paredes internas para o labirinto
-        for (int i = 15; i < 60; i++) {
-            walls.add(new Walls(i, 10)); // linha horizontal no meio
+        for (int i = 6; i <16 ; i++) {
+            walls.add(new Walls(11, i)); // 1ª linha vertical à esquerda
         }
-        for (int i = 10; i < 20; i++) {
-            walls.add(new Walls(15, i)); // linha vertical à esquerda
+        for (int i = 10; i < 26; i++) {
+            walls.add(new Walls(50, i)); // ultima linha vertical à direita
         }
-        for (int i = 15; i < 45; i++) {
-            walls.add(new Walls(i, 20)); // linha horizontal embaixo
+        for (int i = 11; i < 60; i++) {
+            walls.add(new Walls(i, 5)); // 1ª linha horizontal em cima
         }
+        for (int i = 20; i < 50; i++) {
+            walls.add(new Walls(i, 10)); // 2º linha horizontal
+        }
+        for (int i = 11; i < 50; i++) {
+            walls.add(new Walls(i, 15)); // 3ª linha horizontal
+        }
+        for (int i = 1; i < 42; i++) {
+            walls.add(new Walls(i, 20)); // 4ª linha horizontal
+        }
+        for (int i = 10; i < 50; i++) {
+            walls.add(new Walls(i, 25)); // ultima linha horizontal
+        }
+    }
+
+    // desenhar o goal no final
+    private void drawGoal(TextGraphics graphics) {
+        // Definir a cor de fundo e a cor do texto
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#6E522C")); // Fundo castanho
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF")); // Letra branca
+        graphics.putString(goal.getX(), goal.getY(), "O");
     }
 
     // Desenhar o jogo
@@ -85,15 +104,13 @@ public class Arena1 {
         character.draw(graphics);
 
         // Colocar um objetivo no final do labirinto
-        screen.setCharacter(20, 15, TextCharacter.fromCharacter('O')[0]);
+        drawGoal(graphics);
 
         screen.refresh();
     }
-    private boolean checkGoal(){
-        return character.getPosition().equals(goal);
+    private boolean checkGoal() {
+        return character.getPosition().equals(goal); // Compara com a posição correta do objetivo
     }
-
-    // Loop principal do jogo
     public void run() {
         if (screen == null) {
             System.out.println("Screen was not initialized. Exiting.");
@@ -102,30 +119,46 @@ public class Arena1 {
 
         try {
             while (true) {
-                draw();
-                if (checkGoal()) {
-                    System.out.println("É isso mesmo, nivel 1 concluído!");
+                draw(); // Desenha o jogo
+                if (checkGoal()) { // Verifica se o objetivo foi alcançado
+                    showWinMessage();
                     break;
                 }
-                KeyStroke key = screen.readInput(); // Lê entrada do usuário
-                if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
-                    System.out.println("Exiting game...");
-                    break;
-                }
-                // Delegar o movimento ao personagem, passando as paredes
-                character.processKey(key, walls); // Aqui as paredes são passadas corretamente
+
+                KeyStroke key = screen.readInput(); // Lê entrada do utilizador
+                if (processInput(key)) break; // Processa e verifica se deve sair do jogo
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (screen != null) {
-                    screen.stopScreen();
-                    System.out.println("Screen stopped successfully.");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            closeScreen();
+        }
+    }
+
+    // Mostra uma mensagem de vitória
+    private void showWinMessage() {
+        System.out.println("É isso mesmo, nível 1 concluído!");
+    }
+
+    // Processa entrada e verifica se o jogo deve terminar
+    private boolean processInput(KeyStroke key) {
+        if (key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') {
+            System.out.println("Exiting game...");
+            return true;
+        }
+        character.processKey(key, walls); // Move o personagem
+        return false;
+    }
+
+    // Fecha o ecrã corretamente
+    private void closeScreen() {
+        try {
+            if (screen != null) {
+                screen.stopScreen();
+                System.out.println("Screen stopped successfully.");
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

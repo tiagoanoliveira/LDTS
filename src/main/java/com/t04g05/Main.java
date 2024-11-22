@@ -5,7 +5,6 @@ public class Main {
         // Criar instância de Arena1 e Arena2
         Arena1 arena1 = new Arena1();
 
-        // Começar o jogo e garantir que o terminal da Arena1 é fechado antes de continuar
         boolean level1Completed = arena1.run();  // Executa o nível 1
 
         // Verificar se o nível 1 foi concluído antes de passar para a arena 2

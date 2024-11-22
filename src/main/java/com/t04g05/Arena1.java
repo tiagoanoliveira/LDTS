@@ -55,13 +55,13 @@ public class Arena1 {
 
         // Paredes internas para o labirinto
         for (int i = 6; i <16 ; i++) {
-            walls.add(new Walls(11, i)); // 1ª linha vertical à esquerda
+            walls.add(new Walls(11, i)); // 1.º linha vertical à esquerda
         }
         for (int i = 10; i < 26; i++) {
             walls.add(new Walls(50, i)); // ultima linha vertical à direita
         }
         for (int i = 11; i < 60; i++) {
-            walls.add(new Walls(i, 5)); // 1ª linha horizontal em cima
+            walls.add(new Walls(i, 5)); // 1º linha horizontal em cima
         }
         for (int i = 20; i < 50; i++) {
             walls.add(new Walls(i, 10)); // 2º linha horizontal
@@ -99,8 +99,7 @@ public class Arena1 {
         for (Walls wall : walls) {
             wall.draw(graphics);
         }
-
-        // Desenhar o personagem
+        // Desenhar o character
         character.draw(graphics);
 
         // Colocar um objetivo no final do labirinto
@@ -147,7 +146,7 @@ public class Arena1 {
             System.out.println("Exiting game...");
             return true;
         }
-        character.processKey(key, walls); // Move o personagem
+        character.processKey(key, walls, null); //Coloquei null porque não devemos querer obstaculos nesta Arena
         return false;
     }
 

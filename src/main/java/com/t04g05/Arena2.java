@@ -79,10 +79,15 @@ public class Arena2 {
         }
     }
 
-
     private void createObstacles() {
-        obstacles.add(new Obstacle(25, 12));  // Obstáculo no meio do labirinto
-        obstacles.add(new Obstacle(35, 22));  // Obstáculo em outro local
+        obstacles.add(new Obstacle(25, 12));
+        obstacles.add(new Obstacle(25, 13));
+        obstacles.add(new Obstacle(40, 18));
+        obstacles.add(new Obstacle(40, 17));
+        obstacles.add(new Obstacle(50, 7));
+        obstacles.add(new Obstacle(50, 6));
+        obstacles.add(new Obstacle(35, 22));
+        obstacles.add(new Obstacle(35, 21));
     }
 
     private void createEnemies() {
@@ -93,7 +98,7 @@ public class Arena2 {
     private void drawGoal(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#6E522C"));
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.putString(goal.getX(), goal.getY(), "O");
+        graphics.putString(goal.getX(), goal.getY(), "*");
     }
 
     private void draw() throws IOException {
@@ -151,6 +156,7 @@ public class Arena2 {
                     }
                 }
 
+
                 KeyStroke key = screen.readInput();
                 if (processInput(key)) break;
             }
@@ -162,11 +168,11 @@ public class Arena2 {
     }
 
     private void showWinMessage() {
-        System.out.println("Você completou o nível 2!");
+        System.out.println("Completaste o nível 2!");
     }
 
     private void showGameOverMessage() {
-        System.out.println("Você foi pego pelos inimigos! Fim de jogo.");
+        System.out.println("Foste comido vivo! Fim de jogo.");
     }
 
     private boolean processInput(KeyStroke key) {
@@ -174,7 +180,7 @@ public class Arena2 {
             System.out.println("Exiting game...");
             return true;
         }
-        character.processKey(key, walls); // Move o personagem
+        character.processKey(key, walls, obstacles); // Move o personagem
         return false;
     }
 

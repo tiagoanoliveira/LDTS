@@ -11,14 +11,14 @@ public class Character {
     private Position position;
 
     public Character(int x, int y){
-        this.position = new Position(x,y);
+        position = new Position(x,y);
     }
 
     public Position getPosition(){
         return position;
     }
 
-    public void processKey(KeyStroke key, Set<Walls> walls) {
+    public void processKey(KeyStroke key, Set<Walls> walls, Set<Obstacle> obstacles) {
         int newX = position.getX();
         int newY = position.getY();
 
@@ -38,16 +38,26 @@ public class Character {
             }
         }
 
-        if (!walls.contains(new Walls(newX, newY))) {
-            position.setX(newX);
-            position.setY(newY);
-        } else {
+        // Verificar se o movimento não colide com as paredes
+        if (walls.contains(new Walls(newX, newY))) {
             System.out.println("Movimento bloqueado por parede.");
         }
+        // Verificar se o movimento não colide com obstáculos ou inimigos (Arena 2)
+        else if (obstacles != null && obstacles.contains(new Obstacle(newX, newY))) {
+            System.out.println("Movimento bloqueado por obstáculo.");
+        }
+
+        // Se não houver colisão com paredes ou obstáculos, permite o movimento
+        else {
+            position.setX(newX);
+            position.setY(newY);
+        }
+
     }
     public boolean isCollidingWithEnemy(Enemy enemy) {
         return position.equals(enemy.getPosition());
     }
+
 
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF00"));

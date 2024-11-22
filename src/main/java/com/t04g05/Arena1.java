@@ -111,18 +111,18 @@ public class Arena1 {
     private boolean checkGoal() {
         return character.getPosition().equals(goal); // Compara com a posição correta do objetivo
     }
-    public void run() {
+    public boolean run() {
         if (screen == null) {
             System.out.println("Screen was not initialized. Exiting.");
-            return;
+            return false;
         }
 
         try {
             while (true) {
                 draw(); // Desenha o jogo
-                if (checkGoal()) { // Verifica se o objetivo foi alcançado
+                if (checkGoal()) {
                     showWinMessage();
-                    break;
+                    return true;
                 }
 
                 KeyStroke key = screen.readInput(); // Lê entrada do utilizador
@@ -133,6 +133,7 @@ public class Arena1 {
         } finally {
             closeScreen();
         }
+        return false;
     }
 
     // Mostra uma mensagem de vitória

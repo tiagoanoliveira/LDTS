@@ -45,6 +45,9 @@ public class Character {
             System.out.println("Movimento bloqueado por parede.");
         }
     }
+    public boolean isCollidingWithEnemy(Enemy enemy) {
+        return position.equals(enemy.getPosition());
+    }
 
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF00"));

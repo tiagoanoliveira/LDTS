@@ -1,4 +1,4 @@
-package com.t04g05;
+package com.t04g05.elements;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;

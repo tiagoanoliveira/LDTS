@@ -1,8 +1,10 @@
-package com.t04g05;
+package com.t04g05.characters;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.t04g05.elements.Element;
+import com.t04g05.elements.Walls;
 
 import java.util.Set;
 

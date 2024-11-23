@@ -1,4 +1,4 @@
-package com.t04g05;
+package com.t04g05.elements;
 
 public class Position {
     private int x;

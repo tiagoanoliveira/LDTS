@@ -128,8 +128,4 @@ The use of the **Observer Pattern** in the current design allows the following b
 - Allows parts of the game to be notified as events like defeat or victory.
 - Facilitates the addition of new reactive functionalities without modifying the central code.
 
-### TESTING
-
-- Screenshot of coverage report.
-- Link to mutation testing report.
 

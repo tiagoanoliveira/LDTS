@@ -59,7 +59,7 @@ has to go through is supposed to be full of holes and spikes, or enemies that mo
 Our main problem was writing the same code over and over again for the same functionalities and also being unsure about modifications that
 could be made but if those changes would affect the rest of the classes or the way the methods in them would work.
 
-**The Patterns**
+#### **The Patterns**
 
 1. **Singleton Pattern** with ScreenManager
 

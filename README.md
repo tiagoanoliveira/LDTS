@@ -37,7 +37,7 @@ Our visualization of the game would consist in a set of different levels, each o
 types of obstacles and enemies. In addition, each level would be a mixture of avoiding getting killed and collect every one of the 
 three coins present throughout the level, which would lead to a higher score.
 
-**Note that, even though the mockup represents our first visualization of the game, we decided to modify the movement of the main 
+> **Note that, even though the mockup represents our first visualization of the game, we decided to modify the movement of the main 
 character to be similar to Pac-Man, in other words, instead of being able to jump, every key (Up, Down, Right, Left) would allow him to go 
 each of the different directions.**
 
@@ -55,7 +55,7 @@ has to go through is supposed to be full of holes and spikes, or enemies that mo
 
 ### DOCUMENTATION
 
-**Problem in Context**
+#### **Problem in Context**
 Our main problem was writing the same code over and over again for the same functionalities and also being unsure about modifications that
 could be made but if those changes would affect the rest of the classes or the way the methods in them would work.
 
@@ -69,7 +69,7 @@ could be made but if those changes would affect the rest of the classes or the w
 
 4. **Observer Pattern** in GameObserver and GameSubject
 
-**Implementation**
+#### **Implementation**
 
 The following classes are the ones we implemented to base our project.
 
@@ -106,7 +106,7 @@ The following classes are the ones we implemented to base our project.
 
   - **NormalMovement** - Standard logic to the player's movement. Makes sure the movement is limited by the levels boundaries and obstacles. 
 
-**Consequences**
+#### **Consequences**
 
 The use of the **Singleton Pattern** in the current design allows the following benefits:
 

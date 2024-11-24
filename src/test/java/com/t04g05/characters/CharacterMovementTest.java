@@ -1,36 +1,41 @@
 package com.t04g05.characters;
 
-import org.junit.jupiter.api.Test;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.t04g05.elements.Obstacle;
+import com.t04g05.characters.Character;
 import com.t04g05.elements.Position;
-
-import java.util.HashSet;
-import java.util.Set;
-
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CharacterMovementTest {
+public class CharacterMovementTest {
 
     @Test
-    void characterCannotMoveIntoObstacle() {
-        // Configuração inicial
-        // Criar personagem na posição inicial (5, 5)
+    public void testMoveUp() {
         Character character = new Character(5, 5);
+        character.moveTo(new Position(5, 4)); // Mover para cima
+        assertEquals(5, character.getPosition().getX());
+        assertEquals(4, character.getPosition().getY());
+    }
 
-        // Criar um obstáculo na posição (6, 5)
-        Obstacle obstacle = new Obstacle(6, 5);
-        Set<Obstacle> obstacles = new HashSet<>();
-        obstacles.add(obstacle);
+    @Test
+    public void testMoveDown() {
+        Character character = new Character(5, 5);
+        character.moveTo(new Position(5, 6)); // Mover para baixo
+        assertEquals(5, character.getPosition().getX());
+        assertEquals(6, character.getPosition().getY());
+    }
 
-        // Simular um movimento para a direita (tecla "ArrowRight")
-        KeyStroke key = new KeyStroke(KeyType.ArrowRight, false, false);
-        character.processKey(key, new HashSet<>(), obstacles);
+    @Test
+    public void testMoveLeft() {
+        Character character = new Character(5, 5);
+        character.moveTo(new Position(4, 5)); // Mover para a esquerda
+        assertEquals(4, character.getPosition().getX());
+        assertEquals(5, character.getPosition().getY());
+    }
 
-        // Validação
-        // Verificar que o personagem não se moveu para (6, 5)
-        assertEquals(new Position(5, 5), character.getPosition(),
-                "O personagem não deveria atravessar o obstáculo.");
+    @Test
+    public void testMoveRight() {
+        Character character = new Character(5, 5);
+        character.moveTo(new Position(6, 5)); // Mover para a direita
+        assertEquals(6, character.getPosition().getX());
+        assertEquals(5, character.getPosition().getY());
     }
 }

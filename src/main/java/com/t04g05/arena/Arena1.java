@@ -100,6 +100,8 @@ public class Arena1 implements GameObserver {
         return false;
     }
 
+
+
     public boolean run() {
         try {
             while (true) {

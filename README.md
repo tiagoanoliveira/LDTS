@@ -11,47 +11,44 @@ creatures and traps, while collecting coins which makes his adventure even more 
 
 ### IMPLEMENTED FEATURES
 
+- **Game Execution**
+  - **Start Game** - Upon selection, begins a new playthrough.
+
 - **Hero** 
   - **Movement** - The movement of the hero is defined by the arrows (up, down, left, right) or the keys W, S, A and D. This keys correspond respectively to going up, down, left and right. Also when the hero touches a wall his movement his blocked.
   - **Progression** - To complete a level, the Heroman has to reach the final door to progress to a different level.
 
-- **Extras**
-  - **Getting hidden coins** - When the Heroman touches one of the three coins available per level he collects it.
-
 ### PLANNED FEATURES
 
 - **Menu**
-  - **Start Game** - Upon selection, begins a new playthrough.
   - **Exit** - A simple button to exit the game.
-  - **Change Binds** - Another button that allows the player to altern between the arrow keys or the A,W and D keys.
+  - **Change Binds** - Another button that allows the player to altern between the arrow keys or the A, S ,W and D keys.
 
 - **Extras**
   - **Score** - The score depends on the level reached and the amount of coins collected across the levels.
   - **HP** - When the Heroman touches a wild creature his HP goes down by one. If it eventually reaches 0, its game over.
+  - **Getting hidden coins** - When the Heroman touches one of the coins available per level he collects it.
 
 ### MOCKUPS
 
-![Level Mockup](Mockups/Levelmockup.png)
+![Level Mockup](Images/Mockups/mockupgame2.jpg)
 
 Our visualization of the game would consist in a set of different levels, each one with its own unique course and different 
 types of obstacles and enemies. In addition, each level would be a mixture of avoiding getting killed and collect every one of the 
-three coins present throughout the level, which would lead to a higher score.
+coins present throughout the level, which would lead to a higher score.
 
-> **Note that, even though the mockup represents our first visualization of the game, we decided to modify the movement of the main 
-character to be similar to Pac-Man, in other words, instead of being able to jump, every key (Up, Down, Right, Left) would allow him to go 
-each of the different directions.**
 
-![Menu Mockup](Mockups/Menumockup.png)
+![Menu Mockup](Images/Mockups/Menumockup.png)
 
 Concerning the menu, it would be a simple menu with an option to play, another to quit the game and two more to see the score and to change the binds, in 
 other words, the keys used to play.
 
 ### MODEL
 
-![Game Image 1](GameScreenshots/LDTSgame1.jpg)
+![Game Image 1](Images/GameScreenshots/LDTSgame1.jpg)
 
 As the previous screenshot shows, the map is still empty, in other words, without enemies, obstacles or coins for the hero to collect. But, as mentioned before, the route the hero
-has to go through is supposed to be full of holes and spikes, or enemies that move randomly, and finally, three coins for him to collect.
+has to go through is supposed to be full of holes and spikes, or enemies that move randomly, and finally, coins for him to collect.
 
 ### DOCUMENTATION
 
@@ -104,7 +101,13 @@ The following classes are the ones we implemented to base our project.
 
   - **MovementStrategy** - Interface to movement strategies that is implemented in NormalMovement.
 
-  - **NormalMovement** - Standard logic to the player's movement. Makes sure the movement is limited by the levels boundaries and obstacles. 
+  - **NormalMovement** - Standard logic to the player's movement. Makes sure the movement is limited by the levels boundaries and obstacles.
+  
+  - **RandomMovement** - Implements the MovementStrategy interface and defines the random movement of the enemies.
+  
+  - **GameController** - Manages the main flow of the game, controlling the transition between levels and initializing the game.
+  
+  - **GameTemplate** - Implements the Template Method, defining the general steps for game execution.
 
 #### **Consequences**
 
@@ -129,3 +132,22 @@ The use of the **Observer Pattern** in the current design allows the following b
 - Facilitates the addition of new reactive functionalities without modifying the central code.
 
 
+Some of the mentioned design patterns used are represented in the following UML:
+
+![LDTSuml](Images/UML/UMLldts.jpg)
+
+### TESTING
+
+Os screenshots seguintes mostram os testes que foram realizados até ao momento:
+
+![Testing Directions](Images/TestingScreenshots/testing1.jpg)
+
+![Testing Movement stop by Obstacle](Images/TestingScreenshots/testing2.jpg)
+
+![Testing normal Movement](Images/TestingScreenshots/testing3.jpg)
+
+![Goal Notification](Images/TestingScreenshots/testing4.jpg)
+
+![Testing Level Execution](Images/TestingScreenshots/testing5.jpg)
+
+![Testing Endgame on Enemy Collision](Images/TestingScreenshots/testing6.jpg)

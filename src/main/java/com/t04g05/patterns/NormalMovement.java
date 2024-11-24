@@ -3,6 +3,7 @@ package com.t04g05.patterns;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.t04g05.characters.Character;
+import com.t04g05.characters.Enemy;
 import com.t04g05.elements.Position;
 import com.t04g05.elements.Walls;
 import com.t04g05.elements.Obstacle;
@@ -48,6 +49,10 @@ public class NormalMovement implements MovementStrategy {
         } else if (walls.contains(new Walls(newX, newY))) {
             System.out.println("Movimento bloqueado por parede.");
         }
+    }
+    @Override
+    public void move(Enemy enemy, Set<Walls> walls, Set<Obstacle> obstacles) {
+        // Esse metodo não será utilizado em NormalMovement
     }
 
 }

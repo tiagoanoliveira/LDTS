@@ -11,7 +11,7 @@ public class Walls extends Element {
 
     @Override
     public void draw(TextGraphics graphics) {
-        graphics.setForegroundColor(TextColor.Factory.fromString("#333366")); // Cor azul escuro
+        graphics.setForegroundColor(TextColor.Factory.fromString("#333366")); // Cor azul-escuro
         graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "#"); // Representa a parede como "#"
     }
 

@@ -99,6 +99,7 @@ public class Arena2 implements GameObserver {
         enemies.add((Enemy) ElementFactory.createElement("Enemy", 52, 24));
         enemies.add((Enemy) ElementFactory.createElement("Enemy", 35, 12));
         enemies.add((Enemy) ElementFactory.createElement("Enemy", 40, 6));
+
     }
 
     private void drawGoal(TextGraphics graphics) {
@@ -143,6 +144,7 @@ public class Arena2 implements GameObserver {
 
     public boolean run() {
         System.out.println("Iniciando o Nível 2...");
+
         try {
             while (true) {
                 draw();
@@ -176,7 +178,7 @@ public class Arena2 implements GameObserver {
     }
     private void moveEnemies() {
         for (Enemy enemy : enemies) {
-            enemy.move(walls); // Movimento básico dos inimigos
+            enemy.move(walls);
         }
     }
     private boolean checkEnemyCollision() {

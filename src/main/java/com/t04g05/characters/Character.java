@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class Character {
     private Position position;
-    private MovementStrategy movementStrategy;
+    private final MovementStrategy movementStrategy;
 
     public Character(int x, int y) {
         this.position = new Position(x, y);

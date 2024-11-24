@@ -4,34 +4,25 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.t04g05.elements.Element;
+import com.t04g05.elements.Position;
 import com.t04g05.elements.Walls;
-
+import com.t04g05.patterns.MovementStrategy;
+import com.t04g05.patterns.RandomMovement;
 import java.util.Set;
 
 public class Enemy extends Element {
-    private int directionX;
-    private int directionY;
+    private final MovementStrategy movementStrategy;
 
     public Enemy(int x, int y) {
         super(x, y);
-        // Direção de movimento aleatória (simples)
-        this.directionX = (Math.random() > 0.5) ? 1 : -1;
-        this.directionY = (Math.random() > 0.5) ? 1 : -1;
+        this.movementStrategy = new RandomMovement(); // Estratégia de movimento aleatório
     }
 
     public void move(Set<Walls> walls) {
-        int newX = getPosition().getX() + directionX;
-        int newY = getPosition().getY() + directionY;
-
-        // Impede o inimigo de atravessar paredes
-        if (!walls.contains(new Walls(newX, newY))) {
-            getPosition().setX(newX);
-            getPosition().setY(newY);
-        } else {
-            // Inverte a direção se encontrar uma parede
-            directionX *= -1;
-            directionY *= -1;
-        }
+        movementStrategy.move(this, walls, null); // Chama o metodo move com a estratégia de movimento aleatório
+    }
+    public void moveTo(Position position) {
+        this.position = position; // Atualiza a posição do inimigo
     }
 
     @Override
@@ -44,3 +35,4 @@ public class Enemy extends Element {
         return character.getPosition().equals(getPosition());
     }
 }
+

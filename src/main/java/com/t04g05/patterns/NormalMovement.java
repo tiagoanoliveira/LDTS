@@ -52,7 +52,6 @@ public class NormalMovement implements MovementStrategy {
     }
     @Override
     public void move(Enemy enemy, Set<Walls> walls, Set<Obstacle> obstacles) {
-        // Esse metodo não será utilizado em NormalMovement
     }
 
 }

@@ -19,7 +19,7 @@ public class Enemy extends Element {
     }
 
     public void move(Set<Walls> walls) {
-        movementStrategy.move(this, walls, null); // Chama o metodo move com a estratégia de movimento aleatório
+        movementStrategy.move(this, walls, null); // Chama o move() com a estratégia de movimento aleatório
     }
     public void moveTo(Position position) {
         this.position = position; // Atualiza a posição do inimigo
@@ -28,7 +28,7 @@ public class Enemy extends Element {
     @Override
     public void draw(TextGraphics graphics) {
         graphics.setForegroundColor(TextColor.Factory.fromString("#FF0000")); // Cor do inimigo (vermelho)
-        graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "E");
+        graphics.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), "E"); //Depois podemos alterar o E para um "emoji" de um ghost
     }
 
     public boolean isCollidingWithCharacter(Character character) {

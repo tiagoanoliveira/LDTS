@@ -5,7 +5,7 @@ import com.t04g05.screen.ScreenManager;
 
 public class Main {
     public static void main(String[] args) {
-        ScreenManager screenManager = ScreenManager.getInstance(); // Criar a instância
+        ScreenManager screenManager = ScreenManager.getInstance();
         try {
             new GameController(screenManager).playLevel();
         } catch (InterruptedException e) {

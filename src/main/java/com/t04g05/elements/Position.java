@@ -1,8 +1,8 @@
 package com.t04g05.elements;
 
 public class Position {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     public Position(int x, int y) {
         this.x = x;
@@ -17,14 +17,6 @@ public class Position {
         return y;
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -35,6 +27,6 @@ public class Position {
 
     @Override
     public int hashCode() {
-        return 31 * x + y; // Simples cálculo do hash code
+        return 31 * x + y;
     }
 }

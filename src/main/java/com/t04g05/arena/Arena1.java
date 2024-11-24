@@ -36,36 +36,37 @@ public class Arena1 implements GameObserver {
     }
 
     private void createMaze() {
+        //Paredes superiores e inferiores exteriores
         for (int i = 0; i < 60; i++) {
             walls.add((Walls) ElementFactory.createElement("Walls", i, 0));
             walls.add((Walls) ElementFactory.createElement("Walls", i, 30));
         }
-
+        //Paredes laterais esquerda e direita exteriores
         for (int i = 0; i < 31; i++) {
             walls.add((Walls) ElementFactory.createElement("Walls", 0, i));
             walls.add((Walls) ElementFactory.createElement("Walls", 59, i));
         }
-
+        //Paredes internas para o labirinto
         for (int i = 6; i < 16; i++) {
-            walls.add((Walls) ElementFactory.createElement("Walls", 11, i));
+            walls.add((Walls) ElementFactory.createElement("Walls", 11, i)); // 1.ª linha vertical à esquerda
         }
         for (int i = 10; i < 26; i++) {
-            walls.add((Walls) ElementFactory.createElement("Walls", 50, i));
+            walls.add((Walls) ElementFactory.createElement("Walls", 50, i)); // ultima linha vertical à direita
         }
         for (int i = 11; i < 60; i++) {
-            walls.add((Walls) ElementFactory.createElement("Walls", i, 5));
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 5)); // 1.ª linha horizontal em cima
         }
         for (int i = 20; i < 50; i++) {
-            walls.add((Walls) ElementFactory.createElement("Walls", i, 10));
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 10)); // 2º linha horizontal
         }
         for (int i = 11; i < 50; i++) {
-            walls.add((Walls) ElementFactory.createElement("Walls", i, 15));
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 15)); // 3º linha horizontal
         }
         for (int i = 1; i < 42; i++) {
-            walls.add((Walls) ElementFactory.createElement("Walls", i, 20));
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 20)); // 4º linha horizontal
         }
         for (int i = 10; i < 50; i++) {
-            walls.add((Walls) ElementFactory.createElement("Walls", i, 25));
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 25)); // ultima linha horizontal
         }
     }
 
@@ -99,6 +100,8 @@ public class Arena1 implements GameObserver {
         }
         return false;
     }
+
+
 
     public boolean run() {
         try {

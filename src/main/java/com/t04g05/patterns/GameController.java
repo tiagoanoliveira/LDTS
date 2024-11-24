@@ -7,7 +7,6 @@ import com.t04g05.screen.ScreenManager;
 public class GameController extends GameTemplate {
     private ScreenManager screenManager;
 
-    // Injeção de dependência via construtor
     public GameController(ScreenManager screenManager) {
         this.screenManager = screenManager;
     }
@@ -19,7 +18,7 @@ public class GameController extends GameTemplate {
 
     @Override
     protected boolean isGameOver() {
-        return false; // Exemplo de implementação
+        return false;
     }
 
     @Override
@@ -42,4 +41,5 @@ public class GameController extends GameTemplate {
     protected void finishGame() {
         // Finalização do jogo
     }
+    //Depois vamos melhorar o GameController ao implementar mais funcionalidades
 }

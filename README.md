@@ -1,90 +1,131 @@
-<<<<<<< HEAD
 
-=======
-## LDTS - T04_G05 - <PROJECT NAME>
+## LDTS - T04_G05
 
-> I don't know about what is this project. This project was proposed by the Faculty of Engineering of the University of Porto ([FEUP](https://sigarra.up.pt/feup/pt/web_page.inicial)) in the curricular unit of Drawing Laboratory and Software Testing ([LDTS](https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=484407)).
 > This project was made by Beatriz Bastos [(202303793)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202303793), Luís Ferreira [(202208429)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202208429) and Tiago Oliveira [(2020207448)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202007448).
 
-# NOTHING BELOW THIS LINE WAS BEEN EDITED
+# Heroman and the Dungeon of Disgrace
+### DESCRIPTION
 
-**Example**:
-
-In this exciting platform game you can help KangarooBoy save the world, by collecting all the coins throughout ten different levels in which you will […].
-
-This project was developed by *John Doe* (*john.doe*@fe.up.pt) and *Jane Doe* (*jane.doe*@fe.up.pt) for LPOO 2018⁄19.
+In this thrilling yet simple game, a hero tries to escape a mysterious and dangerous dungeon filled with all kinds of wild 
+creatures and traps, while collecting coins which makes his adventure even more interesting. To survive each different dungeon, he has to find the exit without getting killed.
 
 ### IMPLEMENTED FEATURES
 
-> This section should contain a list of implemented features and their descriptions. In the end of the section, include two or three screenshots that illustrate the most important features.
+- **Hero** 
+  - **Movement** - The movement of the hero is defined by the arrows (up, down, left, right) or the keys W, S, A and D. This keys correspond respectively to going up, down, left and right. Also when the hero touches a wall his movement his blocked.
+  - **Progression** - To complete a level, the Heroman has to reach the final door to progress to a different level.
 
-**Examples**:
-
-- **Jumping** - The game character will jump when the space bar key is pressed.
-- **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
+- **Extras**
+  - **Getting hidden coins** - When the Heroman touches one of the three coins available per level he collects it.
 
 ### PLANNED FEATURES
 
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
+- **Menu**
+  - **Start Game** - Upon selection, begins a new playthrough.
+  - **Exit** - A simple button to exit the game.
+  - **Change Binds** - Another button that allows the player to altern between the arrow keys or the A,W and D keys.
 
-### DESIGN
+- **Extras**
+  - **Score** - The score depends on the level reached and the amount of coins collected across the levels.
+  - **HP** - When the Heroman touches a wild creature his HP goes down by one. If it eventually reaches 0, its game over.
 
-> This section should be organized in different subsections, each describing a different design problem that you had to solve during the project. Each subsection should be organized in four different parts:
+### MOCKUPS
 
-- **Problem in Context.** The description of the design context and the concrete problem that motivated the instantiation of the pattern. Someone else other than the original developer should be able to read and understand all the motivations for the decisions made. When refering to the implementation before the pattern was applied, don’t forget to [link to the relevant lines of code](https://help.github.com/en/articles/creating-a-permanent-link-to-a-code-snippet) in the appropriate version.
-- **The Pattern.** Identify the design pattern to be applied, why it was selected and how it is a good fit considering the existing design context and the problem at hand.
-- **Implementation.** Show how the pattern roles, operations and associations were mapped to the concrete design classes. Illustrate it with a UML class diagram, and refer to the corresponding source code with links to the relevant lines (these should be [relative links](https://help.github.com/en/articles/about-readmes#relative-links-and-image-paths-in-readme-files). When doing this, always point to the latest version of the code.
-- **Consequences.** Benefits and liabilities of the design after the pattern instantiation, eventually comparing these consequences with those of alternative solutions.
+![Level Mockup](Mockups/Levelmockup.png)
 
-**Example of one of such subsections**:
+Our visualization of the game would consist in a set of different levels, each one with its own unique course and different 
+types of obstacles and enemies. In addition, each level would be a mixture of avoiding getting killed and collect every one of the 
+three coins present throughout the level, which would lead to a higher score.
 
-------
+> **Note that, even though the mockup represents our first visualization of the game, we decided to modify the movement of the main 
+character to be similar to Pac-Man, in other words, instead of being able to jump, every key (Up, Down, Right, Left) would allow him to go 
+each of the different directions.**
 
-#### THE JUMP ACTION OF THE KANGAROOBOY SHOULD BEHAVE DIFFERENTLY DEPENDING ON ITS STATE
+![Menu Mockup](Mockups/Menumockup.png)
 
-**Problem in Context**
+Concerning the menu, it would be a simple menu with an option to play, another to quit the game and two more to see the score and to change the binds, in 
+other words, the keys used to play.
 
-There was a lot of scattered conditional logic when deciding how the KangarooBoy should behave when jumping, as the jumps should be different depending on the items that came to his possession during the game (an helix will alow him to fly, driking a potion will allow him to jump double the height, etc.). This is a violation of the **Single Responsability Principle**. We could concentrate all the conditional logic in the same method to circumscribe the issue to that one method but the **Single Responsability Principle** would still be violated.
+### MODEL
 
-**The Pattern**
+![Game Image 1](GameScreenshots/LDTSgame1.jpg)
 
-We have applied the **State** pattern. This pattern allows you to represent different states with different subclasses. We can switch to a different state of the application by switching to another implementation (i.e., another subclass). This pattern allowed to address the identified problems because […].
+As the previous screenshot shows, the map is still empty, in other words, without enemies, obstacles or coins for the hero to collect. But, as mentioned before, the route the hero
+has to go through is supposed to be full of holes and spikes, or enemies that move randomly, and finally, three coins for him to collect.
 
-**Implementation**
+### DOCUMENTATION
 
-The following figure shows how the pattern’s roles were mapped to the application classes. 
+#### **Problem in Context**
+Our main problem was writing the same code over and over again for the same functionalities and also being unsure about modifications that
+could be made but if those changes would affect the rest of the classes or the way the methods in them would work.
 
-These classes can be found in the following files:
+#### **The Patterns**
 
-- [Character](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/Character.java)
-- [JumpAbilityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/JumpAbilityState.java)
-- [DoubleJumpState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/DoubleJumpState.java)
-- [HelicopterState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/HelicopterState.java)
-- [IncreasedGravityState](https://web.fe.up.pt/~arestivo/page/courses/2021/lpoo/template/src/main/java/IncreasedGravityState.java)
+1. **Singleton Pattern** with ScreenManager
 
-**Consequences**
+2. **Strategy Pattern** in MovementStrategy and NormalMovement
 
-The use of the State Pattern in the current design allows the following benefits:
+3. **Factory Pattern** in ElementFactory
 
-- The several states that represent the character’s hability to jump become explicit in the code, instead of relying on a series of flags.
-- We don’t need to have a long set of conditional if or switch statements associated with the various states; instead, polimorphism is used to activate the right behavior.
-- There are now more classes and instances to manage, but still in a reasonable number.
+4. **Observer Pattern** in GameObserver and GameSubject
 
-#### KNOWN CODE SMELLS
+#### **Implementation**
 
-> This section should describe 3 to 5 different code smells that you have identified in your current implementation.
+The following classes are the ones we implemented to base our project.
 
-### TESTING
+- **Main** - It's the starting point of the game. Controls the flow between Arena 1 and Arena2. Reboots the ScreenManager to change the level.
 
-- Screenshot of coverage report.
-- Link to mutation testing report.
+- **Arena**
+  - **Arena1 and Arena2** - Represent the game levels and contain the logic behind the game mechanics, like the interaction with walls, enemies and obstacles. Control the rendering of each element the conditions between defeat and victory.
 
-### SELF-EVALUATION
+- **Characters**
+  - **Character** - Defines the player. Contains the movement logic using the strategy used in MovementStrategy.
 
-> In this section describe how the work regarding the project was divided between the students. In the event that members of the group do not agree on a work distribution, the group should send an email to the teacher explaining the disagreement.
+  - **Enemy** - Represents the enemies. They move randomly, changing the direction when colliding with a wall.
 
-**Example**:
+- **Elements**
+  - **Element** - Superclass for other classes like Walls, Obstacle and Enemy because it provides mutual attributes and methods like Position and Draw.
 
-- John Doe: 40%
-- Jane Doe: 60%
->>>>>>> ecfd71423bfb2a4a7fa41f8c10091847d7c158f9
+  - **Walls** - Represents the level limits. Defines the drawing logic and verifies collisions.
+
+  - **Obstacle** - Represents the obstacles present throughout the level.
+
+  - **Position** - Encapsulates the x and y coordinates for each element. Allows comparisons and hash to verify collisions.
+
+  - **ElementFactory** - Provides the method createElement to create walls, enemies and obstacles.
+
+- **Screen**
+  - **ScreenManager** - Manages the game screen using **Singleton** pattern, initializing or rebooting the screen whenever necessary.
+
+- **Patterns**
+  - **GameObserver** - Object interface that reacts to game events like defeat or victory.
+
+  - **GameSubject** - Allows the players to be notified by game events using the **Observer** pattern.
+
+  - **MovementStrategy** - Interface to movement strategies that is implemented in NormalMovement.
+
+  - **NormalMovement** - Standard logic to the player's movement. Makes sure the movement is limited by the levels boundaries and obstacles. 
+
+#### **Consequences**
+
+The use of the **Singleton Pattern** in the current design allows the following benefits:
+
+- Allows only one global instance to exist with the objective to manage the screen. 
+- Avoids duplication of Lanterna library resources.
+
+The use of the **Strategy Pattern** in the current design allows the following benefits:
+
+- Allows flexibility in the player's movement's behaviour.
+- Facilitates the introduction of new movement strategies without modifying the player's logic.
+
+The use of the **Factory Pattern** in the current design allows the following benefits:
+
+- Simplifies the creation of game elements through an identification string.
+- Avoids code repetition e centralizes the creation logic.
+
+The use of the **Observer Pattern** in the current design allows the following benefits:
+
+- Allows parts of the game to be notified as events like defeat or victory.
+- Facilitates the addition of new reactive functionalities without modifying the central code.
+
+

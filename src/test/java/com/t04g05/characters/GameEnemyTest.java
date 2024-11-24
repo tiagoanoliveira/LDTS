@@ -23,7 +23,7 @@ class GameEnemyTest {
             gameSubject.notifyGameOver();
         }
 
-        // Garantir que o observador detetou o fim do jogo
+        // Garantir que o utilizador detetou o fim do jogo
         assertTrue(testObserver.gameOverTriggered, "O jogo deve terminar quando o personagem colidir com um inimigo.");
     }
 

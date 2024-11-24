@@ -43,39 +43,37 @@ public class Arena2 implements GameObserver {
     }
 
     private void createMaze() {
-        // Paredes superior e inferior
+        //Paredes superiores e inferiores exteriores
         for (int i = 0; i < 60; i++) {
-            walls.add(new Walls(i, 0));
-            walls.add(new Walls(i, 30));
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 0));
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 30));
         }
-
-        // Paredes laterais esquerda e direita
+        //Paredes laterais esquerda e direita exteriores
         for (int i = 0; i < 31; i++) {
-            walls.add(new Walls(0, i));
-            walls.add(new Walls(59, i));
+            walls.add((Walls) ElementFactory.createElement("Walls", 0, i));
+            walls.add((Walls) ElementFactory.createElement("Walls", 59, i));
         }
-
-        // Paredes internas para o labirinto
-        for (int i = 6; i <16 ; i++) {
-            walls.add(new Walls(11, i)); // 1.ª linha vertical à esquerda
+        //Paredes internas para o labirinto
+        for (int i = 6; i < 16; i++) {
+            walls.add((Walls) ElementFactory.createElement("Walls", 11, i)); // 1.ª linha vertical à esquerda
         }
         for (int i = 10; i < 26; i++) {
-            walls.add(new Walls(50, i)); // ultima linha vertical à direita
+            walls.add((Walls) ElementFactory.createElement("Walls", 50, i)); // ultima linha vertical à direita
         }
         for (int i = 11; i < 60; i++) {
-            walls.add(new Walls(i, 5)); // 1.ª linha horizontal em cima
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 5)); // 1.ª linha horizontal em cima
         }
         for (int i = 20; i < 50; i++) {
-            walls.add(new Walls(i, 10)); // 2º linha horizontal
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 10)); // 2º linha horizontal
         }
         for (int i = 11; i < 50; i++) {
-            walls.add(new Walls(i, 15)); // 3ª linha horizontal
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 15)); // 3º linha horizontal
         }
         for (int i = 1; i < 42; i++) {
-            walls.add(new Walls(i, 20)); // 4ª linha horizontal
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 20)); // 4º linha horizontal
         }
         for (int i = 10; i < 50; i++) {
-            walls.add(new Walls(i, 25)); // ultima linha horizontal
+            walls.add((Walls) ElementFactory.createElement("Walls", i, 25)); // ultima linha horizontal
         }
     }
 
@@ -90,7 +88,7 @@ public class Arena2 implements GameObserver {
         obstacles.add(new Obstacle(35, 21));
     }
     private void spawnEnemies() {
-        // Adicionar inimigos em posições específicas
+        // Iniciar inimigos em posições específicas
         enemies.add((Enemy) ElementFactory.createElement("Enemy", 9, 10));
         enemies.add((Enemy) ElementFactory.createElement("Enemy", 42, 21));
         enemies.add((Enemy) ElementFactory.createElement("Enemy", 30, 4));
@@ -207,11 +205,11 @@ public class Arena2 implements GameObserver {
         System.out.println("\n===================================");
         System.out.println("       GAME OVER - NÍVEL 2      ");
         System.out.println("===================================");
-        System.out.println("   Foste apanhado por um inimigo!");
+        System.out.println("   Foste comido por um inimigo!");
         System.out.println("===================================\n");
 
         try {
-            Thread.sleep(1000); // Pausa de 1 segundo
+            Thread.sleep(1000); // Pausa de 1 segundo para permitir ao utilizador visualizar a sua "morte"
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

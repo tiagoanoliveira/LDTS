@@ -27,6 +27,6 @@ public class Position {
 
     @Override
     public int hashCode() {
-        return 31 * x + y; // Simples cálculo do hash code
+        return 31 * x + y;
     }
 }

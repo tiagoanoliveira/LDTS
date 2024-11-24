@@ -1,6 +1,5 @@
 package com.t04g05.characters;
 
-import com.t04g05.characters.Character;
 import com.t04g05.elements.Position;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

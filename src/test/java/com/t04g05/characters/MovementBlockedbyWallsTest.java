@@ -12,11 +12,11 @@ public class MovementBlockedbyWallsTest {
     public void testMoveBlockedByWall() {
         Character character = new Character(5, 5);
         Walls wall = new Walls(5, 4); // Posição da parede
-        // Tentar mover o personagem para a posição da parede
+        // Tentar mover o character para a posição da parede
         Position originalPosition = character.getPosition();
         character.moveTo(new Position(5, 4));
 
-        // Verificar que o personagem não mudou de posição
+        // Verificar que o character não mudou de posição
         assertEquals(originalPosition, character.getPosition());
     }
 }

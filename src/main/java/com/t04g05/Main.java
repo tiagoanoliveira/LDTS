@@ -5,6 +5,7 @@ import com.t04g05.screen.ScreenManager;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Boa sorte! Usa as setas ou WASD para controlar o teu movimento.");
         ScreenManager screenManager = ScreenManager.getInstance();
         try {
             new GameController(screenManager).playLevel();

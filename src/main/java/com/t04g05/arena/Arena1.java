@@ -43,7 +43,7 @@ public class Arena1 implements GameObserver {
         }
         //Paredes laterais esquerda e direita exteriores
         for (int i = 0; i < 31; i++) {
-            walls.add((Walls) ElementFactory.createElement("Walls", 0, i));
+            walls.add((Walls) ElementFactory.createElement("Walls", 1, i));
             walls.add((Walls) ElementFactory.createElement("Walls", 59, i));
         }
         //Paredes internas para o labirinto

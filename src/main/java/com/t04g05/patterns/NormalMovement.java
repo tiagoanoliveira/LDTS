@@ -16,38 +16,36 @@ public class NormalMovement implements MovementStrategy {
         int newY = character.getPosition().getY();
 
         switch (key.getKeyType()) {
-            case ArrowUp -> newY = Math.max(1, newY - 1);
-            case ArrowDown -> newY = Math.min(29, newY + 1);
-            case ArrowLeft -> newX = Math.max(1, newX - 1);
+            case ArrowUp -> newY = Math.max(0, newY - 1);
+            case ArrowDown -> newY = Math.min(30, newY + 1);
+            case ArrowLeft -> newX = Math.max(0, newX - 1);
             case ArrowRight -> newX = Math.min(59, newX + 1);
         }
 
         if (key.getKeyType() == KeyType.Character) {
             char characters = key.getCharacter();
             switch (characters) {
-                case 'W', 'w' -> newY = Math.max(1, newY - 1);
-                case 'S', 's' -> newY = Math.min(29, newY + 1);
-                case 'A', 'a' -> newX = Math.max(1, newX - 1);
+                case 'W', 'w' -> newY = Math.max(0, newY - 1);
+                case 'S', 's' -> newY = Math.min(30, newY + 1);
+                case 'A', 'a' -> newX = Math.max(0, newX - 1);
                 case 'D', 'd' -> newX = Math.min(59, newX + 1);
             }
         }
 
         Position newPosition = new Position(newX, newY);
 
-        // Verificar se a nova posição está bloqueada por paredes
-        if (!walls.contains(new Walls(newX, newY))) {
-            // Verificar obstáculos somente se o conjunto de obstáculos não for null
-            if (obstacles != null && !obstacles.contains(new Obstacle(newX, newY))) {
-                character.moveTo(newPosition); // Mover a personagem
-            }
-            else if (obstacles != null && !obstacles.contains(new Obstacle(newX, newY))) {
-                System.out.println("Movimento bloqueado por obstáculo.");
-            }
-            else if (obstacles == null) {
-                character.moveTo(newPosition); // Mover a personagem se não houver obstáculos
-            }
-        } else if (walls.contains(new Walls(newX, newY))) {
+        // Verifica se a nova posição está bloqueada por uma parede
+        boolean isWall = walls.stream().anyMatch(wall -> wall.getPosition().equals(newPosition));
+        // Verifica se a nova posição está bloqueada por um obstáculo
+        boolean isObstacle = obstacles != null && obstacles.stream().anyMatch(obstacle -> obstacle.getPosition().equals(newPosition));
+
+        // Se não houver obstáculos nem paredes, a personagem pode se mover
+        if (!isWall && !isObstacle) {
+            character.moveTo(newPosition); // Mover a personagem
+        } else if (isWall) {
             System.out.println("Movimento bloqueado por parede.");
+        } else if (isObstacle) {
+            System.out.println("Movimento bloqueado por obstáculo.");
         }
     }
     @Override

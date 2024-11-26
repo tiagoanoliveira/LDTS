@@ -20,11 +20,12 @@ public class Walls extends Element {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Walls wall = (Walls) obj;
-        return getPosition().equals(wall.getPosition());
+        return position.equals(wall.position);
     }
 
     @Override
     public int hashCode() {
-        return getPosition().hashCode();
+        return position.hashCode();
     }
+
 }

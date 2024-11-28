@@ -24,6 +24,7 @@ public class ScreenManager {
             this.screen = new TerminalScreen(terminal);
             this.screen.startScreen();
         } catch (IOException e) {
+            System.err.println("Erro ao inicializar o ecrã: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -53,6 +54,7 @@ public class ScreenManager {
                 screen.stopScreen();
             }
         } catch (IOException e) {
+            System.err.println("Erro ao parar o ecrã: " + e.getMessage());
             e.printStackTrace();
         }
     }

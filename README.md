@@ -31,21 +31,21 @@ creatures and traps, while collecting coins which makes his adventure even more 
 
 ### MOCKUPS
 
-![Level Mockup](Images/Mockups/mockupgame2.jpg)
+![Level Mockup](resources/Mockups/mockupgame2.jpg)
 
 Our visualization of the game would consist in a set of different levels, each one with its own unique course and different
 types of obstacles and enemies. In addition, each level would be a mixture of avoiding getting killed and collect every one of the
 coins present throughout the level, which would lead to a higher score.
 
 
-![Menu Mockup](Images/Mockups/Menumockup.png)
+![Menu Mockup](resources/Mockups/Menumockup.png)
 
 Concerning the menu, it would be a simple menu with an option to play, another to quit the game and two more to see the score and to change the binds, in
 other words, the keys used to play.
 
 ### MODEL
 
-![Game Image 1](Images/GameScreenshots/LDTSgame1.jpg)
+![Game Image 1](resources/GameScreenshots/LDTSgame1.jpg)
 
 As the previous screenshot shows, the map is still empty, in other words, without enemies, obstacles or coins for the hero to collect. But, as mentioned before, the route the hero
 has to go through is supposed to be full of holes and spikes, or enemies that move randomly, and finally, coins for him to collect.
@@ -134,20 +134,20 @@ The use of the **Observer Pattern** in the current design allows the following b
 
 Some of the mentioned design patterns used are represented in the following UML:
 
-![LDTSuml](Images/UML/UMLldts.jpg)
+![LDTSuml](resources/UML/UMLldts.jpg)
 
 ### TESTING
 
 The following screenshots show the tests implemented until this moment:
 
-![Testing Directions](Images/TestingScreenshots/testing1.jpg)
+![Testing Directions](resources/TestingScreenshots/testing1.jpg)
 
-![Testing Movement stop by Obstacle](Images/TestingScreenshots/testing2.jpg)
+![Testing Movement stop by Obstacle](resources/TestingScreenshots/testing2.jpg)
 
-![Testing normal Movement](Images/TestingScreenshots/testing3.jpg)
+![Testing normal Movement](resources/TestingScreenshots/testing3.jpg)
 
-![Goal Notification](Images/TestingScreenshots/testing4.jpg)
+![Goal Notification](resources/TestingScreenshots/testing4.jpg)
 
-![Testing Level Execution](Images/TestingScreenshots/testing5.jpg)
+![Testing Level Execution](resources/TestingScreenshots/testing5.jpg)
 
-![Testing Endgame on Enemy Collision](Images/TestingScreenshots/testing6.jpg)
+![Testing Endgame on Enemy Collision](resources/TestingScreenshots/testing6.jpg)

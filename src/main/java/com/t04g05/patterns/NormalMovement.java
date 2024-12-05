@@ -2,11 +2,11 @@ package com.t04g05.patterns;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.t04g05.characters.Character;
-import com.t04g05.characters.Enemy;
-import com.t04g05.elements.Position;
-import com.t04g05.elements.Walls;
-import com.t04g05.elements.Obstacle;
+import model.game.elementos.Character;
+import model.game.elementos.Enemy;
+import model.Position;
+import model.game.elementos.Walls;
+import model.game.elementos.Obstacle;
 import java.util.Set;
 
 public class NormalMovement implements MovementStrategy {

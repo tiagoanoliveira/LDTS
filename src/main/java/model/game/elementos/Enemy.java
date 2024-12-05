@@ -1,13 +1,12 @@
-package com.t04g05.characters;
+package model.game.elementos;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.t04g05.elements.Element;
-import com.t04g05.elements.Position;
-import com.t04g05.elements.Walls;
 import com.t04g05.patterns.MovementStrategy;
 import com.t04g05.patterns.RandomMovement;
+import model.Position;
+
 import java.util.Set;
 
 public class Enemy extends Element {

@@ -1,9 +1,10 @@
 package com.t04g05.characters;
 
-import com.t04g05.elements.Obstacle;
-import com.t04g05.elements.Walls;
+import model.game.elementos.Obstacle;
+import model.game.elementos.Walls;
 import com.t04g05.patterns.MovementStrategy;
 import com.t04g05.patterns.NormalMovement;
+import model.game.elementos.Character;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -15,7 +16,7 @@ public class MovementStrategyTest {
 
     @Test
     public void testNormalMovement() {
-        Character character = new Character(5, 5);
+        model.game.elementos.Character character = new Character(5, 5);
         MovementStrategy strategy = new NormalMovement();
 
         // Simula a seleção de uma tecla para mover para a direita (chave 'D')

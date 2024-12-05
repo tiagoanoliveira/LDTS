@@ -1,7 +1,7 @@
 package com.t04g05.patterns;
 
-import com.t04g05.arena.Arena1;
-import com.t04g05.arena.Arena2;
+import model.game.arena.Arena1;
+import model.game.arena.Arena2;
 import com.t04g05.screen.ScreenManager;
 
 public class GameController extends GameTemplate {

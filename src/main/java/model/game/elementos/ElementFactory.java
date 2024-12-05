@@ -1,6 +1,4 @@
-package com.t04g05.elements;
-
-import com.t04g05.characters.Enemy;
+package model.game.elementos;
 
 public class ElementFactory {
     public static Element createElement(String type, int x, int y) {

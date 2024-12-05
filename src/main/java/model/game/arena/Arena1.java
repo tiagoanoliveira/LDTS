@@ -11,7 +11,7 @@ import model.Position;
 import model.game.elementos.Walls;
 import com.t04g05.patterns.GameObserver;
 import com.t04g05.patterns.GameSubject;
-import com.t04g05.screen.ScreenManager;
+import viewer.ScreenManager;
 
 import java.io.IOException;
 import java.util.HashSet;

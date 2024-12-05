@@ -9,7 +9,7 @@ import model.Position;
 import model.game.elementos.*;
 import com.t04g05.patterns.GameObserver;
 import com.t04g05.patterns.GameSubject;
-import com.t04g05.screen.ScreenManager;
+import viewer.ScreenManager;
 import model.game.elementos.Character;
 
 import java.io.IOException;

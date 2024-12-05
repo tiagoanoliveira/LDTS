@@ -1,7 +1,7 @@
-package model.game.elementos;
+package com.t04g05.model.game.elementos;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import model.Position;
+import com.t04g05.model.Position;
 
 public abstract class Element {
     protected Position position = null;

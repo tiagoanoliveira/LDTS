@@ -1,7 +1,7 @@
 package com.t04g05;
 
-import controller.GameController;
-import viewer.ScreenManager;
+import com.t04g05.controller.GameController;
+import com.t04g05.viewer.ScreenManager;
 
 public class Main {
     public static void main(String[] args) {

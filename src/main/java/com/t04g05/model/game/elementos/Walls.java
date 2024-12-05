@@ -1,4 +1,4 @@
-package model.game.elementos;
+package com.t04g05.model.game.elementos;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.TerminalPosition;

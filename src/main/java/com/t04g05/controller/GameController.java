@@ -1,9 +1,9 @@
-package controller;
+package com.t04g05.controller;
 
 import com.t04g05.patterns.GameTemplate;
-import model.game.arena.Arena1;
-import model.game.arena.Arena2;
-import viewer.ScreenManager;
+import com.t04g05.model.game.arena.Arena1;
+import com.t04g05.model.game.arena.Arena2;
+import com.t04g05.viewer.ScreenManager;
 
 public class GameController extends GameTemplate {
     private ScreenManager screenManager;

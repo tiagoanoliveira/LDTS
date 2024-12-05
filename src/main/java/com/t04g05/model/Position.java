@@ -1,4 +1,4 @@
-package model;
+package com.t04g05.model;
 
 public class Position {
     private final int x;

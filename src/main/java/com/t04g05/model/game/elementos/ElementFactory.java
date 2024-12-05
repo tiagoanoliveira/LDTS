@@ -1,4 +1,4 @@
-package model.game.elementos;
+package com.t04g05.model.game.elementos;
 
 public class ElementFactory {
     public static Element createElement(String type, int x, int y) {

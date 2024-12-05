@@ -2,8 +2,8 @@ package com.t04g05.characters;
 
 import com.t04g05.patterns.GameObserver;
 import com.t04g05.patterns.GameSubject;
-import model.game.elementos.Character;
-import model.game.elementos.Enemy;
+import com.t04g05.model.game.elementos.Character;
+import com.t04g05.model.game.elementos.Enemy;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,7 +17,7 @@ class GameEnemyTest {
         TestObserver testObserver = new TestObserver();
         gameSubject.addObserver(testObserver);
 
-        model.game.elementos.Character character = new Character(5, 5);
+        Character character = new Character(5, 5);
         Enemy enemy = new Enemy(5, 5); // Mesmo local do character para simular colisão
 
         // Verificar a colisão

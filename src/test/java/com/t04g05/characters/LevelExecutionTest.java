@@ -1,7 +1,7 @@
 package com.t04g05.characters;
 
-import model.Position;
-import model.game.elementos.Character;
+import com.t04g05.model.Position;
+import com.t04g05.model.game.elementos.Character;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,7 +9,7 @@ public class LevelExecutionTest {
 
     @Test
     public void testLevelExecution() throws InterruptedException {
-        model.game.elementos.Character character = new Character(5, 5);
+        Character character = new Character(5, 5);
 
         // Simular o objetivo do nível
         Position goalPosition = new Position(10, 10);

@@ -1,8 +1,8 @@
 package com.t04g05.characters;
 
-import model.Position;
-import model.game.elementos.Obstacle;
-import model.game.elementos.Character;
+import com.t04g05.model.Position;
+import com.t04g05.model.game.elementos.Obstacle;
+import com.t04g05.model.game.elementos.Character;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class MovementBlockedbyObstaclesTest {
 
     @Test
     public void testMoveBlockedByObstacle() {
-        model.game.elementos.Character character = new Character(5, 5);
+        Character character = new Character(5, 5);
         Obstacle obstacle = new Obstacle(5, 4); // Posição do obstáculo
 
         // Simular lista de obstáculos no jogo

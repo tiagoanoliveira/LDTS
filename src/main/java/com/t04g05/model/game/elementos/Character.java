@@ -1,11 +1,11 @@
-package model.game.elementos;
+package com.t04g05.model.game.elementos;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.t04g05.patterns.MovementStrategy;
 import com.t04g05.patterns.NormalMovement;
-import model.Position;
+import com.t04g05.model.Position;
 
 
 import java.util.Set;

@@ -1,4 +1,4 @@
-package viewer;
+package com.t04g05.viewer;
 
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.screen.Screen;

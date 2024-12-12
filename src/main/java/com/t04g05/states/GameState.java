@@ -1,0 +1,23 @@
+package com.t04g05.states;
+
+import com.t04g05.gui.GUI;
+import com.t04g05.model.game.arena.Arena;
+
+public abstract class GameState {
+    private GameState nextState;
+
+    public abstract void initializeLevel();
+
+    public abstract void step(GUI gui);
+    public abstract void run(GUI gui);
+
+    public void setNextState(GameState nextState) {
+        this.nextState = nextState;
+    }
+
+    public GameState getNextState() {
+        return nextState;
+    }
+
+    public abstract Arena getArena();
+}

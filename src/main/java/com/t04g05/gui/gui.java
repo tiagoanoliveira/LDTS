@@ -1,10 +1,19 @@
-package gui;
+package com.t04g05.gui;
 
-import com.googlecode.lanterna.TextColor;
-import com.googlecode.lanterna.graphics.TextGraphics;
+import com.t04g05.model.Position;
 
-public void draw(TextGraphics graphics) {
-    graphics.setBackgroundColor(TextColor.Factory.fromString("#6E522C"));
-    graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
-    graphics.putString(position.getX(), position.getY(), "X");
+import java.io.IOException;
+
+public interface GUI {
+    void drawText(int x, int y, String text, String color);
+    void drawElement(Position position, char character, String textColor, String backgroundColor);
+    void clear() throws IOException;
+    void refresh();
+    ACTION getNextAction();
+    void close();
+
+
+    enum ACTION {
+        UP, DOWN, LEFT, RIGHT, ENTER, ESC, NONE
+    }
 }

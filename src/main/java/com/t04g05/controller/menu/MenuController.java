@@ -4,6 +4,7 @@ import com.t04g05.gui.GUI;
 import com.t04g05.model.menu.Menu;
 import com.t04g05.states.GameState;
 import com.t04g05.states.Level1State;
+import com.t04g05.states.MenuState;
 
 public class MenuController {
     private final Menu menu;
@@ -51,7 +52,7 @@ public class MenuController {
                 break;
         }
 
-        return null;
+        return new MenuState(this, null);
     }
 
 }

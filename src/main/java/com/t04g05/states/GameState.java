@@ -3,12 +3,14 @@ package com.t04g05.states;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
 
+import java.io.IOException;
+
 public abstract class GameState {
     private GameState nextState;
 
     public abstract void initializeLevel();
 
-    public abstract void step(GUI gui);
+    public abstract void step(GUI gui) throws IOException;
     public abstract void run(GUI gui);
 
     public void setNextState(GameState nextState) {

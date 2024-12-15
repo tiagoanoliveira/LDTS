@@ -16,13 +16,8 @@ public class Level2State extends GameState {
     }
 
     @Override
-    public void step(GUI gui) {
-        try {
-            gui.clear();  // Pode lançar IOException
-        } catch (IOException e) {
-            System.err.println("Erro ao limpar a tela: " + e.getMessage());
-            e.printStackTrace();
-        }
+    public void step(GUI gui) throws IOException {
+        gui.clear();
         ArenaViewer viewer = new ArenaViewer(arenaController.getArena());
         viewer.draw(gui);
         gui.refresh();

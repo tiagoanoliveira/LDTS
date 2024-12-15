@@ -1,6 +1,7 @@
 package com.t04g05.gui;
 
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -9,6 +10,8 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.t04g05.model.Position;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class LanternaGUI implements GUI {
@@ -94,6 +97,38 @@ public class LanternaGUI implements GUI {
             terminal.close(); // Fecha o terminal
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void drawWall(Position position) {
+        drawElement(position, '#', "#3333FF", "000000");
+    }
+
+    @Override
+    public void drawEnemy(Position position) {
+        drawElement(position, '@', "#CC0000", "#000000");
+    }
+
+
+    //sprite para personagem principal
+    @Override
+    public void drawCharacter(Position position) throws IOException {
+        BufferedImage hero = ImageIO.read(getClass().getResource("sprites/hero.png"));
+
+        for (int x = 0; x < hero.getWidth(); x++){
+            for (int y = 0; y < hero.getHeight(); y++){
+                int a = hero.getRGB(x, y);
+                int alpha = (a >> 24) & 0xff;
+                int red = (a >> 16) & 255;
+                int green = (a >> 8) & 255;
+                int blue = a & 255;
+
+                if (alpha != 0) {
+                    TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
+                    textGraphics.setCharacter(position.getX() + x, position.getY() + y, c);
+                }
+            }
         }
     }
 }

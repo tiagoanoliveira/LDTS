@@ -18,7 +18,6 @@ public class MenuState extends GameState {
     public void step(GUI gui) {
         try{
             gui.clear(); // Limpa a tela
-            MenuViewer menuViewer = new MenuViewer(menuController.getMenu());
             menuViewer.draw(gui); // Desenha o menu
             gui.refresh(); // Atualiza a tela
 
@@ -28,7 +27,7 @@ public class MenuState extends GameState {
             if (nextState != null) {
                 setNextState(nextState);
             } else {
-                System.out.println("Nenhum próximo estado definido. O jogo irá terminar.");
+                System.out.println("Nenhum próximo estado definido.");
             }
     } catch (Exception e) {
         System.err.println("Erro ao atualizar a GUI: " + e.getMessage());

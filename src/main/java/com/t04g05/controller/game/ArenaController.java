@@ -14,8 +14,15 @@ public class ArenaController {
         return arena;
     }
     public boolean isGameOver() {
-        return arena.isGameOver();
+        // Verifica se o jogador alcançou o objetivo
+        if (arena.getCharacter().getPosition().equals(arena.getGoalPosition())) {
+            System.out.println("Objetivo alcançado!");
+            return true; // Vitória
+        }
+        // Aqui podes adicionar outras condições, como vidas do jogador
+        return false; // Continua o jogo
     }
+
 
     public void processInput(GUI.ACTION action) {
         Position newPosition = getNewPosition(action);

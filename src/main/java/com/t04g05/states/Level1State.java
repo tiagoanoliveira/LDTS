@@ -10,30 +10,33 @@ import java.io.IOException;
 
 public class Level1State extends GameState {
     private final ArenaController arenaController;
+    private final ArenaViewer arenaViewer;
 
     public Level1State() {
-        this.arenaController = new ArenaController(new Arena1());
+        // Criação da arena específica do nível 1
+        var arena = new Arena1();
+
+        // Inicializa o controlador e o visualizador da arena
+        this.arenaController = new ArenaController(arena);
+        this.arenaViewer = new ArenaViewer(arena);
     }
 
     @Override
     public void step(GUI gui) {
         try {
-            gui.clear(); // Limpa a tela
+            gui.clear();
+            arenaViewer.draw(gui);
+            gui.refresh();
 
-            // Desenha a arena
-            ArenaViewer viewer = new ArenaViewer(arenaController.getArena());
-            viewer.draw(gui);
-            gui.refresh(); // Atualiza a tela
-
-            // Processa entrada do usuário
             GUI.ACTION action = gui.getNextAction();
-            arenaController.processInput(action);
+            if (action != null) {
+                arenaController.processInput(action);
+            }
 
-            // Atualiza lógica da arena
             arenaController.update();
 
-            // Verifica se o jogo acabou
             if (arenaController.isGameOver()) {
+                System.out.println("Game Over");
                 setNextState(null); // Sair do jogo
             }
         } catch (IOException e) {

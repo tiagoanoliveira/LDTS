@@ -1,5 +1,6 @@
 package com.t04g05;
 
+import com.t04g05.controller.game.GameController;
 import com.t04g05.controller.menu.MenuController;
 import com.t04g05.gui.GUI;
 import com.t04g05.gui.LanternaGUI;
@@ -11,22 +12,21 @@ public class Main {
     public static void main(String[] args) {
         GUI gui = null;
         try {
+            // Inicializa a GUI
             gui = new LanternaGUI();
             System.out.println("GUI inicializada.");
 
-            GameState currentState = initializeMenu(gui);
-            System.out.println("Estado inicial definido: " + currentState.getClass().getSimpleName());
-            currentState.run(gui);
-            while (currentState != null) {
-                System.out.println("Processando estado: " + currentState.getClass().getSimpleName());
-                currentState.step(gui);
-                currentState = currentState.getNextState();
-                if (currentState == null) {
-                    System.out.println("Nenhum próximo estado disponível. Encerrando o jogo.");
-                } else {
-                    System.out.println("Próximo estado: " + currentState.getClass().getSimpleName());
-                }
-            }
+            // Inicializa o estado inicial (MenuState)
+            GameState initialState = initializeMenu(gui);
+            System.out.println("Estado inicial definido: " + initialState.getClass().getSimpleName());
+
+            // Cria o controlador principal de estados
+            GameController gameController = new GameController(initialState);
+
+            // Inicia o loop principal do jogo
+            gameController.process(gui);
+
+            System.out.println("Jogo finalizado.");
         } catch (Exception e) {
             System.err.println("Erro durante a execução do jogo: " + e.getMessage());
             e.printStackTrace();
@@ -41,14 +41,12 @@ public class Main {
         }
     }
 
-
     private static GameState initializeMenu(GUI gui) {
-        // Criação do menu e controlador
+        // Configura o menu e retorna o estado inicial
         Menu menu = new Menu();
         MenuController menuController = new MenuController(menu);
-
-        // Retorna um estado do menu
         return new MenuState(menuController, gui);
     }
 }
+
 

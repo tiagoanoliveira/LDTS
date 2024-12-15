@@ -33,9 +33,6 @@ public class MenuController {
 
                 if (menu.isStartGameSelected()) {
                     return new Level1State(); // Transição para o nível 1
-                } else if (menu.isInstructionsSelected()) {
-                    System.out.println("Instruções não implementadas.");
-                    return null; // Placeholder para um estado de instruções
                 } else if (menu.isExitSelected()) {
                     System.out.println("Saindo do jogo.");
                     return null; // Sair do jogo

@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class CharacterViewer implements ElementViewer<Character>{
     @Override
-    public void draw(GUI gui, Character character) {
+    public void draw(GUI gui, Character character) throws IOException {
         gui.drawCharacter(character.getPosition());
     }
 }

@@ -7,6 +7,7 @@ import com.t04g05.model.game.elements.Walls;
 import com.t04g05.viewer.game.CharacterViewer;
 import com.googlecode.lanterna.input.KeyStroke;
 
+import java.io.IOException;
 import java.util.Set;
 
 public class CharacterController {
@@ -22,7 +23,7 @@ public class CharacterController {
         this.gui = gui;
     }
 
-    public void moveCharacter(KeyStroke keyStroke) {
+    public void moveCharacter(KeyStroke keyStroke) throws IOException {
         int newX = character.getPosition().getX();
         int newY = character.getPosition().getY();
 

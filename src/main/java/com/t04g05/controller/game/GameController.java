@@ -3,6 +3,8 @@ package com.t04g05.controller.game;
 import com.t04g05.gui.GUI;
 import com.t04g05.states.GameState;
 
+import java.io.IOException;
+
 
 public class GameController {
     private GameState currentState;
@@ -11,7 +13,7 @@ public class GameController {
         this.currentState = initialState;
     }
 
-    public void process(GUI gui) {
+    public void process(GUI gui) throws IOException {
         while (currentState != null) {
             currentState.step(gui);
             currentState = currentState.getNextState();

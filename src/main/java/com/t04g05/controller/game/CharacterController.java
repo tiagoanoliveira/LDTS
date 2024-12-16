@@ -4,7 +4,6 @@ import com.googlecode.lanterna.input.KeyType;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.game.elements.Character;
 import com.t04g05.model.game.elements.Walls;
-import com.t04g05.model.game.elements.Obstacle;
 import com.t04g05.viewer.game.CharacterViewer;
 import com.googlecode.lanterna.input.KeyStroke;
 
@@ -13,14 +12,12 @@ import java.util.Set;
 public class CharacterController {
     private Character character;
     private Set<Walls> walls;
-    private Set<Obstacle> obstacles;
     private CharacterViewer characterView;
     private final GUI gui;
 
-    public CharacterController(Character character, Set<Walls> walls, Set<Obstacle> obstacles, GUI gui) {
+    public CharacterController(Character character, Set<Walls> walls, GUI gui) {
         this.character = character;
         this.walls = walls;
-        this.obstacles = obstacles;
         this.characterView = new CharacterViewer();
         this.gui = gui;
     }
@@ -56,11 +53,6 @@ public class CharacterController {
         for (Walls wall : walls) {
             if (wall.getPosition().getX() == newX && wall.getPosition().getY() == newY) {
                 return false; // Colidiu com parede
-            }
-        }
-        for (Obstacle obstacle : obstacles) {
-            if (obstacle.getPosition().getX() == newX && obstacle.getPosition().getY() == newY) {
-                return false; // Colidiu com obstáculo
             }
         }
         return true; // Movimento válido

@@ -1,6 +1,7 @@
 package com.t04g05.model.game.arena;
 
 import com.t04g05.model.Position;
+import com.t04g05.model.game.elements.Element;
 import com.t04g05.model.game.elements.Enemy;
 import com.t04g05.model.game.elements.Character;
 import com.t04g05.model.game.elements.Walls;
@@ -99,8 +100,8 @@ public abstract class Arena {
         return enemies.stream().noneMatch(enemy -> enemy.getPosition().equals(position));
     }
 
-    public List<GameElement> getElements() {
-        List<GameElement> elements = new ArrayList<>();
+    public List<Element> getElements() {
+        List<Element> elements = new ArrayList<>();
         elements.addAll(walls);
         elements.addAll(enemies);
         elements.add(character);

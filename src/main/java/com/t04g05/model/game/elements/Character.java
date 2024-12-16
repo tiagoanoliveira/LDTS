@@ -5,8 +5,8 @@ import com.t04g05.model.Position;
 public class Character extends Element {
     private int lives;
 
-    public Character(int x, int y) {
-        super(x, y);
+    public Character(Position position) {
+        super(position.getX(), position.getY());
         this.lives = 3;
     }
 

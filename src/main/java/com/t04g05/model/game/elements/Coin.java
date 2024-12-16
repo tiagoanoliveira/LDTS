@@ -2,8 +2,8 @@ package com.t04g05.model.game.elements;
 
 import com.t04g05.model.Position;
 
-public class Walls extends Element {
-    public Walls(int x, int y) {
+public class Coin extends Element {
+    public Coin(int x, int y) {
         super(x, y);
     }
 }

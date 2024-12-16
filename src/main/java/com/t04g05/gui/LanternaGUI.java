@@ -110,6 +110,10 @@ public class LanternaGUI implements GUI {
         drawElement(position, '@', "#CC0000", "#000000");
     }
 
+    @Override
+    public void drawCoin(Position position)  {
+        drawElement(position, '$', "#FFC222", "#000000");
+    }
 
     //sprite para personagem principal
     @Override

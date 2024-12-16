@@ -2,16 +2,15 @@ package com.t04g05.model.game.elements;
 
 import com.t04g05.model.Position;
 
-public abstract class Element implements GameElement {
+public class Element{
     private Position position;
 
-    public Element(Position position) {
-        this.position = position;
+    public Element(int x, int y) {
+        this.position =  new Position(x, y);
     }
 
-    @Override
     public Position getPosition() {
-        return position;
+        return this.position;
     }
 
     public void setPosition(Position position) {

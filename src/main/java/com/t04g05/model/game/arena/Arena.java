@@ -4,7 +4,6 @@ import com.t04g05.model.Position;
 import com.t04g05.model.game.elements.Enemy;
 import com.t04g05.model.game.elements.Character;
 import com.t04g05.model.game.elements.Walls;
-import com.t04g05.model.game.elements.GameElement;
 
 import java.util.ArrayList;
 import java.util.HashSet;

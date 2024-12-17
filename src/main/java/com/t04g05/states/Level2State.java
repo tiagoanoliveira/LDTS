@@ -10,11 +10,9 @@ import java.io.IOException;
 
 public class Level2State extends GameState {
     private final ArenaController arenaController;
-
     public Level2State() {
         this.arenaController = new ArenaController(new Arena2());
     }
-
     @Override
     public void step(GUI gui) throws IOException {
         gui.clear();
@@ -25,9 +23,8 @@ public class Level2State extends GameState {
         arenaController.processInput(gui.getNextAction());
         arenaController.update();
     }
-
     @Override
-    public void run(GUI gui) {
+    public void run(GUI gui) throws IOException {
         // Lógica do estado de execução, geralmente um loop de jogo
         while (!arenaController.isGameOver()) {
             step(gui); // Chama o step a cada ciclo
@@ -38,16 +35,13 @@ public class Level2State extends GameState {
             }
         }
     }
-
     @Override
     public void initializeLevel() {
         // Inicialização específica do nível 2 - falta implementar
         System.out.println("Inicializando o Nível 2...");
     }
-
     @Override
     public Arena getArena() {
         return arenaController.getArena(); // Retorna a arena do controlador
     }
-
 }

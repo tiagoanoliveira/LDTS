@@ -6,25 +6,15 @@ import java.io.IOException;
 
 public interface GUI {
     void drawText(int x, int y, String text, String color);
-
     void drawElement(Position position, char character, String textColor, String backgroundColor);
-
     void clear();
-
     void refresh() throws IOException;
-
     ACTION getNextAction();
-
     void close() throws IOException;
-
     void drawCharacter(Position position) throws IOException;
-
     void drawWall(Position position);
-
     void drawEnemy(Position position);
-
     void drawCoin(Position position);
-
     enum ACTION {
         UP, DOWN, LEFT, RIGHT, ENTER, ESC, NONE
     }

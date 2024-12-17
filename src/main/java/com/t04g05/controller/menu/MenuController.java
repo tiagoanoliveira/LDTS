@@ -51,5 +51,4 @@ public class MenuController {
 
         return new MenuState(this, null);
     }
-
 }

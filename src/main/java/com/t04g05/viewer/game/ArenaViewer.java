@@ -2,10 +2,8 @@ package com.t04g05.viewer.game;
 
 import  com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
+import com.t04g05.model.game.elements.*;
 import com.t04g05.model.game.elements.Character;
-import com.t04g05.model.game.elements.Enemy;
-import com.t04g05.model.game.elements.Coin;
-import com.t04g05.model.game.elements.Walls;
 
 public class ArenaViewer {
     private final Arena arena;
@@ -15,7 +13,7 @@ public class ArenaViewer {
     }
 
     public void draw(GUI gui) {
-        for (GameElement element : arena.getElements()) {
+        for (Element element : arena.getElements()) {
             if (element instanceof Character) {
                 new CharacterViewer().draw(gui, element);
             } else if (element instanceof Enemy) {
@@ -29,4 +27,3 @@ public class ArenaViewer {
         gui.drawElement(arena.getGoalPosition(), 'O', "#FFFF33", "#000000");
     }
 }
-

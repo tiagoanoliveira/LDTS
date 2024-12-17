@@ -11,7 +11,7 @@ public abstract class GameState {
     public abstract void initializeLevel();
 
     public abstract void step(GUI gui) throws IOException;
-    public abstract void run(GUI gui);
+    public abstract void run(GUI gui) throws IOException;
 
     public void setNextState(GameState nextState) {
         this.nextState = nextState;

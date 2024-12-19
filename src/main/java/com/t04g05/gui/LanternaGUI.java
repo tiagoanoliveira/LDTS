@@ -117,22 +117,40 @@ public class LanternaGUI implements GUI {
 
     //sprite para personagem principal
     @Override
-    public void drawCharacter(Position position) throws IOException {
-        BufferedImage hero = ImageIO.read(getClass().getResource("sprites/hero.png"));
+    public void drawCharacter(Position position) throws IllegalArgumentException {
+        try {
+            // Load the image
+            BufferedImage hero = ImageIO.read(getClass().getResource("sprites/hero.png"));
+            if (hero == null) {
+                throw new IllegalArgumentException("Failed to load sprite image.");
+            }
 
-        for (int x = 0; x < hero.getWidth(); x++){
-            for (int y = 0; y < hero.getHeight(); y++){
-                int a = hero.getRGB(x, y);
-                int alpha = (a >> 24) & 0xff;
-                int red = (a >> 16) & 255;
-                int green = (a >> 8) & 255;
-                int blue = a & 255;
+            // Check if textGraphics is null
+            if (textGraphics == null) {
+                throw new IllegalArgumentException("TextGraphics is null.");
+            }
 
-                if (alpha != 0) {
-                    TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
-                    textGraphics.setCharacter(position.getX() + x, position.getY() + y, c);
+            // Iterate through each pixel in the image
+            for (int x = 0; x < hero.getWidth(); x++) {
+                for (int y = 0; y < hero.getHeight(); y++) {
+                    int pixelColor = hero.getRGB(x, y);
+                    int alpha = (pixelColor >> 24) & 0xff;
+                    int red = (pixelColor >> 16) & 0xff;
+                    int green = (pixelColor >> 8) & 0xff;
+                    int blue = pixelColor & 0xff;
+
+                    // Only render non-transparent pixels
+                    if (alpha != 0) {
+                        TextCharacter c = new TextCharacter(' ',
+                                new TextColor.RGB(red, green, blue),
+                                new TextColor.RGB(red, green, blue));
+                        textGraphics.setCharacter(position.getX() + x, position.getY() + y, c);
+                    }
                 }
             }
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Error reading sprite image.", e);
         }
     }
+
 }

@@ -10,38 +10,63 @@ import java.io.IOException;
 
 public class Level2State extends GameState {
     private final ArenaController arenaController;
-    public Level2State() {
-        this.arenaController = new ArenaController(new Arena2());
-    }
-    @Override
-    public void step(GUI gui) throws IOException {
-        gui.clear();
-        ArenaViewer viewer = new ArenaViewer(arenaController.getArena());
-        viewer.draw(gui);
-        gui.refresh();
+    private final ArenaViewer arenaViewer;
 
-        arenaController.processInput(gui.getNextAction());
-        arenaController.update();
+    public Level2State() {
+        // Criação da arena específica do nível 2
+        var arena = new Arena2();
+
+        // Inicializa o controlador e o visualizador da arena
+        this.arenaController = new ArenaController(arena);
+        this.arenaViewer = new ArenaViewer(arena);
     }
+
     @Override
-    public void run(GUI gui) throws IOException {
-        // Lógica do estado de execução, geralmente um loop de jogo
+    public void step(GUI gui) {
+        try {
+            gui.clear();
+            arenaViewer.draw(gui);
+            gui.refresh();
+
+            GUI.ACTION action = gui.getNextAction();
+            if (action != null) {
+                arenaController.processInput(action);
+            }
+
+            arenaController.update();
+
+            if (arenaController.isGameOver()) {
+                System.out.println("Game Over");
+                setNextState(null); // Sair do jogo
+            }
+        } catch (IOException e) {
+            System.err.println("Erro de I/O durante o processamento do Level2State: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run(GUI gui) {
         while (!arenaController.isGameOver()) {
-            step(gui); // Chama o step a cada ciclo
+            step(gui);
             try {
-                Thread.sleep(100); // Para evitar um loop rápido demais
+                Thread.sleep(100); // Pequeno atraso entre ciclos
             } catch (InterruptedException e) {
                 System.out.println("Jogo interrompido: " + e.getMessage());
             }
         }
+        System.out.println("Nível 2 concluído ou jogo terminado.");
     }
+
     @Override
     public void initializeLevel() {
         // Inicialização específica do nível 2 - falta implementar
         System.out.println("Inicializando o Nível 2...");
     }
+
     @Override
     public Arena getArena() {
         return arenaController.getArena(); // Retorna a arena do controlador
     }
+
 }

@@ -3,27 +3,36 @@ package com.t04g05.viewer.game;
 import  com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
 import com.t04g05.model.game.elements.*;
-import com.t04g05.model.game.elements.Character;
+import com.t04g05.viewer.Viewer;
 
-public class ArenaViewer {
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArenaViewer extends Viewer<Arena> {
     private final Arena arena;
-
     public ArenaViewer(Arena arena) {
+        super(arena);
         this.arena = arena;
     }
 
-    public void draw(GUI gui) {
-        for (Element element : arena.getElements()) {
-            if (element instanceof Character) {
-                new CharacterViewer().draw(gui, element);
-            } else if (element instanceof Enemy) {
-                new EnemyViewer().draw(gui, element);
-            } else if (element instanceof Coin) {
-                new CoinViewer().draw(gui, element);
-            } else if (element instanceof Walls) {
-                new WallsViewer().draw(gui, element);
-            }
-        }
+    @Override
+    public void drawElements(GUI gui) throws IOException {
+        drawElements(gui, new ArrayList<>(getModel().getWalls()), new WallsViewer());
+        drawElements(gui, new ArrayList<>(getModel().getEnemies()), new EnemyViewer());
+        drawElement(gui, getModel().getCharacter(), new CharacterViewer());
+
         gui.drawElement(arena.getGoalPosition(), 'O', "#FFFF33", "#000000");
     }
+
+    private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) throws IOException {
+        for (T element : elements)
+            drawElement(gui, element, viewer);
+    }
+
+    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) throws IOException {
+        viewer.draw(gui, element);
+    }
+
 }
+

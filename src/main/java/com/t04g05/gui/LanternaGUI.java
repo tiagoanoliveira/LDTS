@@ -102,55 +102,37 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawWall(Position position) {
-        drawElement(position, '#', "#3333FF", "000000");
+        drawElement(position, '#', "#3333FF", null);
     }
 
     @Override
     public void drawEnemy(Position position) {
-        drawElement(position, '@', "#CC0000", "#000000");
+        drawElement(position, '@', "#CC0000", null);
     }
 
     @Override
     public void drawCoin(Position position)  {
-        drawElement(position, '$', "#FFC222", "#000000");
+        drawElement(position, '$', "#FFC222", null);
     }
 
     //sprite para personagem principal
     @Override
-    public void drawCharacter(Position position) throws IllegalArgumentException {
-        try {
-            // Load the image
-            BufferedImage hero = ImageIO.read(getClass().getResource("sprites/hero.png"));
-            if (hero == null) {
-                throw new IllegalArgumentException("Failed to load sprite image.");
-            }
+    public void drawCharacter(Position position) throws IOException {
+        BufferedImage hero = ImageIO.read(getClass().getResource("sprites/hero.png"));
 
-            // Check if textGraphics is null
-            if (textGraphics == null) {
-                throw new IllegalArgumentException("TextGraphics is null.");
-            }
+        for (int x = 0; x < hero.getWidth(); x++){
+            for (int y = 0; y < hero.getHeight(); y++){
+                int a = hero.getRGB(x, y);
+                int alpha = (a >> 24) & 0xff;
+                int red = (a >> 16) & 255;
+                int green = (a >> 8) & 255;
+                int blue = a & 255;
 
-            // Iterate through each pixel in the image
-            for (int x = 0; x < hero.getWidth(); x++) {
-                for (int y = 0; y < hero.getHeight(); y++) {
-                    int pixelColor = hero.getRGB(x, y);
-                    int alpha = (pixelColor >> 24) & 0xff;
-                    int red = (pixelColor >> 16) & 0xff;
-                    int green = (pixelColor >> 8) & 0xff;
-                    int blue = pixelColor & 0xff;
-
-                    // Only render non-transparent pixels
-                    if (alpha != 0) {
-                        TextCharacter c = new TextCharacter(' ',
-                                new TextColor.RGB(red, green, blue),
-                                new TextColor.RGB(red, green, blue));
-                        textGraphics.setCharacter(position.getX() + x, position.getY() + y, c);
-                    }
+                if (alpha != 0) {
+                    TextCharacter c = new TextCharacter(' ', new TextColor.RGB(red, green, blue), new TextColor.RGB(red, green, blue));
+                    textGraphics.setCharacter(position.getX() + x, position.getY() + y, c);
                 }
             }
-        } catch (IOException e) {
-            throw new IllegalArgumentException("Error reading sprite image.", e);
         }
     }
-
 }

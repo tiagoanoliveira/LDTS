@@ -8,14 +8,14 @@ import com.t04g05.model.menu.Menu;
 import com.t04g05.states.GameState;
 import com.t04g05.states.MenuState;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
-        GUI gui = null;
+    public static void main(String[] args) throws IOException {
+        GUI gui =null;
         try {
             // Inicializa a GUI
             gui = new LanternaGUI();
-            System.out.println("GUI inicializada.");
-
             // Inicializa o estado inicial (MenuState)
             GameState initialState = initializeMenu(gui);
             System.out.println("Estado inicial definido: " + initialState.getClass().getSimpleName());

@@ -34,7 +34,7 @@ public class MenuState extends GameState {
         e.printStackTrace();
     }
     }
-
+    /*
     @Override
     public void run(GUI gui) {
         // Desenha o menu inicial antes do loop principal
@@ -52,7 +52,7 @@ public class MenuState extends GameState {
     public void initializeLevel() {
         // Sem inicialização específica para o menu
     }
-
+    */
     @Override
     public Arena getArena() {
         // MenuState não usa arenas, então retornamos null

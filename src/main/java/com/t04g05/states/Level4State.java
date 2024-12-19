@@ -44,7 +44,7 @@ public class Level4State extends GameState {
             e.printStackTrace();
         }
     }
-
+    /*
     @Override
     public void run(GUI gui) {
         while (!arenaController.isGameOver()) {
@@ -63,7 +63,7 @@ public class Level4State extends GameState {
         // Inicialização específica do nível 4 - falta implementar
         System.out.println("Inicializando o Nível 4...");
     }
-
+    */
     @Override
     public Arena getArena() {
         return arenaController.getArena(); // Retorna a arena do controlador

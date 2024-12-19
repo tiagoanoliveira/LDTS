@@ -118,7 +118,7 @@ public class LanternaGUI implements GUI {
     //sprite para personagem principal
     @Override
     public void drawCharacter(Position position) throws IOException {
-        BufferedImage hero = ImageIO.read(getClass().getResource("sprites/hero.png"));
+        BufferedImage hero = ImageIO.read(getClass().getClassLoader().getResourceAsStream("sprites/hero.png"));
 
         for (int x = 0; x < hero.getWidth(); x++){
             for (int y = 0; y < hero.getHeight(); y++){

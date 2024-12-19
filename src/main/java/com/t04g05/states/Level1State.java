@@ -27,24 +27,25 @@ public class Level1State extends GameState {
             gui.clear();
             arenaViewer.draw(gui);
             gui.refresh();
-
             GUI.ACTION action = gui.getNextAction();
             if (action != null) {
                 arenaController.processInput(action);
             }
-
             arenaController.update();
 
             if (arenaController.isGameOver()) {
-                System.out.println("Game Over");
-                setNextState(null); // Sair do jogo
+                setNextState(null); // Apenas quando o jogo realmente termina
+            } else {
+                setNextState(this); // Certifique-se de manter o estado atual
             }
+
         } catch (IOException e) {
             System.err.println("Erro de I/O durante o processamento do Level1State: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
+    /*
     @Override
     public void run(GUI gui) {
         while (!arenaController.isGameOver()) {
@@ -63,7 +64,7 @@ public class Level1State extends GameState {
         // Inicialização específica do nível 1 - falta implementar
         System.out.println("Inicializando o Nível 1...");
     }
-
+    */
     @Override
     public Arena getArena() {
         return arenaController.getArena(); // Retorna a arena do controlador

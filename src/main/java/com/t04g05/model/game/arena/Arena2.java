@@ -2,6 +2,7 @@ package com.t04g05.model.game.arena;
 
 import com.t04g05.model.Position;
 import com.t04g05.model.game.elements.Character;
+import com.t04g05.model.game.elements.Coin;
 import com.t04g05.model.game.elements.Enemy;
 import com.t04g05.model.game.elements.Walls;
 
@@ -9,10 +10,12 @@ import java.util.*;
 
 public class Arena2 extends Arena {
     private final Set<Walls> walls;
+    private ArrayList<Coin> coins;
 
     public Arena2() {
         super(60, 31, new Character(new Position(54,3)), createEnemies());
         this.walls = new HashSet<>();
+        this.coins = new ArrayList<>();
         initializeElements();
         this.goalPosition = new Position(45, 13);
     }
@@ -43,6 +46,39 @@ public class Arena2 extends Arena {
         }
 
         synchronizeWalls(walls);
+        placeCoins();
+    }
+
+    //metodo para colocar moedas
+    private void placeCoins() {
+        int numberOfCoins = 10;
+        while (coins.size() < numberOfCoins) {
+            int x = (int) (Math.random() * 60);
+            int y = (int) (Math.random() * 31);
+
+            Position coinPosition = new Position(x, y);
+            if (!isWall(coinPosition) && !isCoin(coinPosition)) {
+                coins.add(new Coin(coinPosition));
+            }
+        }
+    }
+
+    private boolean isWall(Position position) {
+        for (Walls wall : getWalls()) {
+            if (wall.getPosition().equals(position)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isCoin(Position position) {
+        for (Coin coin : coins) {
+            if (coin.getPosition().equals(position)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Adicione inimigos

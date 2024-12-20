@@ -100,4 +100,8 @@ public class Arena2 extends Arena {
         // Verifica se a posição do personagem é a mesma que a do goal
         return character.getPosition().equals(goalPosition);
     }
+
+    public ArrayList<Coin> getCoins() {
+        return coins;
+    }
 }

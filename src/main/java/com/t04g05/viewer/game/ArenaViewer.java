@@ -16,12 +16,15 @@ public class ArenaViewer extends Viewer<Arena> {
         this.arena = arena;
     }
 
+
     @Override
     public void drawElements(GUI gui) throws IOException {
         drawElements(gui, new ArrayList<>(getModel().getWalls()), new WallsViewer());
         drawElements(gui, new ArrayList<>(getModel().getEnemies()), new EnemyViewer());
         drawElement(gui, getModel().getCharacter(), new CharacterViewer());
-        drawElements(gui, new ArrayList<>(getModel().getCoins()), new CoinViewer());
+        for (Coin coin : getModel().getCoins()) {
+            gui.drawElement(coin.getPosition(), '$', "#FFD700", "#000000");  // Desenha as moedas
+        }
 
 
         gui.drawElement(arena.getGoalPosition(), 'O', "#FFFF33", "#000000");
@@ -35,6 +38,7 @@ public class ArenaViewer extends Viewer<Arena> {
     private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) throws IOException {
         viewer.draw(gui, element);
     }
+
 
 }
 

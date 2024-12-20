@@ -3,6 +3,7 @@ package com.t04g05.model.game.arena;
 import com.t04g05.model.Position;
 import com.t04g05.model.game.elements.*;
 import com.t04g05.model.game.elements.Character;
+import com.t04g05.viewer.game.ArenaViewer;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -92,9 +93,23 @@ public abstract class Arena {
     }
 
     public void checkCoinCollection() {
-        coins.removeIf(coin -> coin.getPosition().equals(character.getPosition()));
+        for(Coin coin : coins){
+            if(coin.getPosition().equals(character.getPosition())){
+                coins.remove(coin);
+                character.increaseScore();
+                System.out.println(character.getScore());
+                break;
+            }
+        }
+
     }
 
+    public void updateCharacter(Position newPosition) {
+        if (canMoveTo(newPosition)) {
+            character.setPosition(newPosition);  // Atualiza a posição do personagem
+            checkCoinCollection();  // Verifica e remove as moedas coletadas
+        }
+    }
 
     public boolean canMoveTo(Position position) {
         // Verifica se a posição está dentro dos limites e não colide com paredes ou inimigos
@@ -124,5 +139,6 @@ public abstract class Arena {
     public Position getGoalPosition() {
         return goalPosition;
     }
+
 
 }

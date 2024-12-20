@@ -97,6 +97,11 @@ public class Arena3 extends Arena {
     public boolean isGoalReached() {
         return character.getPosition().equals(goalPosition);
     }
+
+    public ArrayList<Coin> getCoins() {
+        return coins;
+    }
 }
+
 
 

@@ -20,7 +20,7 @@ public class Character extends Element {
         return lives;
     }
 
-    public void increaseLives() {this.score++;}
+    public void increaseScore() {this.score++;}
 
     public int getScore() {return score;}
 }

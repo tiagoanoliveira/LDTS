@@ -30,6 +30,7 @@ public class ArenaController {
         // Atualiza a posição do personagem se o movimento for válido
         if (canMoveTo(newPosition)) {
             arena.getCharacter().setPosition(newPosition);
+            arena.checkCoinCollection();
         }
     }
 
@@ -59,6 +60,8 @@ public class ArenaController {
     public void update() {
         arena.updateEnemies();
         arena.checkCollisions();
+        arena.checkCoinCollection();
+        arena.updateCharacter(arena.getCharacter().getPosition());
     }
 }
 

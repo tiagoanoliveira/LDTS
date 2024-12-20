@@ -16,6 +16,6 @@ public interface GUI {
     void drawEnemy(Position position);
     void drawCoin(Position position);
     enum ACTION {
-        UP, DOWN, LEFT, RIGHT, ENTER, ESC, NONE
+        UP, DOWN, LEFT, RIGHT, ENTER, ESC, NONE, QUIT
     }
 }

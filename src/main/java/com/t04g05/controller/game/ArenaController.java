@@ -19,7 +19,6 @@ public class ArenaController {
             System.out.println("Objetivo alcançado!");
             return true; // Vitória
         }
-        System.out.println("isGameOver chamado. Resultado: false" );
         // Aqui podes adicionar outras condições, como vidas do jogador
         return false; // Continua o jogo
     }
@@ -56,12 +55,8 @@ public class ArenaController {
     }
 
     public void update() {
-        System.out.println("Atualizando arena...");
         arena.updateEnemies();
         arena.checkCollisions();
-        if (isGameOver()) {
-            System.out.println("Fim do jogo identificado em update().");
-        }
     }
 }
 

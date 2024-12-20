@@ -15,14 +15,13 @@ public class MenuState extends GameState {
     }
 
     @Override
-    public void step(GUI gui) {
+    public void step(GUI gui, GUI.ACTION action) {
         try{
             gui.clear(); // Limpa a tela
             menuViewer.draw(gui); // Desenha o menu
             gui.refresh(); // Atualiza a tela
 
             // Processa a entrada do usuário
-            GUI.ACTION action = gui.getNextAction();
             GameState nextState = menuController.processInput(action);
             if (nextState != null) {
                 setNextState(nextState);

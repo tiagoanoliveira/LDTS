@@ -21,22 +21,25 @@ public class Level3State extends GameState {
     }
 
     @Override
-    public void step(GUI gui) {
+    public void step(GUI gui, GUI.ACTION action) {
         try {
             gui.clear();
             arenaViewer.draw(gui);
             gui.refresh();
-
-            GUI.ACTION action = gui.getNextAction();
-            if (action != null) {
+            if (action == GUI.ACTION.QUIT) {
+                System.out.println("'q' pressionado no Level1State. Encerrando o jogo.");
+                setNextState(null); // Finaliza o jogo
+                return;
+            }
+            if (action != GUI.ACTION.NONE) {
                 arenaController.processInput(action);
             }
-
             arenaController.update();
 
             if (arenaController.isGameOver()) {
-                System.out.println("Game Over");
-                setNextState(null); // Sair do jogo
+                setNextState(null); // Apenas quando o jogo realmente termina
+            } else {
+                setNextState(this); // Certifique-se de manter o estado atual
             }
         } catch (IOException e) {
             System.err.println("Erro de I/O durante o processamento do Level3State: " + e.getMessage());

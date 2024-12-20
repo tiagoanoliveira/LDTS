@@ -8,7 +8,7 @@
     public abstract class GameState {
         private GameState nextState;
 
-        public abstract void step(GUI gui) throws IOException;
+        public abstract void step(GUI gui, GUI.ACTION action) throws IOException;
 
         public void setNextState(GameState nextState) {
             this.nextState = nextState;

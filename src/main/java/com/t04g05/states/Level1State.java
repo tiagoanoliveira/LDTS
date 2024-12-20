@@ -22,13 +22,17 @@ public class Level1State extends GameState {
     }
 
     @Override
-    public void step(GUI gui) {
+    public void step(GUI gui, GUI.ACTION action) {
         try {
             gui.clear();
             arenaViewer.draw(gui);
             gui.refresh();
-            GUI.ACTION action = gui.getNextAction();
-            if (action != null) {
+            if (action == GUI.ACTION.QUIT) {
+                System.out.println("'q' pressionado no Level1State. Encerrando o jogo.");
+                setNextState(null); // Finaliza o jogo
+                return;
+            }
+            if (action != GUI.ACTION.NONE) {
                 arenaController.processInput(action);
             }
             arenaController.update();

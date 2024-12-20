@@ -19,7 +19,6 @@ public class MenuController {
 
     public GameState processInput(GUI.ACTION action) {
         System.out.println("Ação recebida: " + action);
-
         switch (action) {
             case UP:
                 menu.previousOption();
@@ -30,22 +29,17 @@ public class MenuController {
             case ENTER:
                 String selectedOption = menu.getSelectedOption();
                 System.out.println("Opção selecionada: " + selectedOption);
-
                 if (menu.isStartGameSelected()) {
                     return new Level1State(); // Transição para o nível 1
                 } else if (menu.isExitSelected()) {
-                    System.out.println("Saindo do jogo.");
-                    return null; // Sair do jogo
+                    return null;
                 }
                 break;
-            case ESC:
-                System.out.println("ESC pressionado. Saindo do menu.");
-                return null; // Sair do jogo
+            case ESC, QUIT:
+                return null;
             case NONE: // Sem ação
-                System.out.println("Nenhuma tecla pressionada.");
                 break;
             default:
-                System.out.println("Ação desconhecida ou não suportada.");
                 break;
         }
 

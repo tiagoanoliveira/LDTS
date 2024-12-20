@@ -5,14 +5,17 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.t04g05.controller.game.ArenaController;
 import com.t04g05.model.Position;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class LanternaGUI implements GUI {
     private final Terminal terminal;
@@ -63,26 +66,29 @@ public class LanternaGUI implements GUI {
     public ACTION getNextAction() {
         try {
             KeyStroke keyStroke = screen.readInput(); // Aguarda entrada do usuário
+            System.out.println("Tecla capturada: " + keyStroke);
             if (keyStroke == null) {
                 return ACTION.NONE; // Retorna uma ação padrão que não faz nada
             }
-
             switch (keyStroke.getKeyType()) {
-                case ArrowUp:
-                    return ACTION.UP;
-                case ArrowDown:
-                    return ACTION.DOWN;
-                case ArrowLeft:
-                    return ACTION.LEFT;
-                case ArrowRight:
-                    return ACTION.RIGHT;
-                case Enter:
-                    return ACTION.ENTER;
-                case Escape:
-                    return ACTION.ESC;
-                default:
-                    return ACTION.NONE; // Ação padrão para teclas não mapeadas
+                case ArrowUp: return ACTION.UP;
+                case ArrowDown: return ACTION.DOWN;
+                case ArrowLeft: return ACTION.LEFT;
+                case ArrowRight: return ACTION.RIGHT;
+                case Enter: return ACTION.ENTER;
+                case Escape: return ACTION.ESC;
             }
+            if (keyStroke.getCharacter() != null) {
+                switch (keyStroke.getCharacter()) {
+                    case 'W', 'w': return ACTION.UP;
+                    case 'S', 's': return ACTION.DOWN;
+                    case 'A', 'a': return ACTION.LEFT;
+                    case 'D', 'd': return ACTION.RIGHT;
+                    case 'Q', 'q': return ACTION.QUIT; // Adicione esta linha
+                    default: return ACTION.NONE;
+                }
+            }
+            return ACTION.NONE;
         } catch (IOException e) {
             e.printStackTrace();
             return ACTION.ESC; // Retorna ESC em caso de erro, como fallback
@@ -118,7 +124,7 @@ public class LanternaGUI implements GUI {
     //sprite para personagem principal
     @Override
     public void drawCharacter(Position position) throws IOException {
-        BufferedImage hero = ImageIO.read(getClass().getClassLoader().getResourceAsStream("sprites/hero.png"));
+        BufferedImage hero = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("sprites/hero.png")));
 
         for (int x = 0; x < hero.getWidth(); x++){
             for (int y = 0; y < hero.getHeight(); y++){

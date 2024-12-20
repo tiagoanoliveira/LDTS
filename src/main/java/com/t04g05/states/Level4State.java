@@ -3,7 +3,6 @@ package com.t04g05.states;
 import com.t04g05.controller.game.ArenaController;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
-import com.t04g05.model.game.arena.Arena1;
 import com.t04g05.model.game.arena.Arena4;
 import com.t04g05.viewer.game.ArenaViewer;
 

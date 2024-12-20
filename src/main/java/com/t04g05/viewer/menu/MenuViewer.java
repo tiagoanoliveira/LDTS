@@ -11,10 +11,11 @@ public class MenuViewer {
     }
 
     public void draw(GUI gui) {
-        gui.drawText(5, 5, "MENU PRINCIPAL", "#FFFFFF");
+        gui.drawText(5, 5, "HEROMAN AND THE", "#FFFFFF");
+        gui.drawText(5, 6, "DUNGEONS OF DISGRACE", "#FFFFFF");
         for (int i = 0; i < menu.getOptions().size(); i++) {
             String color = menu.getCurrentOption() == i ? "#FFFF00" : "#FFFFFF";
-            gui.drawText(5, 7 + i, menu.getOptions().get(i), color);
+            gui.drawText(5, 9 + i, menu.getOptions().get(i), color);
         }
     }
 }

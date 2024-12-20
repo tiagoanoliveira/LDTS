@@ -22,8 +22,10 @@ public class Level1State extends GameState {
     }
 
     @Override
-    public void step(GUI gui, GUI.ACTION action) {
+    public void step(GUI gui) {
         try {
+            GUI.ACTION action = gui.getNextAction();
+            System.out.println("Processando ação no Level1State: " + action);
             if (action != GUI.ACTION.NONE) {
                 arenaController.processInput(action);
             }

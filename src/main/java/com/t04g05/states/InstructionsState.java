@@ -16,11 +16,12 @@ public class InstructionsState extends GameState {
         this.instructionsController = instructionsController;
     }
     @Override
-    public void step(GUI gui, GUI.ACTION action) {
+    public void step(GUI gui) {
         try{
             gui.clear();
             instructionsViewer.draw(gui);
             gui.refresh();
+            GUI.ACTION action = gui.getNextAction();
             GameState nextState = instructionsController.processInput(action);
             if (nextState != null) {
                 setNextState(nextState);

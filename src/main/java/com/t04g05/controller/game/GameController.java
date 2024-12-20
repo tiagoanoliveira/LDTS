@@ -14,8 +14,7 @@ public class GameController {
     }
     public void process(GUI gui) throws IOException {
         while (currentState != null) {
-            GUI.ACTION action = gui.getNextAction();
-            currentState.step(gui, action); // Passa a ação para o estado atual
+            currentState.step(gui); // Passa a ação para o estado atual
             currentState = currentState.getNextState(); // Obtém o próximo estado
         }
     }

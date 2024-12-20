@@ -21,11 +21,12 @@ public class Level3State extends GameState {
     }
 
     @Override
-    public void step(GUI gui, GUI.ACTION action) {
+    public void step(GUI gui) {
         try {
             gui.clear();
             arenaViewer.draw(gui);
             gui.refresh();
+            GUI.ACTION action = gui.getNextAction();
             if (action == GUI.ACTION.QUIT) {
                 System.out.println("'q' pressionado no Level1State. Encerrando o jogo.");
                 setNextState(null); // Finaliza o jogo

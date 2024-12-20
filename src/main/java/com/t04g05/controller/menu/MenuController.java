@@ -23,7 +23,7 @@ public class MenuController {
     }
 
     public GameState processInput(GUI.ACTION action) {
-        System.out.println("Ação recebida: " + action);
+        System.out.println("Ação recebida MenuController: " + action);
         switch (action) {
             case UP:
                 menu.previousOption();

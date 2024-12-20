@@ -1,5 +1,6 @@
 package com.t04g05.viewer.menu;
 import com.t04g05.gui.GUI;
+
 public class InstructionsViewer {
     public void draw(GUI gui) {
         gui.drawText(5, 5, "INSTRUCTIONS", "#FFFFFF");

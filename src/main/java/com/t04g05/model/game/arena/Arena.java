@@ -1,10 +1,8 @@
 package com.t04g05.model.game.arena;
 
 import com.t04g05.model.Position;
-import com.t04g05.model.game.elements.Element;
-import com.t04g05.model.game.elements.Enemy;
+import com.t04g05.model.game.elements.*;
 import com.t04g05.model.game.elements.Character;
-import com.t04g05.model.game.elements.Walls;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -18,6 +16,7 @@ public abstract class Arena {
     protected Character character;
     private final List<Enemy> enemies;
     protected Position goalPosition;
+    private List<Coin> coins;
 
     public Arena(int width, int height, Character character, List<Enemy> enemies) {
         this.width = width;
@@ -25,6 +24,7 @@ public abstract class Arena {
         this.walls = new HashSet<>();
         this.character = character;
         this.enemies = (enemies != null) ? enemies : new ArrayList<>();
+        this.coins = new ArrayList<>();
         createOuterWalls();
     }
 
@@ -58,6 +58,8 @@ public abstract class Arena {
         return walls;
     }
 
+    public List<Coin> getCoins(){return coins;}
+
     public boolean isGameOver() {
         for (Enemy enemy : enemies) {
             if (character.getPosition().equals(enemy.getPosition())) {
@@ -89,6 +91,11 @@ public abstract class Arena {
         }
     }
 
+    public void checkCoinCollection() {
+        coins.removeIf(coin -> coin.getPosition().equals(character.getPosition()));
+    }
+
+
     public boolean canMoveTo(Position position) {
         // Verifica se a posição está dentro dos limites e não colide com paredes ou inimigos
         if (position.getX() < 0 || position.getX() >= width || position.getY() < 0 || position.getY() >= height) {
@@ -105,6 +112,7 @@ public abstract class Arena {
         elements.addAll(walls);
         elements.addAll(enemies);
         elements.add(character);
+        elements.addAll(coins);
         return elements;
     }
 

@@ -21,6 +21,8 @@ public class ArenaViewer extends Viewer<Arena> {
         drawElements(gui, new ArrayList<>(getModel().getWalls()), new WallsViewer());
         drawElements(gui, new ArrayList<>(getModel().getEnemies()), new EnemyViewer());
         drawElement(gui, getModel().getCharacter(), new CharacterViewer());
+        drawElements(gui, new ArrayList<>(getModel().getCoins()), new CoinViewer());
+
 
         gui.drawElement(arena.getGoalPosition(), 'O', "#FFFF33", "#000000");
     }

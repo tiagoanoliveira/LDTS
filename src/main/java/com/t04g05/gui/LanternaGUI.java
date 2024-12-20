@@ -84,7 +84,7 @@ public class LanternaGUI implements GUI {
                     case 'S', 's': return ACTION.DOWN;
                     case 'A', 'a': return ACTION.LEFT;
                     case 'D', 'd': return ACTION.RIGHT;
-                    case 'Q', 'q': return ACTION.QUIT; // Adicione esta linha
+                    case 'Q', 'q': return ACTION.QUIT;
                     default: return ACTION.NONE;
                 }
             }

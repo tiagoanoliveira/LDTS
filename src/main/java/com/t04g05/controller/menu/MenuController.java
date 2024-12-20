@@ -3,14 +3,19 @@ package com.t04g05.controller.menu;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.menu.Menu;
 import com.t04g05.states.GameState;
+import com.t04g05.states.InstructionsState;
 import com.t04g05.states.Level1State;
 import com.t04g05.states.MenuState;
 
 public class MenuController {
     private final Menu menu;
+    private final InstructionsController instructionsController;
+    private final GUI gui;
 
-    public MenuController(Menu menu) {
+    public MenuController(Menu menu, InstructionsController instructionsController, GUI gui) {
         this.menu = menu;
+        this.instructionsController = instructionsController;
+        this.gui = gui;
     }
 
     public Menu getMenu() {
@@ -33,7 +38,7 @@ public class MenuController {
                     return new Level1State(); // Transição para o nível 1
                 }
                 else if(menu.isInstructionsSelected()){
-                    return new InstructionsState();
+                    return new InstructionsState(instructionsController, gui);
                 }
                 else if (menu.isExitSelected()) {
                     return null;

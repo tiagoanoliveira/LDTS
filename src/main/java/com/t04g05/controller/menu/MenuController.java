@@ -31,7 +31,11 @@ public class MenuController {
                 System.out.println("Opção selecionada: " + selectedOption);
                 if (menu.isStartGameSelected()) {
                     return new Level1State(); // Transição para o nível 1
-                } else if (menu.isExitSelected()) {
+                }
+                else if(menu.isInstructionsSelected()){
+                    return new InstructionsState();
+                }
+                else if (menu.isExitSelected()) {
                     return null;
                 }
                 break;

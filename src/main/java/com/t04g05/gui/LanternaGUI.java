@@ -88,6 +88,7 @@ public class LanternaGUI implements GUI {
                     default: return ACTION.NONE;
                 }
             }
+
             return ACTION.NONE;
         } catch (IOException e) {
             e.printStackTrace();

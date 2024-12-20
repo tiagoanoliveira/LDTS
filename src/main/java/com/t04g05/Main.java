@@ -14,21 +14,11 @@ public class Main {
     public static void main(String[] args) throws IOException {
         GUI gui =null;
         try {
-            // Inicializa a GUI
             gui = new LanternaGUI();
-            // Inicializa o estado inicial (MenuState)
             GameState initialState = initializeMenu(gui);
-            System.out.println("Estado inicial definido: " + initialState.getClass().getSimpleName());
-
-            // Cria o controlador principal de estados
             GameController gameController = new GameController(initialState);
-
-            // Inicia o loop principal do jogo
             gameController.process(gui);
-
-            System.out.println("Jogo finalizado.");
         } catch (Exception e) {
-            System.err.println("Erro durante a execução do jogo: " + e.getMessage());
             e.printStackTrace();
         } finally {
             if (gui != null) {
@@ -40,13 +30,9 @@ public class Main {
             }
         }
     }
-
     private static GameState initializeMenu(GUI gui) {
-        // Configura o menu e retorna o estado inicial
         Menu menu = new Menu();
         MenuController menuController = new MenuController(menu);
         return new MenuState(menuController, gui);
     }
 }
-
-

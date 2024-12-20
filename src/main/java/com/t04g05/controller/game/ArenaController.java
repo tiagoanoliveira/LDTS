@@ -54,6 +54,8 @@ public class ArenaController {
         return arena.getElements().stream().noneMatch(e -> e.getPosition().equals(position));
     }
 
+
+
     public void update() {
         arena.updateEnemies();
         arena.checkCollisions();

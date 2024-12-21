@@ -23,7 +23,7 @@ public class LanternaGUI implements GUI {
     private final TextGraphics textGraphics;
 
     public LanternaGUI() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(60, 31);
+        TerminalSize terminalSize = new TerminalSize(90, 46);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
         this.terminal = terminalFactory.createTerminal();
@@ -95,8 +95,6 @@ public class LanternaGUI implements GUI {
             return ACTION.ESC; // Retorna ESC em caso de erro, como fallback
         }
     }
-
-
     @Override
     public void close() {
         try {
@@ -109,27 +107,34 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawWall(Position position) {
-        drawElement(position, '#', "#3333FF", null);
+        drawElement(position, '#', "#808080", "#808080");
     }
 
     @Override
     public void drawEnemy(Position position) {
-        drawElement(position, '@', "#CC0000", null);
+        drawElement(position, 'E', "#FF0000", "#FF0000");
+    }
+    @Override
+    public void drawCoin(Position position) throws IOException {
+        drawSprite(position, "sprites/coin.png");
     }
 
     @Override
-    public void drawCoin(Position position)  {
-        drawElement(position, '$', "#FFC222", null);
+    public void drawDoor(Position position) throws IOException {
+        drawSprite(position, "sprites/door.png");
     }
 
-    //sprite para personagem principal
     @Override
     public void drawCharacter(Position position) throws IOException {
-        BufferedImage hero = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("sprites/hero.png")));
+        drawSprite(position, "sprites/character.png");
+    }
 
-        for (int x = 0; x < hero.getWidth(); x++){
-            for (int y = 0; y < hero.getHeight(); y++){
-                int a = hero.getRGB(x, y);
+    private void drawSprite(Position position, String spritePath) throws IOException {
+        BufferedImage sprite = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(spritePath)));
+
+        for (int x = 0; x < sprite.getWidth(); x++) {
+            for (int y = 0; y < sprite.getHeight(); y++) {
+                int a = sprite.getRGB(x, y);
                 int alpha = (a >> 24) & 0xff;
                 int red = (a >> 16) & 255;
                 int green = (a >> 8) & 255;

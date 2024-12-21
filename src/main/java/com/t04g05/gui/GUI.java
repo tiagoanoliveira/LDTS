@@ -14,7 +14,8 @@ public interface GUI {
     void drawCharacter(Position position) throws IOException;
     void drawWall(Position position);
     void drawEnemy(Position position);
-    void drawCoin(Position position);
+    void drawCoin(Position position) throws IOException;
+    void drawDoor(Position position) throws IOException;
     enum ACTION {
         UP, DOWN, LEFT, RIGHT, ENTER, ESC, NONE, QUIT
     }

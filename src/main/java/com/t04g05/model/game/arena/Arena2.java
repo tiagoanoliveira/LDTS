@@ -13,7 +13,7 @@ public class Arena2 extends Arena {
     private ArrayList<Coin> coins;
 
     public Arena2() {
-        super(60, 31, new Character(new Position(54,3)), createEnemies());
+        super(90, 46, new Character(new Position(82,2)), createEnemies());
         this.walls = new HashSet<>();
         this.coins = new ArrayList<>();
         initializeElements();
@@ -23,28 +23,31 @@ public class Arena2 extends Arena {
     @Override
     public void initializeElements() {
         //Adicionar paredes internas para o labirinto
-        for (int i = 6; i < 16; i++) {
-            walls.add(new Walls(new Position(11, i))); // 1.ª linha vertical à esquerda
+        for (int x = 16; x <= 17; x++) { // Colunas 16 e 17
+            for (int y = 8; y < 24; y++) { // Linhas de 8 a 23
+                getWalls().add(new Walls(new Position(x, y)));  // 1 linha vertical à esquerda
+            }
         }
-        for (int i = 10; i < 26; i++) {
-            walls.add(new Walls(new Position(50, i))); // ultima linha vertical à direita
+        for (int x = 72; x <= 73; x++) { // Colunas 74 e 75
+            for (int y = 15; y < 39; y++) { // Linhas de 15 a 38
+                getWalls().add(new Walls(new Position(x, y)));  //Última linha vertical à direita
+            }
         }
-        for (int i = 11; i < 60; i++) {
-            walls.add(new Walls(new Position(i, 5))); // 1.ª linha horizontal em cima
+        for (int i = 17; i < 90; i++) {
+            getWalls().add(new Walls(new Position(i, 8))); // 1.ª linha horizontal em cima
         }
-        for (int i = 20; i < 50; i++) {
-            walls.add(new Walls(new Position(i, 10))); // 2º linha horizontal
+        for (int i = 32; i < 74; i++) {
+            getWalls().add(new Walls(new Position(i, 15))); // 2º linha horizontal
         }
-        for (int i = 11; i < 50; i++) {
-            walls.add(new Walls(new Position(i, 15))); // 3º linha horizontal
+        for (int i = 17; i < 74; i++) {
+            getWalls().add(new Walls(new Position(i, 23))); // 3º linha horizontal
         }
-        for (int i = 1; i < 42; i++) {
-            walls.add(new Walls(new Position(i, 20))); // 4º linha horizontal
+        for (int i = 1; i < 58; i++) {
+            getWalls().add(new Walls(new Position(i, 30))); // 4º linha horizontal
         }
-        for (int i = 10; i < 50; i++) {
-            walls.add(new Walls(new Position(i, 25))); // ultima linha horizontal
+        for (int i = 16; i < 74; i++) {
+            getWalls().add(new Walls(new Position(i, 38))); // Última linha horizontal
         }
-
         synchronizeWalls(walls);
         placeCoins();
     }

@@ -33,8 +33,8 @@ public class Level1State extends GameState {
                 arenaController.processInput(action);
             }
             arenaController.update();
-            if (arenaController.isGameOver()) {
-                setNextState(null); // Apenas quando o jogo realmente termina
+            if (arenaController.isGoalReached()) {
+                setNextState(new Level2State()); // Apenas quando o jogo realmente termina
             } else if (action==GUI.ACTION.QUIT) {
                 setNextState(null); // Apenas quando o jogo realmente termina
             } else {
@@ -46,27 +46,6 @@ public class Level1State extends GameState {
             e.printStackTrace();
         }
     }
-
-    /*
-    @Override
-    public void run(GUI gui) {
-        while (!arenaController.isGameOver()) {
-            step(gui);
-            try {
-                Thread.sleep(100); // Pequeno atraso entre ciclos
-            } catch (InterruptedException e) {
-                System.out.println("Jogo interrompido: " + e.getMessage());
-            }
-        }
-        System.out.println("Nível 1 concluído ou jogo terminado.");
-    }
-
-    @Override
-    public void initializeLevel() {
-        // Inicialização específica do nível 1 - falta implementar
-        System.out.println("Inicializando o Nível 1...");
-    }
-    */
     @Override
     public Arena getArena() {
         return arenaController.getArena(); // Retorna a arena do controlador

@@ -2,10 +2,7 @@ package com.t04g05.controller.menu;
 
 import com.t04g05.gui.GUI;
 import com.t04g05.model.menu.Menu;
-import com.t04g05.states.GameState;
-import com.t04g05.states.InstructionsState;
-import com.t04g05.states.Level1State;
-import com.t04g05.states.MenuState;
+import com.t04g05.states.*;
 
 public class MenuController {
     private final Menu menu;

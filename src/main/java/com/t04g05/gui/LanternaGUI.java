@@ -126,7 +126,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawCharacter(Position position) throws IOException {
-        drawSprite(position, "sprites/character.png");
+        drawSprite(position, "sprites/hero.png");
     }
 
     private void drawSprite(Position position, String spritePath) throws IOException {

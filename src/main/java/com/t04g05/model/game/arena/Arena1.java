@@ -14,7 +14,7 @@ public class Arena1 extends Arena {
         super(90, 46, new Character(new Position(54, 3)), new ArrayList<>());
         this.coins = new ArrayList<>();
         initializeElements();
-        this.goalPosition = new Position(68, 20);
+        this.goalPosition = new Position(68, 17);
     }
 
     @Override

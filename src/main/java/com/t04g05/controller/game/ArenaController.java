@@ -3,6 +3,7 @@ package com.t04g05.controller.game;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.Position;
 import com.t04g05.model.game.arena.Arena;
+import com.t04g05.model.game.elements.Enemy;
 
 public class ArenaController {
     private final Arena arena;
@@ -21,10 +22,8 @@ public class ArenaController {
         }
         return false; // Continua o jogo
     }
-
-
+    public boolean isGameOver() {return true;}
     public void processInput(GUI.ACTION action) {
-        System.out.println("Processando ação: " + action);
         Position newPosition = getNewPosition(action);
         // Atualiza a posição do personagem se o movimento for válido
         if (canMoveTo(newPosition)) {
@@ -53,8 +52,6 @@ public class ArenaController {
 
         return arena.getElements().stream().noneMatch(e -> e.getPosition().equals(position));
     }
-
-
 
     public void update() {
         arena.updateEnemies();

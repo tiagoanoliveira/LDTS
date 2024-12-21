@@ -14,7 +14,8 @@ public class Arena1 extends Arena {
         super(90, 46, new Character(new Position(82, 2)), new ArrayList<>());
         this.coins = new ArrayList<>();
         initializeElements();
-        this.goalPosition = new Position(66, 17);
+        this.doorPosition = new Position(64, 17);
+        this.goalPosition = new Position(64, 17);
     }
 
     @Override
@@ -77,12 +78,6 @@ public class Arena1 extends Arena {
             }
         }
         return false;
-    }
-
-    @Override
-    public boolean isGoalReached() {
-        // Verifica se a posição do personagem é a mesma que a do goal
-        return character.getPosition().equals(goalPosition);
     }
     public ArrayList<Coin> getCoins() {
         return coins;

@@ -13,40 +13,62 @@ public class Arena2 extends Arena {
     private ArrayList<Coin> coins;
 
     public Arena2() {
-        super(90, 46, new Character(new Position(82,2)), createEnemies());
+        super(90, 46, new Character(new Position(4,2)), createEnemies());
         this.walls = new HashSet<>();
         this.coins = new ArrayList<>();
         initializeElements();
-        this.goalPosition = new Position(45, 13);
+        this.doorPosition = new Position(81, 2);
+        this.goalPosition = new Position(81, 2);
     }
 
     @Override
     public void initializeElements() {
         //Adicionar paredes internas para o labirinto
-        for (int x = 16; x <= 17; x++) { // Colunas 16 e 17
-            for (int y = 8; y < 24; y++) { // Linhas de 8 a 23
-                getWalls().add(new Walls(new Position(x, y)));  // 1 linha vertical à esquerda
+        for (int x = 14; x <= 15; x++) { // Colunas 14 e 15
+            for (int y = 31; y < 39; y++) { // Linhas de 31 a 38
+                getWalls().add(new Walls(new Position(x, y)));  // 1 linha vertical à esquerda em baixo
             }
         }
-        for (int x = 72; x <= 73; x++) { // Colunas 74 e 75
-            for (int y = 15; y < 39; y++) { // Linhas de 15 a 38
-                getWalls().add(new Walls(new Position(x, y)));  //Última linha vertical à direita
+        for (int x = 29; x <= 30; x++) { // Colunas 29 e 30
+            for (int y = 23; y < 31; y++) { // Linhas de 23 a 31
+                getWalls().add(new Walls(new Position(x, y)));  // 2 linha vertical à esquerda em baixo
             }
         }
-        for (int i = 17; i < 90; i++) {
-            getWalls().add(new Walls(new Position(i, 8))); // 1.ª linha horizontal em cima
+        for (int x = 45; x <= 46; x++) { // Colunas 45 e 46
+            for (int y = 0; y < 16; y++) { // Linhas de 0 a 17
+                getWalls().add(new Walls(new Position(x, y)));  // Linha vertical no meio em cima
+            }
         }
-        for (int i = 32; i < 74; i++) {
+        for (int x = 45; x <= 46; x++) { // Colunas 45 e 46
+            for (int y = 31; y < 39; y++) { // Linhas de 31 a 39
+                getWalls().add(new Walls(new Position(x, y)));  // Linha vertical no meio em baixo
+            }
+        }
+        for (int x = 74; x <= 75; x++) { // Colunas 74 e 75
+            for (int y = 15; y < 31; y++) { // Linhas de 0 a 17
+                getWalls().add(new Walls(new Position(x, y)));  // Ultima linha vertical
+            }
+        }
+        for (int i = 0; i < 32; i++) {
+            getWalls().add(new Walls(new Position(i, 8))); // 1.ª linha horizontal em cima à esquerda
+        }
+        for (int i = 60; i < 90; i++) {
+            getWalls().add(new Walls(new Position(i, 8))); // 1.ª linha horizontal em cima à direita
+        }
+        for (int i = 15; i < 74; i++) {
             getWalls().add(new Walls(new Position(i, 15))); // 2º linha horizontal
         }
-        for (int i = 17; i < 74; i++) {
-            getWalls().add(new Walls(new Position(i, 23))); // 3º linha horizontal
+        for (int i = 0; i < 61; i++) {
+            getWalls().add(new Walls(new Position(i, 22))); // 3º linha horizontal
         }
-        for (int i = 1; i < 58; i++) {
+        for (int i = 45; i < 75; i++) {
             getWalls().add(new Walls(new Position(i, 30))); // 4º linha horizontal
         }
-        for (int i = 16; i < 74; i++) {
-            getWalls().add(new Walls(new Position(i, 38))); // Última linha horizontal
+        for (int i = 15; i < 45; i++) {
+            getWalls().add(new Walls(new Position(i, 38))); // Última linha horizontal à esquerda
+        }
+        for (int i = 61; i < 90; i++) {
+            getWalls().add(new Walls(new Position(i, 38))); // Última linha horizontal à direita
         }
         synchronizeWalls(walls);
         placeCoins();
@@ -98,11 +120,6 @@ public class Arena2 extends Arena {
         );
     }
 
-    @Override
-    public boolean isGoalReached() {
-        // Verifica se a posição do personagem é a mesma que a do goal
-        return character.getPosition().equals(goalPosition);
-    }
 
     public ArrayList<Coin> getCoins() {
         return coins;

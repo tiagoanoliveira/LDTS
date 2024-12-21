@@ -66,7 +66,6 @@ public class LanternaGUI implements GUI {
     public ACTION getNextAction() {
         try {
             KeyStroke keyStroke = screen.readInput(); // Aguarda entrada do usuário
-            System.out.println("Tecla capturada: " + keyStroke);
             if (keyStroke == null) {
                 return ACTION.NONE; // Retorna uma ação padrão que não faz nada
             }
@@ -114,7 +113,7 @@ public class LanternaGUI implements GUI {
     }
     @Override
     public void drawCoin(Position position) throws IOException {
-        drawSprite(position, "sprites/coin.png");
+        drawElement(position, '$', "#000000", "#FFD700");
     }
 
     @Override
@@ -124,9 +123,8 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawCharacter(Position position) throws IOException {
-        drawSprite(position, "sprites/hero.png");
+        drawElement(position, 'C', "#000000", "#39FF14");
     }
-
     private void drawSprite(Position position, String spritePath) throws IOException {
         BufferedImage sprite = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(spritePath)));
 

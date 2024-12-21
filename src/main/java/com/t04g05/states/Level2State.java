@@ -28,7 +28,6 @@ public class Level2State extends GameState {
             arenaViewer.draw(gui);
             gui.refresh();
             GUI.ACTION action = gui.getNextAction();
-            System.out.println("Processando ação no Level2State: " + action);
             if (action != null) {
                 arenaController.processInput(action);
             }

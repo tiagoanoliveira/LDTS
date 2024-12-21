@@ -17,6 +17,7 @@ public class Arena4 extends Arena {
         this.walls = new HashSet<>();
         this.coins = new ArrayList<>();
         initializeElements();
+        this.doorPosition = new Position(75, 35);
         this.goalPosition = new Position(75, 35);
     }
 
@@ -95,11 +96,6 @@ public class Arena4 extends Arena {
                 new Enemy(new Position(35, 18)),
                 new Enemy(new Position(45, 22))
         );
-    }
-
-    @Override
-    public boolean isGoalReached() {
-        return character.getPosition().equals(goalPosition);
     }
 
     public ArrayList<Coin> getCoins() {

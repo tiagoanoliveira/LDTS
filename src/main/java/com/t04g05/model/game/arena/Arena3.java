@@ -10,13 +10,14 @@ import java.util.*;
 
 public class Arena3 extends Arena {
     private final Set<Walls> walls;
-    private ArrayList<Coin> coins;
+    private final ArrayList<Coin> coins;
 
     public Arena3() {
         super(80, 40, new Character(new Position(5,5)), createEnemies());
         this.walls = new HashSet<>();
         this.coins = new ArrayList<>();
         initializeElements();
+        this.doorPosition = new Position(75, 35);
         this.goalPosition = new Position(75, 35);
     }
 
@@ -95,11 +96,6 @@ public class Arena3 extends Arena {
                 new Enemy(new Position(35, 18)),
                 new Enemy(new Position(45, 22))
         );
-    }
-
-    @Override
-    public boolean isGoalReached() {
-        return character.getPosition().equals(goalPosition);
     }
 
     public ArrayList<Coin> getCoins() {

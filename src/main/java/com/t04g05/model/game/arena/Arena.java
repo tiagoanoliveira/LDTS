@@ -17,6 +17,7 @@ public abstract class Arena {
     protected Character character;
     private final List<Enemy> enemies;
     protected Position goalPosition;
+    protected Position doorPosition;
     private List<Coin> coins;
 
     public Arena(int width, int height, Character character, List<Enemy> enemies) {
@@ -61,37 +62,23 @@ public abstract class Arena {
 
     public List<Coin> getCoins(){return coins;}
 
-    public boolean isGameOver() {
-        for (Enemy enemy : enemies) {
-            if (character.getPosition().equals(enemy.getPosition())) {
-                return true; // Jogo termina se houver colisão com inimigo.
-            }
-        }
-        return false;
-    }
-
-    public abstract boolean isGoalReached();
-
     public void updateEnemies() {
         for (Enemy enemy : enemies) {
-            //Lógica para atualizar a posição do inimigo (por exemplo, movimento simples)
-            Position newPosition = enemy.getPosition().move(1, 0); // Exemplo de movimento
+            Position newPosition = enemy.getPosition().move(1, 0);
             if (canMoveTo(newPosition)) {
                 enemy.setPosition(newPosition);
             }
         }
     }
-
     public void checkCollisions() {
         //Verifica colisões entre o personagem e os inimigos
         for (Enemy enemy : enemies) {
             if (enemy.getPosition().equals(character.getPosition())) {
-                //Lógica para indicar Game Over ou outra ação
+                //Lógic
                 System.out.println("Game Over! O personagem colidiu com um inimigo.");
             }
         }
     }
-
     public void checkCoinCollection() {
         for(Coin coin : coins){
             if(coin.getPosition().equals(character.getPosition())){
@@ -101,7 +88,6 @@ public abstract class Arena {
                 break;
             }
         }
-
     }
 
     public void updateCharacter(Position newPosition) {
@@ -136,9 +122,8 @@ public abstract class Arena {
     public void synchronizeWalls(Set<Walls> additionalWalls) {
         this.walls.addAll(additionalWalls);
     }
-    public Position getGoalPosition() {
-        return goalPosition;
-    }
 
+    public Position getDoorPosition() {return doorPosition;}
 
+    public Position getGoalPosition() {return goalPosition;}
 }

@@ -3,7 +3,7 @@ package com.t04g05.states;
 import com.t04g05.controller.game.ArenaController;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
-import com.t04g05.model.game.arena.Arena2;
+import com.t04g05.model.game.arena.Arena3;
 import com.t04g05.viewer.game.ArenaViewer;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class Level3State extends GameState {
 
     public Level3State() {
         // Criação da arena específica do nível 2
-        var arena = new Arena2();
+        var arena = new Arena3();
 
         // Inicializa o controlador e o visualizador da arena
         this.arenaController = new ArenaController(arena);

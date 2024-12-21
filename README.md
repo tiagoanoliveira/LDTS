@@ -9,133 +9,122 @@
 In this thrilling yet simple game, a hero tries to escape a mysterious and dangerous dungeon filled with all kinds of wild
 creatures and traps, while collecting coins which makes his adventure even more interesting. To survive each different dungeon, he has to find the exit without getting killed.
 
-### IMPLEMENTED FEATURES
+### FEATURES
 
 - **Game Execution**
     - **Start Game** - Upon selection, begins a new playthrough.
 
 - **Hero**
-    - **Movement** - The movement of the hero is defined by the arrows (up, down, left, right) or the keys W, S, A and D. This keys correspond respectively to going up, down, left and right. Also when the hero touches a wall his movement his blocked.
+    - **Movement** - The movement of the hero is defined by the arrows (up, down, left, right). Also when the hero touches a wall his movement his blocked.
     - **Progression** - To complete a level, the Heroman has to reach the final door to progress to a different level.
 
-### PLANNED FEATURES
-
 - **Menu**
-    - **Exit** - A simple button to exit the game.
-    - **Change Binds** - Another button that allows the player to altern between the arrow keys or the A, S ,W and D keys.
+  - **Exit** - A simple button to exit the game.
+  - **Instructions** - By selecting the option "Instructions" shows the users everything he needs to know to play the game.
 
 - **Extras**
-    - **Score** - The score depends on the level reached and the amount of coins collected across the levels.
-    - **HP** - When the Heroman touches a wild creature his HP goes down by one. If it eventually reaches 0, its game over.
-    - **Getting hidden coins** - When the Heroman touches one of the coins available per level he collects it.
-
-### MOCKUPS
-
-![Level Mockup](resources/Mockups/mockupgame2.jpg)
-
-Our visualization of the game would consist in a set of different levels, each one with its own unique course and different
-types of obstacles and enemies. In addition, each level would be a mixture of avoiding getting killed and collect every one of the
-coins present throughout the level, which would lead to a higher score.
-
-
-![Menu Mockup](resources/Mockups/Menumockup.png)
-
-Concerning the menu, it would be a simple menu with an option to play, another to quit the game and two more to see the score and to change the binds, in
-other words, the keys used to play.
+  - **Score** - The score depends on the level reached and the amount of coins collected across the levels.
+  - **HP** - When the Heroman touches a wild creature his HP goes down by one. If it eventually reaches 0, its game over.
+  - **Getting hidden coins** - When the Heroman touches one of the coins available per level he collects it and his score goes up.
 
 ### MODEL
 
 ![Game Image 1](resources/GameScreenshots/LDTSgame1.jpg)
 
-As the previous screenshot shows, the map is still empty, in other words, without enemies, obstacles or coins for the hero to collect. But, as mentioned before, the route the hero
-has to go through is supposed to be full of holes and spikes, or enemies that move randomly, and finally, coins for him to collect.
 
 ### DOCUMENTATION
-
-#### **Problem in Context**
-Our main problem was writing the same code over and over again for the same functionalities and also being unsure about modifications that
-could be made but if those changes would affect the rest of the classes or the way the methods in them would work.
-
-#### **The Patterns**
-
-1. **Singleton Pattern** with ScreenManager
-
-2. **Strategy Pattern** in MovementStrategy and NormalMovement
-
-3. **Factory Pattern** in ElementFactory
-
-4. **Observer Pattern** in GameObserver and GameSubject
-
 #### **Implementation**
-
 The following classes are the ones we implemented to base our project.
 
-- **Main** - It's the starting point of the game. Controls the flow between Arena 1 and Arena2. Reboots the ScreenManager to change the level.
+- **Main** - It's the starting point of the game. Creates the window for the visualization of the game and initializes the menu. 
 
 - **Arena**
-    - **Arena1 and Arena2** - Represent the game levels and contain the logic behind the game mechanics, like the interaction with walls, enemies and obstacles. Control the rendering of each element the conditions between defeat and victory.
-
-- **Characters**
-    - **Character** - Defines the player. Contains the movement logic using the strategy used in MovementStrategy.
-
-    - **Enemy** - Represents the enemies. They move randomly, changing the direction when colliding with a wall.
+    - **Arena1, Arena2, Arena3 and Arena4** - Represent the game levels and contain the initialization of the elements of each level, 
+  such as walls, enemies and coins. Control the rendering of each element and the conditions when the player finishes or loses a level.
 
 - **Elements**
     - **Element** - Superclass for other classes like Walls, Obstacle and Enemy because it provides mutual attributes and methods like Position and Draw.
 
-    - **Walls** - Represents the level limits. Defines the drawing logic and verifies collisions.
+    - **Walls** - Represents the level limits.
 
-    - **Obstacle** - Represents the obstacles present throughout the level.
+    - **Enemy** - Represents the enemies present throughout the level that the player has to avoid.
 
-    - **Position** - Encapsulates the x and y coordinates for each element. Allows comparisons and hash to verify collisions.
+    - **Coin** - Represents the elements the player has to collect.
 
-    - **ElementFactory** - Provides the method createElement to create walls, enemies and obstacles.
+    - **Character** - Represents the player himself.
 
-- **Screen**
-    - **ScreenManager** - Manages the game screen using **Singleton** pattern, initializing or rebooting the screen whenever necessary.
+- **Menu**
+  - **Menu** - Represents the main menu and the necessary methods to implement it.
 
-- **Patterns**
-    - **GameObserver** - Object interface that reacts to game events like defeat or victory.
+  - **Instructions** - Represents the instructions screen and has the respective methods.
 
-    - **GameSubject** - Allows the players to be notified by game events using the **Observer** pattern.
+- **Controller**
+  - **ArenaController** - Controls every possible state for the level. Processes the player input to change his character's 
+  position and verifies if the game is over.
 
-    - **MovementStrategy** - Interface to movement strategies that is implemented in NormalMovement.
+  - **CharacterController, EnemyController** - Process the corresponding movement and checks if those movements are valid.
 
-    - **NormalMovement** - Standard logic to the player's movement. Makes sure the movement is limited by the levels boundaries and obstacles.
+  - **MenuController, InstructionsController** - Process what happens according to which keys the user presses.
 
-    - **RandomMovement** - Implements the MovementStrategy interface and defines the random movement of the enemies.
+- **States**
+  - **MenuState** - Responsible for controlling the menu interface state and handling the user's actions inside the menu.
 
-    - **GameController** - Manages the main flow of the game, controlling the transition between levels and initializing the game.
+  - **InstructionsState** - Responsible for controlling the instructions interface state and handling the user's actions inside the instructions screen.
 
-    - **GameTemplate** - Implements the Template Method, defining the general steps for game execution.
+  - **LevelsState** - Responsible for controlling the levels interface state and handling the user's actions inside each level or if he wants to quit.
+
+- **Viewer**
+    - **ArenaViewer** - Responsible for the instantiation of the draw methods for each element in an arena.
+
+    - **CharacterViewer, CoinViewer, EnemyViewer, WallsViewer** - Responsible for instantiating the draw methods for the 
+  corresponding elements (player, coin, enemy and walls).
+
+    - **MenuViewer, InstructionsViewer** - Responsible for the drawing of the corresponding text and options.
+
+#### **The Patterns**
+
+1. **Singleton Pattern** with Main and GUI
+
+2. **State Pattern** in states directory
+
+3. **MVC Pattern** with game, controller and viewer directories
+
+4. **Template Method Pattern** in Arena creation
 
 #### **Consequences**
 
 The use of the **Singleton Pattern** in the current design allows the following benefits:
 
-- Allows only one global instance to exist with the objective to manage the screen.
-- Avoids duplication of Lanterna library resources.
+  - Allows a single point of the initialization of the game and allows a single method to call every other method needed
+  to run the game;
+  - Ensures the GUI instance is universally accesible throughout the game, avoiding redundant instances;
 
-The use of the **Strategy Pattern** in the current design allows the following benefits:
+The use of the **State Pattern** in the current design allows the following benefits:
 
-- Allows flexibility in the player's movement's behaviour.
-- Facilitates the introduction of new movement strategies without modifying the player's logic.
+  - Encapsulation of the state logic: Each state encapsulates its specific behaviour, making the overall state cleaner and easier to understand;
+  - Allows the game to transition between states dynamically;
+  - Makes the code easier to understand because instead of having a switch-case block in GameController, each state defines its behavior.
 
-The use of the **Factory Pattern** in the current design allows the following benefits:
+The use of the **MVC Pattern** in the current design allows the following benefits:
 
-- Simplifies the creation of game elements through an identification string.
-- Avoids code repetition e centralizes the creation logic.
+  - 
 
-The use of the **Observer Pattern** in the current design allows the following benefits:
+The use of the **Template Method Pattern** in the current design allows the following benefits:
 
-- Allows parts of the game to be notified as events like defeat or victory.
-- Facilitates the addition of new reactive functionalities without modifying the central code.
-
+  - Enforces a consistent structure for the program across subclasses. Even though there are difference, the overall sequence is the same;
+  - Centralizing the common step in the parent class, this pattern reduces the duplicate code across the subclasses;
+  - 
 
 Some of the mentioned design patterns used are represented in the following UML:
 
 ![LDTSuml](resources/UML/UMLldts.jpg)
 
+### CODE 
+#### **Smells**
+In an overall overview, the game code has some smells that influence the code perception and understanding for someone who is looking
+at it for the first time. This means it could be better organized and less confusing.
+
+#### **Coverage Report**
 ### TESTING
 
 The following screenshots show the tests implemented until this moment:

@@ -97,7 +97,7 @@ The use of the **Singleton Pattern** in the current design allows the following 
 
   - Allows a single point of the initialization of the game and allows a single method to call every other method needed
   to run the game;
-  - Ensures the GUI instance is universally accesible throughout the game, avoiding redundant instances;
+  - Ensures the GUI instance is universally accessible throughout the game, avoiding redundant instances;
 
 The use of the **State Pattern** in the current design allows the following benefits:
 
@@ -107,36 +107,36 @@ The use of the **State Pattern** in the current design allows the following bene
 
 The use of the **MVC Pattern** in the current design allows the following benefits:
 
-  - 
+  - This Model/Viewer/Controller separation makes the code easier to understand, test and maintain;
+  - When it comes to testing, each section testing is independent of the others;
+  - Adding new features is straight forward because each component has its own role;
 
 The use of the **Template Method Pattern** in the current design allows the following benefits:
 
   - Enforces a consistent structure for the program across subclasses. Even though there are difference, the overall sequence is the same;
-  - Centralizing the common step in the parent class, this pattern reduces the duplicate code across the subclasses;
-  - 
-
-Some of the mentioned design patterns used are represented in the following UML:
-
-![LDTSuml](resources/UML/UMLldts.jpg)
+  - By centralizing the common step in the parent class, this pattern reduces the duplicate code across the subclasses;
+  - Flexibility is ensured because the subclasses only change their specific steps. The main structure is the same;
 
 ### CODE 
 #### **Smells**
-In an overall overview, the game code has some smells that influence the code perception and understanding for someone who is looking
-at it for the first time. This means it could be better organized and less confusing.
+In an overall overview, the game code has some smells that influence the code perception and understanding for someone 
+who is looking at it for the first time. This means it could be better organized and less confusing.
+
+- **Repetition of logic in MenuState and InstructionsState**: The sequence 'gui.clear()', 'viewer.draw(gui)', 'gui.refresh()' 
+and the action retrieval 'gui.getNextAction()' appears in multiple state classes;
+
+- **Using null for dependencies and return values**: For example, in *InstructionsController* receives a null *MenuController* 
+in Main.java, or returning null in *MenuController.processInput* to signal game exit. This can cause 
+"NullPointerException" errors;
+
+- **Usage of primitives**: The usage of primitives requires the repetition of multiple comparisons, just like in 
+*Instructions* in '"Back".equals()', for example;
+
+- **Lack of polymorphism**: The overuse of conditionals instead of a Command Pattern to encapsulate actions in separate
+objects makes the code repetitive.
 
 #### **Coverage Report**
+
+
 ### TESTING
 
-The following screenshots show the tests implemented until this moment:
-
-![Testing Directions](resources/TestingScreenshots/testing1.jpg)
-
-![Testing Movement stop by Obstacle](resources/TestingScreenshots/testing2.jpg)
-
-![Testing normal Movement](resources/TestingScreenshots/testing3.jpg)
-
-![Goal Notification](resources/TestingScreenshots/testing4.jpg)
-
-![Testing Level Execution](resources/TestingScreenshots/testing5.jpg)
-
-![Testing Endgame on Enemy Collision](resources/TestingScreenshots/testing6.jpg)

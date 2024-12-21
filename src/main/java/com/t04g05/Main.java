@@ -33,8 +33,9 @@ public class Main {
     }
     private static GameState initializeMenu(GUI gui) {
         Menu menu = new Menu();
-        InstructionsController instructionsController = new InstructionsController(null, gui);
-        MenuController menuController = new MenuController(menu, instructionsController,gui);
+        MenuController menuController = new MenuController(menu, null,gui);
+        InstructionsController instructionsController = new InstructionsController(menuController, gui);
+        menuController = new MenuController(menu, instructionsController, gui);
         return new MenuState(menuController, gui);
     }
 }

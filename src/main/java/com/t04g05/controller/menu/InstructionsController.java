@@ -32,6 +32,6 @@ public class InstructionsController {
             default:
                 break;
         }
-        return new InstructionsState(this, null);
+        return null;
     }
 }

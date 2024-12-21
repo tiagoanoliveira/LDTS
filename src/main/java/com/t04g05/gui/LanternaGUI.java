@@ -85,10 +85,8 @@ public class LanternaGUI implements GUI {
                     case 'A', 'a': return ACTION.LEFT;
                     case 'D', 'd': return ACTION.RIGHT;
                     case 'Q', 'q': return ACTION.QUIT;
-                    default: return ACTION.NONE;
                 }
             }
-
             return ACTION.NONE;
         } catch (IOException e) {
             e.printStackTrace();

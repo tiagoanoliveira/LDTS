@@ -24,15 +24,15 @@ public class Level1State extends GameState {
     @Override
     public void step(GUI gui) {
         try {
-            GUI.ACTION action = gui.getNextAction();
-            System.out.println("Processando ação no Level1State: " + action);
-            if (action != GUI.ACTION.NONE) {
-                arenaController.processInput(action);
-            }
-            arenaController.update();
             gui.clear();
             arenaViewer.draw(gui);
             gui.refresh();
+            GUI.ACTION action = gui.getNextAction();
+            System.out.println("Processando ação no Level1State: " + action);
+            if (action != null) {
+                arenaController.processInput(action);
+            }
+            arenaController.update();
             if (arenaController.isGameOver()) {
                 setNextState(null); // Apenas quando o jogo realmente termina
             } else if (action==GUI.ACTION.QUIT) {

@@ -20,7 +20,6 @@ public class MenuController {
     }
 
     public GameState processInput(GUI.ACTION action) {
-        System.out.println("Ação recebida MenuController: " + action);
         switch (action) {
             case UP:
                 menu.previousOption();
@@ -30,9 +29,8 @@ public class MenuController {
                 break;
             case ENTER:
                 String selectedOption = menu.getSelectedOption();
-                System.out.println("Opção selecionada: " + selectedOption);
                 if (menu.isStartGameSelected()) {
-                    return new Level1State(); // Transição para o nível 1
+                    return new Level2State(); // Transição para o nível 1
                 } else if(menu.isInstructionsSelected()) {
                     return new InstructionsState(instructionsController, gui);
                 }

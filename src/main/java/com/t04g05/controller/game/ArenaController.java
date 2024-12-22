@@ -33,8 +33,7 @@
             characterController.updateCharacter();  // Atualiza o personagem
             characterController.checkCollisions();
             if (arena.getCharacter().getLives() <= 0) {
-                System.out.println("O jogo terminou porque o personagem ficou sem vidas.");
-                // Lógica para terminar o jogo, por exemplo, transição para um estado de "Game Over"
+                //Transição para janela de Gameover
             }
         }
     }

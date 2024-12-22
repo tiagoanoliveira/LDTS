@@ -21,11 +21,9 @@ public class InstructionsController {
         return instructions;
     }
     public GameState processInput(GUI.ACTION action){
-        System.out.println("Ação recebida: " + action);
         switch (action){
             case ENTER:
                 String selectedOption = instructions.getSelectedOption();
-                System.out.println("Opção selecionada: " + selectedOption);
                 if(instructions.isBackSelected()){
                     return new MenuState(menuController, gui);
                 }

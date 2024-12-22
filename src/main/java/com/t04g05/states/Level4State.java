@@ -34,11 +34,13 @@ public class Level4State extends GameState {
             }
             arenaController.update();
             if (arenaController.isGoalReached()) {
-                setNextState(null); // Apenas quando o jogo realmente termina
+                setNextState(null);
+            } else if (arenaController.getArena().getCharacter().getLives() <= 0) {
+                setNextState(null);
             } else if (action==GUI.ACTION.QUIT) {
-                setNextState(null); // Apenas quando o jogo realmente termina
+                setNextState(null);
             } else {
-                setNextState(this); // Certifique-se de manter o estado atual
+                setNextState(this);
             }
         } catch (IOException e) {
             System.err.println("Erro de I/O durante o processamento do Level4State: " + e.getMessage());

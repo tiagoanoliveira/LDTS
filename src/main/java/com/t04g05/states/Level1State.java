@@ -34,9 +34,11 @@ public class Level1State extends GameState {
             }
             arenaController.update();
             if (arenaController.isGoalReached()) {
-                setNextState(new Level2State()); // Apenas quando o jogo realmente termina
+                setNextState(new Level2State());
+            } else if (arenaController.getArena().getCharacter().getLives() <= 0) {
+                setNextState(null);
             } else if (action==GUI.ACTION.QUIT) {
-                setNextState(null); // Apenas quando o jogo realmente termina
+                setNextState(null);
             } else {
                 setNextState(this); // Certifique-se de manter o estado atual
             }

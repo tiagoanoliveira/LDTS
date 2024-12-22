@@ -62,23 +62,19 @@ public abstract class Arena {
 
     public List<Coin> getCoins(){return coins;}
 
-    public void updateEnemies() {
-        for (Enemy enemy : enemies) {
-            Position newPosition = enemy.getPosition().move(1, 0);
-            if (canMoveTo(newPosition)) {
-                enemy.setPosition(newPosition);
-            }
-        }
-    }
     public void checkCollisions() {
-        //Verifica colisões entre o personagem e os inimigos
         for (Enemy enemy : enemies) {
             if (enemy.getPosition().equals(character.getPosition())) {
-                //Lógic
-                System.out.println("Game Over! O personagem colidiu com um inimigo.");
+                character.decreaseLives();
+                System.out.println("Colisão com inimigo! Vidas restantes: " + character.getLives());
+                if (character.getLives() <= 0) {
+                    System.out.println("Game Over! O personagem ficou sem vidas.");
+                }
+                break;
             }
         }
     }
+
     public void checkCoinCollection() {
         for(Coin coin : coins){
             if(coin.getPosition().equals(character.getPosition())){

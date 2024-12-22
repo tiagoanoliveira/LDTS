@@ -4,6 +4,7 @@ import com.t04g05.controller.game.ArenaController;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
 import com.t04g05.model.game.arena.Arena3;
+import com.t04g05.model.game.arena.Arena4;
 import com.t04g05.viewer.game.ArenaViewer;
 
 import java.io.IOException;
@@ -34,11 +35,13 @@ public class Level3State extends GameState {
             }
             arenaController.update();
             if (arenaController.isGoalReached()) {
-                setNextState(new Level4State()); // Apenas quando o jogo realmente termina
+                setNextState(new Level4State());
+            } else if (arenaController.getArena().getCharacter().getLives() <= 0) {
+                setNextState(null);
             } else if (action==GUI.ACTION.QUIT) {
-                setNextState(null); // Apenas quando o jogo realmente termina
+                setNextState(null);
             } else {
-                setNextState(this); // Certifique-se de manter o estado atual
+                setNextState(this);
             }
         } catch (IOException e) {
             System.err.println("Erro de I/O durante o processamento do Level2State: " + e.getMessage());

@@ -26,6 +26,7 @@ public class ArenaViewer extends Viewer<Arena> {
             gui.drawCoin(coin.getPosition()); // Desenha a moeda como sprite // Desenha as moedas
         }
         gui.drawDoor(arena.getDoorPosition()); // Desenha o objetivo como uma porta
+        gui.drawText(0, 0, "Vidas: " + arena.getCharacter().getLives(), "#000");
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) throws IOException {

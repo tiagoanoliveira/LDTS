@@ -16,7 +16,7 @@ public abstract class Arena {
     private final Set<Walls> walls;
     protected Character character;
     private final List<Enemy> enemies;
-    protected Position goalPosition;
+    private Set<Position> goalPositions; // Conjunto de Goal Positions
     protected Position doorPosition;
     private List<Coin> coins;
 
@@ -27,15 +27,16 @@ public abstract class Arena {
         this.character = character;
         this.enemies = (enemies != null) ? enemies : new ArrayList<>();
         this.coins = new ArrayList<>();
-        createOuterWalls();
+        this.goalPositions = new HashSet<>();
+        createOutsideWalls();
     }
 
-    private void createOuterWalls() {
+    private void createOutsideWalls() {
         for (int x = 0; x < width; x++) {
-            walls.add(new Walls(new Position(x, 0)));
+            walls.add(new Walls(new Position(x, 3)));
             walls.add(new Walls(new Position(x, height - 1)));
         }
-        for (int y = 1; y < height - 1; y++) {
+        for (int y = 4; y < height - 1; y++) {
             walls.add(new Walls(new Position(0, y)));
             walls.add(new Walls(new Position(width - 1, y)));
         }
@@ -121,5 +122,15 @@ public abstract class Arena {
 
     public Position getDoorPosition() {return doorPosition;}
 
-    public Position getGoalPosition() {return goalPosition;}
+    public void setGoalPositions(int startX, int endX, int startY, int endY) {
+        for (int x = startX; x <= endX; x++) {
+            for (int y = startY; y <= endY; y++) {
+                goalPositions.add(new Position(x, y));
+            }
+        }
+    }
+
+    public Set<Position> getGoalPositions() {
+        return goalPositions;
+    }
 }

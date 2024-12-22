@@ -2,8 +2,6 @@ package com.t04g05.controller.game;
 
 import com.t04g05.model.Position;
 import com.t04g05.model.game.arena.Arena;
-import com.t04g05.model.game.elements.Character;
-import com.t04g05.model.game.elements.Coin;
 import com.t04g05.gui.GUI;
 
 public class CharacterController {
@@ -55,10 +53,11 @@ public class CharacterController {
     }
 
     public boolean checkGoal() {
-        if (arena.getCharacter().getPosition().equals(arena.getGoalPosition())) {
+        if (arena.getGoalPositions().contains(arena.getCharacter().getPosition())) {
             System.out.println("Objetivo alcançado!");
             return true;
         }
         return false;
     }
+
 }

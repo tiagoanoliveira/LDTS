@@ -37,7 +37,5 @@ public class ArenaViewer extends Viewer<Arena> {
     private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) throws IOException {
         viewer.draw(gui, element);
     }
-
-
 }
 

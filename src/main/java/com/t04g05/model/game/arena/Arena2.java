@@ -18,7 +18,7 @@ public class Arena2 extends Arena {
         this.coins = new ArrayList<>();
         initializeElements();
         this.doorPosition = new Position(81, 2);
-        this.goalPosition = new Position(81, 2);
+        setGoalPositions(81, 87, 2, 7); // Define o intervalo de posições do objetivo
     }
 
     @Override

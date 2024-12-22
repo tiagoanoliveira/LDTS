@@ -1,15 +1,14 @@
 package com.t04g05.gui;
 
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.t04g05.controller.game.ArenaController;
 import com.t04g05.model.Position;
 
 import javax.imageio.ImageIO;
@@ -23,7 +22,7 @@ public class LanternaGUI implements GUI {
     private final TextGraphics textGraphics;
 
     public LanternaGUI() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(90, 46);
+        TerminalSize terminalSize = new TerminalSize(90, 49);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
         this.terminal = terminalFactory.createTerminal();

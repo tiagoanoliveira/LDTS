@@ -5,6 +5,7 @@ import com.t04g05.gui.GUI;
 import com.t04g05.gui.LanternaGUI;
 import com.t04g05.model.game.arena.Arena;
 import com.t04g05.model.game.arena.Arena1;
+import com.t04g05.model.game.arena.Arena2;
 import com.t04g05.viewer.game.ArenaViewer;
 
 import java.io.IOException;

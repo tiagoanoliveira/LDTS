@@ -85,13 +85,13 @@ public abstract class Arena {
             }
         }
     }
-
     public void updateCharacter(Position newPosition) {
         if (canMoveTo(newPosition)) {
             character.setPosition(newPosition);  // Atualiza a posição do personagem
             checkCoinCollection();  // Verifica e remove as moedas coletadas
         }
     }
+
 
     public boolean canMoveTo(Position position) {
         // Verifica se a posição está dentro dos limites e não colide com paredes ou inimigos

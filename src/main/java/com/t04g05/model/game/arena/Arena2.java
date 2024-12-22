@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Arena2 extends Arena {
     private final Set<Walls> walls;
-    private ArrayList<Coin> coins;
+    private final ArrayList<Coin> coins;
 
     public Arena2() {
         super(90, 49, new Character(new Position(4,7)), createEnemies());
@@ -74,7 +74,6 @@ public class Arena2 extends Arena {
         placeCoins();
     }
 
-    //metodo para colocar moedas
     private void placeCoins() {
         int numberOfCoins = 15;
         while (coins.size() < numberOfCoins) {
@@ -106,16 +105,21 @@ public class Arena2 extends Arena {
         return false;
     }
 
-    // Adicione inimigos
     private static List<Enemy> createEnemies () {
         return Arrays.asList(
             new Enemy(new Position(40, 6)),
             new Enemy(new Position(10, 15)),
-            new Enemy(new Position(45, 25))
-
+            new Enemy(new Position(45, 23)),
+            new Enemy(new Position(55, 31)),
+            new Enemy(new Position(53, 35)),
+            new Enemy(new Position(25, 38)),
+            new Enemy(new Position(6, 31)),
+            new Enemy(new Position(30, 43)),
+            new Enemy(new Position(82, 27)),
+            new Enemy(new Position(70, 14)),
+            new Enemy(new Position(75, 8))
         );
     }
-
 
     public ArrayList<Coin> getCoins() {
         return coins;

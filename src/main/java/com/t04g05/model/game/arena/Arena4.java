@@ -13,12 +13,12 @@ public class Arena4 extends Arena {
     private ArrayList<Coin> coins;
 
     public Arena4() {
-        super(90, 49, new Character(new Position(4,7)), createEnemies());
+        super(90, 49, new Character(new Position(4,30)), createEnemies());
         this.walls = new HashSet<>();
         this.coins = new ArrayList<>();
         initializeElements();
-        this.doorPosition = new Position(81, 5);
-        setGoalPositions(81, 87, 5, 10); // Define o intervalo de posições do objetivo
+        this.doorPosition = new Position(79, 28);
+        setGoalPositions(79, 85, 28, 33); // Define o intervalo de posições do objetivo
     }
 
     @Override
@@ -90,7 +90,7 @@ public class Arena4 extends Arena {
     }
 
     private void placeCoins() {
-        int numberOfCoins = 15;
+        int numberOfCoins = 20;
         while (coins.size() < numberOfCoins) {
             int x = (int) (Math.random() * (getWidth()-2))+1;
             int y = (int) (Math.random() * (getHeight()-4))+4;
@@ -127,11 +127,14 @@ public class Arena4 extends Arena {
                 new Enemy(new Position(60, 35)),
                 new Enemy(new Position(30, 20)),
                 new Enemy(new Position(70, 10)),
-                new Enemy(new Position(35, 18)),
-                new Enemy(new Position(45, 22))
+                new Enemy(new Position(70, 45)),
+                new Enemy(new Position(10, 45)),
+                new Enemy(new Position(35, 14)),
+                new Enemy(new Position(35, 39)),
+                new Enemy(new Position(80, 20)),
+                new Enemy(new Position(45, 30))
         );
     }
-
     public ArrayList<Coin> getCoins() {
         return coins;
     }

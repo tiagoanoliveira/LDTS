@@ -17,7 +17,6 @@ public class Level2State extends GameState {
         // Criação da arena específica do nível 2
         var arena = new Arena2();
 
-        // Inicializa o controlador e o visualizador da arena
         this.arenaController = new ArenaController(arena);
         this.arenaViewer = new ArenaViewer(arena);
     }

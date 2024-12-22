@@ -28,11 +28,10 @@ public class MenuController {
                 menu.nextOption();
                 break;
             case ENTER:
-                String selectedOption = menu.getSelectedOption();
                 if (menu.isStartGameSelected()) {
                     System.out.println("Boa sorte. Tens que chegar à Porta de Ouro sem ser morto pelos inimigos!");
                     System.out.println("Tens 3 vidas. Podes controlar as vidas restantes no topo do jogo.");
-                    return new Level4State(); // Transição para o nível 1; Inicio do jogo
+                    return new Level1State(); // Transição para o nível 1; Inicio do jogo
                 } else if(menu.isInstructionsSelected()) {
                     return new InstructionsState(instructionsController, gui);
                 }
@@ -42,8 +41,6 @@ public class MenuController {
                 break;
             case ESC, QUIT:
                 return null;
-            case NONE: // Sem ação
-                break;
             default:
                 break;
         }

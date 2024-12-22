@@ -5,6 +5,7 @@ import com.t04g05.model.Position;
 import java.io.IOException;
 
 public interface GUI {
+    void setBackgroundColor(String color);
     void drawText(int x, int y, String text, String color);
     void drawElement(Position position, char character, String textColor, String backgroundColor);
     void clear();
@@ -16,6 +17,7 @@ public interface GUI {
     void drawEnemy(Position position);
     void drawCoin(Position position) throws IOException;
     void drawDoor(Position position) throws IOException;
+    void drawLives (int lives);
     enum ACTION {
         UP, DOWN, LEFT, RIGHT, ENTER, ESC, NONE, QUIT
     }

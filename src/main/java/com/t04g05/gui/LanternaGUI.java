@@ -1,6 +1,5 @@
 package com.t04g05.gui;
 
-import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
@@ -30,6 +29,12 @@ public class LanternaGUI implements GUI {
         this.screen.startScreen();
         this.screen.setCursorPosition(null);
         this.textGraphics = screen.newTextGraphics();
+    }
+
+    @Override
+    public void setBackgroundColor(String color) {
+        textGraphics.setBackgroundColor(TextColor.Factory.fromString(color));
+        textGraphics.fill(' '); // Preenche a tela inteira com a nova cor de fundo
     }
 
     @Override
@@ -103,7 +108,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawWall(Position position) {
-        drawElement(position, '#', "#808080", "#808080");
+        drawElement(position, '#', "#3d3d3d", "#3d3d3d");
     }
 
     @Override
@@ -124,6 +129,12 @@ public class LanternaGUI implements GUI {
     public void drawCharacter(Position position) throws IOException {
         drawElement(position, 'C', "#000000", "#39FF14");
     }
+
+    @Override
+    public void drawLives(int lives) {
+        drawText(78, 1, " Vidas: " + lives + " ", "#000");
+    }
+
     private void drawSprite(Position position, String spritePath) throws IOException {
         BufferedImage sprite = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(spritePath)));
 

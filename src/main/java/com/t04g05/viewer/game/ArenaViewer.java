@@ -16,17 +16,17 @@ public class ArenaViewer extends Viewer<Arena> {
         this.arena = arena;
     }
 
-
     @Override
     public void drawElements(GUI gui) throws IOException {
+        gui.setBackgroundColor("#9f958d"); // Define a cor do fundo
         drawElements(gui, new ArrayList<>(getModel().getWalls()), new WallsViewer());
         drawElements(gui, new ArrayList<>(getModel().getEnemies()), new EnemyViewer());
         drawElement(gui, getModel().getCharacter(), new CharacterViewer());
         for (Coin coin : getModel().getCoins()) {
             gui.drawCoin(coin.getPosition()); // Desenha a moeda como sprite // Desenha as moedas
         }
+        gui.drawLives(arena.getCharacter().getLives());
         gui.drawDoor(arena.getDoorPosition()); // Desenha o objetivo como uma porta
-        gui.drawText(0, 0, "Vidas: " + arena.getCharacter().getLives(), "#000");
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) throws IOException {
@@ -38,4 +38,3 @@ public class ArenaViewer extends Viewer<Arena> {
         viewer.draw(gui, element);
     }
 }
-

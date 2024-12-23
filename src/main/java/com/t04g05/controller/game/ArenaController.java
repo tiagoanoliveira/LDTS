@@ -36,5 +36,13 @@
                 //Transição para janela de Gameover
             }
         }
+
+        public EnemyController getEnemyController() {
+            return this.enemyController;
+        }
+
+        public CharacterController getCharacterController() {
+            return this.characterController;
+        }
     }
 

@@ -24,7 +24,7 @@ public class EnemyController {
         }
     }
 
-    private Position getRandomValidPosition(Position currentPosition) {
+    Position getRandomValidPosition(Position currentPosition) {
         Position[] possibleMoves = new Position[]{
                 currentPosition.move(0, -1), // UP
                 currentPosition.move(0, 1),  // DOWN
@@ -43,4 +43,5 @@ public class EnemyController {
         // Nenhum movimento válido
         return null;
     }
+    public Random getRandom(){return this.random;}
 }

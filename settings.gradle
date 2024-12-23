@@ -16,3 +16,6 @@ include 'services:webservice'
 */
 
 rootProject.name = 'project-t04g05'
+include 'src:test:model'
+findProject(':src:test:model')?.name = 'model'
+

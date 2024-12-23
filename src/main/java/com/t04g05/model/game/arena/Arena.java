@@ -86,6 +86,7 @@ public abstract class Arena {
             }
         }
     }
+
     public void updateCharacter(Position newPosition) {
         if (canMoveTo(newPosition)) {
             character.setPosition(newPosition);  // Atualiza a posição do personagem

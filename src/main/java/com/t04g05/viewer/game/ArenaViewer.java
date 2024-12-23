@@ -24,10 +24,10 @@ public class ArenaViewer extends Viewer<Arena> {
         drawElements(gui, new ArrayList<>(getModel().getEnemies()), new EnemyViewer());
         drawElement(gui, getModel().getCharacter(), new CharacterViewer());
         for (Coin coin : getModel().getCoins()) {
-            gui.drawCoin(coin.getPosition()); // Desenha a moeda como sprite // Desenha as moedas
+            gui.drawCoin(coin.getPosition()); // Desenha a moeda
         }
         gui.drawScoreLives(arena.getCharacter().getScore(), arena.getCharacter().getLives());
-        if (arena instanceof Arena4) { // Substitua por seu último nível
+        if (arena instanceof Arena4) {
             gui.drawGoldenDoor(arena.getDoorPosition()); // Porta dourada
         } else {
             gui.drawDoor(arena.getDoorPosition()); // Porta normal

@@ -56,8 +56,8 @@ public class Arena1 extends Arena {
             int y = (int) (Math.random() * (getHeight()-4))+4;
 
             Position coinPosition = new Position(x, y);
-            if (!isWall(coinPosition) && !isCoin(coinPosition)) {
-                coins.add(new Coin(coinPosition));
+            if (!isWall(coinPosition) && getCoins().stream().noneMatch(coin -> coin.getPosition().equals(coinPosition))) {
+                getCoins().add(new Coin(coinPosition));
             }
         }
     }

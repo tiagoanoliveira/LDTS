@@ -1,4 +1,4 @@
-package com.t04g05.states.game;
+package java.com.t04g05.states.game;
 
 import com.t04g05.controller.game.ArenaController;
 import com.t04g05.controller.menu.GameOverController;

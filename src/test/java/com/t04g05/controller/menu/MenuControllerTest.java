@@ -1,4 +1,4 @@
-package com.t04g05.controller.menu;
+package java.com.t04g05.controller.menu;
 
 import com.t04g05.gui.GUI;
 import com.t04g05.model.menu.Menu;

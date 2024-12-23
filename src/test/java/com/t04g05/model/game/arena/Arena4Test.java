@@ -1,4 +1,4 @@
-package com.t04g05.model.game.arena;
+package java.com.t04g05.model.game.arena;
 
 import com.t04g05.model.Position;
 import com.t04g05.model.game.elements.Character;

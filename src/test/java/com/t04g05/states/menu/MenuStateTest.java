@@ -1,4 +1,4 @@
-package com.t04g05.states.menu;
+package java.com.t04g05.states.menu;
 
 import com.t04g05.controller.menu.MenuController;
 import com.t04g05.gui.GUI;

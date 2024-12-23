@@ -1,4 +1,4 @@
-package com.t04g05.model.menu;
+package java.com.t04g05.model.menu;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

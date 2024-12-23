@@ -1,4 +1,4 @@
-package com.t04g05.gui;
+package java.com.t04g05.gui;
 
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;

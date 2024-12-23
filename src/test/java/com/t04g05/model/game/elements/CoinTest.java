@@ -1,4 +1,4 @@
-package com.t04g05.model.game.elements;
+package java.com.t04g05.model.game.elements;
 
 import com.t04g05.model.Position;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.t04g05.controller.game;
+package java.com.t04g05.controller.game;
 
 import com.t04g05.gui.GUI;
 import com.t04g05.model.Position;

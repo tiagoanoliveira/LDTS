@@ -16,7 +16,7 @@ public class MenuViewer {
             gui.drawText(35, 19, "HEROMAN AND THE", "#FFFFFF", background_color);
             gui.drawText(35, 20, "DUNGEONS OF DISGRACE", "#FFFFFF", background_color);
         } else if (menu.getMode() == Menu.Mode.INSTRUCTIONS) {
-            gui.drawText(20, 7, "=============== INSTRUCTIONS ====q===========", "#FFFFFF", background_color);
+            gui.drawText(20, 7, "=============== INSTRUCTIONS ================", "#FFFFFF", background_color);
             gui.drawText(20, 10, "Controls:", "#FFFFFF", background_color);
             gui.drawText(20, 11, "UP, DOWN, LEFT, RIGHT (or WSAD)", "#FFFFFF", background_color);
             gui.drawText(20, 13, "Goal:", "#FFFFFF", background_color);

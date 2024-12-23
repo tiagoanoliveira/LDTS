@@ -115,7 +115,7 @@ public class Arena3 extends Arena {
         }
     }
 
-    private boolean isWall(Position position) {
+    protected boolean isWall(Position position) {
         for (Walls wall : getWalls()) {
             if (wall.getPosition().equals(position)) {
                 return true;
@@ -124,7 +124,7 @@ public class Arena3 extends Arena {
         return false;
     }
 
-    private boolean isCoin(Position position) {
+    protected boolean isCoin(Position position) {
         for (Coin coin : coins) {
             if (coin.getPosition().equals(position)) {
                 return true;

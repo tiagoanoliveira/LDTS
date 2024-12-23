@@ -87,7 +87,7 @@ public class Arena2 extends Arena {
         }
     }
 
-    private boolean isWall(Position position) {
+    protected boolean isWall(Position position) {
         for (Walls wall : getWalls()) {
             if (wall.getPosition().equals(position)) {
                 return true;

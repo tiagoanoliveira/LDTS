@@ -25,7 +25,7 @@ public class ArenaViewer extends Viewer<Arena> {
         for (Coin coin : getModel().getCoins()) {
             gui.drawCoin(coin.getPosition()); // Desenha a moeda como sprite // Desenha as moedas
         }
-        gui.drawLives(arena.getCharacter().getLives());
+        gui.drawScoreLives(arena.getCharacter().getScore(), arena.getCharacter().getLives());
         gui.drawDoor(arena.getDoorPosition()); // Desenha o objetivo como uma porta
     }
 

@@ -44,12 +44,12 @@ public class Arena4 extends Arena {
                 getWalls().add(new Walls(new Position(x, y)));  // 2 linha vertical em baixo
             }
         }
-        for (int x = 45; x <= 46; x++) { // Colunas 45 e 46
-            for (int y = 11; y < 26; y++) { // Linhas de 11 a 26
+        for (int x = 44; x <= 45; x++) { // Colunas 44 e 45
+            for (int y = 11; y < 26; y++) { // Linhas de 11 a 25
                 getWalls().add(new Walls(new Position(x, y)));  // Linha vertical no meio em cima
             }
         }
-        for (int x = 45; x <= 46; x++) { // Colunas 45 e 46
+        for (int x = 44; x <= 45; x++) { // Colunas 44 e 45
             for (int y = 34; y < 49; y++) { // Linhas de 34 a 48
                 getWalls().add(new Walls(new Position(x, y)));  // Linha vertical no meio em baixo
             }
@@ -70,7 +70,7 @@ public class Arena4 extends Arena {
         for (int i = 0; i < 30; i++) {
             getWalls().add(new Walls(new Position(i, 26))); // 2º linha horizontal à esquerda
         }
-        for (int i = 45; i < 75; i++) {
+        for (int i = 44; i < 75; i++) {
             getWalls().add(new Walls(new Position(i, 26))); // 2º linha horizontal à direita
         }
         for (int i = 0; i < 15; i++) {

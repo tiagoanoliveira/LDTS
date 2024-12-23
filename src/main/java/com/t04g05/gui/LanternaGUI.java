@@ -131,8 +131,9 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawLives(int lives) {
-        drawText(78, 1, " Vidas: " + lives + " ", "#000");
+    public void drawScoreLives(int score, int lives) {
+        drawText(1, 1, " Score: " + score + " ", "#000");
+        drawText(78, 1, " Lives: " + lives + " ", "#000");
     }
 
     private void drawSprite(Position position, String spritePath) throws IOException {

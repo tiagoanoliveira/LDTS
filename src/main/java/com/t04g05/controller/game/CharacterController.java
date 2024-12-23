@@ -58,7 +58,7 @@ public class CharacterController {
 
     public boolean checkGoal() {
         if (arena.getGoalPositions().contains(arena.getCharacter().getPosition())) {
-            System.out.println("Objetivo alcançado!");
+            System.out.println("Boa! É assim mesmo");
             return true;
         }
         return false;

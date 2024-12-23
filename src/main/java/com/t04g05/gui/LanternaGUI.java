@@ -17,8 +17,8 @@ import java.util.Objects;
 
 public class LanternaGUI implements GUI {
     private final Terminal terminal;
-    private final TerminalScreen screen;
-    private final TextGraphics textGraphics;
+    TerminalScreen screen;
+    TextGraphics textGraphics;
 
     public LanternaGUI() throws IOException {
         TerminalSize terminalSize = new TerminalSize(90, 49);

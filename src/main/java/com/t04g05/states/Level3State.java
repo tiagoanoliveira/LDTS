@@ -1,11 +1,13 @@
 package com.t04g05.states;
 
 import com.t04g05.controller.game.ArenaController;
+import com.t04g05.controller.menu.GameOverController;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.Position;
 import com.t04g05.model.game.arena.Arena;
 import com.t04g05.model.game.arena.Arena3;
 import com.t04g05.model.game.elements.Character;
+import com.t04g05.model.menu.GameOver;
 import com.t04g05.viewer.game.ArenaViewer;
 
 import java.io.IOException;
@@ -38,7 +40,10 @@ public class Level3State extends GameState {
             if (arenaController.isGoalReached()) {
                 setNextState(new Level4State(arenaController.getArena().getCharacter()));
             } else if (arenaController.getArena().getCharacter().getLives() <= 0) {
-                setNextState(null);
+                Character character = arenaController.getArena().getCharacter();
+                GameOver gameover = new GameOver(character, arenaController.getArena().getCharacter().getScore());
+                GameOverController gameoverController = new GameOverController(gameover, gui);
+                setNextState(new GameOverState(gameover,character, gameoverController, gui));
             } else if (action==GUI.ACTION.QUIT) {
                 setNextState(null);
             } else {

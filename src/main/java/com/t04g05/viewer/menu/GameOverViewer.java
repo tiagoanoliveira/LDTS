@@ -15,7 +15,7 @@ public class GameOverViewer {
     }
 
     public void draw(GUI gui){
-        gui.drawText(40, 20, "GAME OVER", "#FFFFFF");
-        gui.drawText(37, 21, "Total Score: " + character.getScore(), "#FFFFFF");
+        gui.drawText(40, 20, "GAME OVER", "#FF0000", "#000000");
+        gui.drawText(37, 21, "Total Score: " + character.getScore(), "#FF0000", "#000000");
     }
 }

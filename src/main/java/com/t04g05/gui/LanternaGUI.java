@@ -38,7 +38,7 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawText(int x, int y, String text, String color) {
+    public void drawText(int x, int y, String text, String color, String background_color) {
         textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
         textGraphics.putString(x, y, text);
     }
@@ -136,8 +136,8 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawScoreLives(int score, int lives) {
-        drawText(1, 1, " Score: " + score + " ", "#000");
-        drawText(78, 1, " Lives: " + lives + " ", "#000");
+        drawText(1, 1, " Score: " + score + " ", "#000", "#FFFF00");
+        drawText(78, 1, " Lives: " + lives + " ", "#000", "#FFFF00");
     }
 
     private void drawSprite(Position position, String spritePath) throws IOException {

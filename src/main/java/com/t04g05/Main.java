@@ -15,7 +15,7 @@ public class Main {
         GUI gui =null;
         try {
             gui = new LanternaGUI();
-            GameState initialState = initializeMenu(gui);
+            GameState initialState = initializeMenu();
             GameController gameController = new GameController(initialState);
             gameController.process(gui);
         } catch (Exception e) {
@@ -30,9 +30,9 @@ public class Main {
             }
         }
     }
-    private static GameState initializeMenu(GUI gui) {
+    private static GameState initializeMenu() {
         Menu menu = new Menu();
         MenuController controller = new MenuController(menu);
-        return new MenuState(controller, gui);
+        return new MenuState(controller);
     }
 }

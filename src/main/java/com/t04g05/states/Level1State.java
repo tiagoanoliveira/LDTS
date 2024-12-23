@@ -1,7 +1,6 @@
 package com.t04g05.states;
 
 import com.t04g05.controller.game.ArenaController;
-import com.t04g05.controller.game.GameController;
 import com.t04g05.controller.menu.GameOverController;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
@@ -17,10 +16,8 @@ public class Level1State extends GameState {
     private final ArenaViewer arenaViewer;
 
     public Level1State() {
-        // Criação da arena específica do nível 1
         var arena = new Arena1();
 
-        // Inicializa o controlador e o visualizador da arena
         this.arenaController = new ArenaController(arena);
         this.arenaViewer = new ArenaViewer(arena);
     }
@@ -46,7 +43,7 @@ public class Level1State extends GameState {
             } else if (action==GUI.ACTION.QUIT) {
                 setNextState(null);
             } else {
-                setNextState(this); // Certifique-se de manter o estado atual
+                setNextState(this);
             }
 
         } catch (IOException e) {
@@ -56,7 +53,7 @@ public class Level1State extends GameState {
     }
     @Override
     public Arena getArena() {
-        return arenaController.getArena(); // Retorna a arena do controlador
+        return arenaController.getArena();
     }
 
 }

@@ -9,7 +9,7 @@ public class MenuState extends GameState {
     private final MenuController controller;
     private final MenuViewer viewer;
 
-    public MenuState(MenuController controller, GUI gui) {
+    public MenuState(MenuController controller) {
         this.controller = controller;
         this.viewer = new MenuViewer(controller.getMenu());
     }
@@ -18,7 +18,7 @@ public class MenuState extends GameState {
     public void step(GUI gui) {
         try {
             gui.clear();
-            viewer.draw(gui); // Desenha o menu ou as instruções
+            viewer.draw(gui);
             gui.refresh();
 
             GUI.ACTION action = gui.getNextAction();
@@ -33,6 +33,6 @@ public class MenuState extends GameState {
 
     @Override
     public Arena getArena() {
-        return null; // O estado do menu não usa arenas
+        return null;
     }
 }

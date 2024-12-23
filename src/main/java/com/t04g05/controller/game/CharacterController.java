@@ -15,7 +15,6 @@ public class CharacterController {
         Position newPosition = getNewPosition(action);
         if (canMoveTo(newPosition)) {
             arena.getCharacter().setPosition(newPosition);
-            arena.checkCoinCollection();
         }
     }
 

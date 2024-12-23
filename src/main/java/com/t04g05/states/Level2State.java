@@ -17,7 +17,6 @@ public class Level2State extends GameState {
     private final ArenaViewer arenaViewer;
 
     public Level2State(Character character) {
-        // Criação da arena específica do nível 2
         var arena = new Arena2(character);
 
         arena.getCharacter().setPosition(new Position(4, 7));
@@ -46,7 +45,7 @@ public class Level2State extends GameState {
             } else if (action==GUI.ACTION.QUIT) {
                 setNextState(null);
             } else {
-                setNextState(this); // Certifique-se de manter o estado atual
+                setNextState(this);
             }
         } catch (IOException e) {
             System.err.println("Erro de I/O durante o processamento do Level2State: " + e.getMessage());
@@ -55,7 +54,7 @@ public class Level2State extends GameState {
     }
     @Override
     public Arena getArena() {
-        return arenaController.getArena(); // Retorna a arena do controlador
+        return arenaController.getArena();
     }
 
 }

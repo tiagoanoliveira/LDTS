@@ -18,12 +18,11 @@ public class Arena2 extends Arena {
         this.coins = new ArrayList<>();
         initializeElements();
         this.doorPosition = new Position(81, 5);
-        setGoalPositions(81, 87, 5, 10); // Define o intervalo de posições do objetivo
+        setGoalPositions(81, 87, 5, 10);
     }
 
     @Override
     public void initializeElements() {
-        //Adicionar paredes internas para o labirinto
         for (int x = 14; x <= 15; x++) { // Colunas 14 e 15
             for (int y = 34; y < 42; y++) { // Linhas de 34 a 40
                 getWalls().add(new Walls(new Position(x, y)));  // 1 linha vertical à esquerda em baixo

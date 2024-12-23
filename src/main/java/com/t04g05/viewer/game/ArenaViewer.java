@@ -24,7 +24,7 @@ public class ArenaViewer extends Viewer<Arena> {
         drawElements(gui, new ArrayList<>(getModel().getEnemies()), new EnemyViewer());
         drawElement(gui, getModel().getCharacter(), new CharacterViewer());
         for (Coin coin : getModel().getCoins()) {
-            gui.drawCoin(coin.getPosition()); // Desenha a moeda
+            gui.drawCoin(coin.getPosition());
         }
         gui.drawScoreLives(arena.getCharacter().getScore(), arena.getCharacter().getLives());
         if (arena instanceof Arena4) {

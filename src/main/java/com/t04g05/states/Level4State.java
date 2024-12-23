@@ -17,11 +17,9 @@ public class Level4State extends GameState {
     private final ArenaViewer arenaViewer;
 
     public Level4State(Character character) {
-        // Criação da arena específica do nível 2
         var arena = new Arena4(character);
 
-        arena.getCharacter().setPosition(new Position(4, 30)); // Por exemplo, posição (10, 10) na Arena 2
-        // Inicializa o controlador e o visualizador da arena
+        arena.getCharacter().setPosition(new Position(4, 30));
         this.arenaController = new ArenaController(arena);
         this.arenaViewer = new ArenaViewer(arena);
     }
@@ -61,7 +59,7 @@ public class Level4State extends GameState {
     }
     @Override
     public Arena getArena() {
-        return arenaController.getArena(); // Retorna a arena do controlador
+        return arenaController.getArena();
     }
 
 }

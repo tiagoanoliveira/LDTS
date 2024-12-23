@@ -47,6 +47,6 @@ public class MenuController {
             default:
                 break;
         }
-        return new MenuState(this, null);    }
+        return new MenuState(this);    }
 }
 

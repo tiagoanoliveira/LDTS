@@ -8,19 +8,18 @@ import com.t04g05.model.Position;
 import java.util.ArrayList;
 
 public class Arena1 extends Arena {
-    private ArrayList<Coin> coins;
+    private final ArrayList<Coin> coins;
 
     public Arena1() {
         super(90, 49, new Character(new Position(82, 7)), new ArrayList<>());
         this.coins = new ArrayList<>();
         initializeElements();
         this.doorPosition = new Position(64, 20);
-        setGoalPositions(64, 70, 20, 25); // Define o intervalo de posições do objetivo
+        setGoalPositions(64, 70, 20, 25);
     }
 
     @Override
     public void initializeElements() {
-        //Adicionar paredes internas para o labirinto
         for (int x = 16; x <= 17; x++) { // Colunas 16 e 17
             for (int y = 11; y < 27; y++) { // Linhas de 8 a 23
                 getWalls().add(new Walls(new Position(x, y)));  // 1 linha vertical à esquerda
@@ -62,7 +61,7 @@ public class Arena1 extends Arena {
         }
     }
 
-    private boolean isWall(Position position) {
+    protected boolean isWall(Position position) {
         for (Walls wall : getWalls()) {
             if (wall.getPosition().equals(position)) {
                 return true;

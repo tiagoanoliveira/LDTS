@@ -63,7 +63,7 @@ public class Menu {
 
     public void setMode(Mode mode) {
         this.mode = mode;
-        currentOption = 0; // Reiniciar seleção ao mudar de modo
+        currentOption = 0;
     }
 
     public Mode getMode() {

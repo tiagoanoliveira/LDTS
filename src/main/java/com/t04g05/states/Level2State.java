@@ -41,8 +41,8 @@ public class Level2State extends GameState {
             } else if (arenaController.getArena().getCharacter().getLives() <= 0) {
                 Character character = arenaController.getArena().getCharacter();
                 GameOver gameover = new GameOver(character, arenaController.getArena().getCharacter().getScore());
-                GameOverController gameoverController = new GameOverController(gameover, gui);
-                setNextState(new GameOverState(gameover,character, gameoverController, gui));
+                GameOverController gameoverController = new GameOverController(gameover);
+                setNextState(new GameOverState(character, gameoverController));
             } else if (action==GUI.ACTION.QUIT) {
                 setNextState(null);
             } else {

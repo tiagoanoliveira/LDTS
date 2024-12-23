@@ -4,22 +4,17 @@ import com.t04g05.controller.menu.GameOverController;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
 import com.t04g05.model.game.elements.Character;
-import com.t04g05.model.menu.GameOver;
 import com.t04g05.viewer.menu.GameOverViewer;
 
 
 import java.io.IOException;
 
 public class GameOverState extends GameState {
-    private final GameOver gameover;
-    private final Character character;
     private final GameOverController gameoverController;
     private  final GameOverViewer gameoverViewer;
 
-    public GameOverState(GameOver gameover, Character character, GameOverController gameoverController, GUI gui){
-        this.gameover = gameover;
-        this.character = character;
-        this.gameoverViewer = new GameOverViewer(gameover,character);
+    public GameOverState(Character character, GameOverController gameoverController){
+        this.gameoverViewer = new GameOverViewer(character);
         this.gameoverController = gameoverController;
     }
     @Override

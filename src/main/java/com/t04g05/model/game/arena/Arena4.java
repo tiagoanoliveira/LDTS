@@ -10,7 +10,7 @@ import java.util.*;
 
 public class Arena4 extends Arena {
     private final Set<Walls> walls;
-    private ArrayList<Coin> coins;
+    private final ArrayList<Coin> coins;
 
     public Arena4(Character character) {
         super(90, 49, character, createEnemies());

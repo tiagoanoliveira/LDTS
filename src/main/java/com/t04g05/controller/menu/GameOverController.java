@@ -8,11 +8,9 @@ import com.t04g05.states.MenuState;
 
 public class GameOverController {
     private final GameOver gameover;
-    private GUI gui;
 
-    public GameOverController(GameOver gameover, GUI gui){
+    public GameOverController(GameOver gameover){
         this.gameover = null;
-        this.gui = gui;
     }
 
     public GameState processInput(GUI.ACTION action){

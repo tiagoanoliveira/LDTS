@@ -49,7 +49,7 @@ public class CharacterController {
     public void checkCollisions() {
         if (arena.getCharacter().getLives() <= 0) {
             System.out.println("\n===================================");
-            System.out.println("       GAME OVER - NÍVEL 2      ");
+            System.out.println("              GAME OVER!              ");
             System.out.println("===================================");
             System.out.println("   Foste comido por um inimigo!");
             System.out.println("===================================\n");

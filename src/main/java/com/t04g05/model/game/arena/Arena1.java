@@ -48,7 +48,7 @@ public class Arena1 extends Arena {
         }
         placeCoins();
     }
-    //metodo para colocar moedas
+
     private void placeCoins() {
         int numberOfCoins = 15;
         while (coins.size() < numberOfCoins) {
@@ -71,14 +71,6 @@ public class Arena1 extends Arena {
         return false;
     }
 
-    private boolean isCoin(Position position) {
-        for (Coin coin : coins) {
-            if (coin.getPosition().equals(position)) {
-                return true;
-            }
-        }
-        return false;
-    }
     public ArrayList<Coin> getCoins() {
         return coins;
     }

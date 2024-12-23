@@ -15,9 +15,9 @@ public class MenuViewer {
             gui.drawText(35, 19, "HEROMAN AND THE", "#FFFFFF");
             gui.drawText(35, 20, "DUNGEONS OF DISGRACE", "#FFFFFF");
         } else if (menu.getMode() == Menu.Mode.INSTRUCTIONS) {
-            gui.drawText(20, 15, "INSTRUCTIONS", "#FFFFFF");
+            gui.drawText(20, 15, "=============== INSTRUCTIONS ====q===========", "#FFFFFF");
             gui.drawText(20, 18, "Controls:", "#FFFFFF");
-            gui.drawText(20, 19, "UP, DOWN, LEFT, RIGHT", "#FFFFFF");
+            gui.drawText(20, 19, "UP, DOWN, LEFT, RIGHT (or WSAD)", "#FFFFFF");
             gui.drawText(20, 21, "Goal:", "#FFFFFF");
             gui.drawText(20, 22, "Find the door in each level, avoiding the", "#FFFFFF");
             gui.drawText(20, 23, "enemies and collecting the coins along the way.", "#FFFFFF");

@@ -6,54 +6,33 @@ import com.t04g05.model.game.arena.Arena;
 import com.t04g05.viewer.menu.MenuViewer;
 
 public class MenuState extends GameState {
-    private final MenuController menuController;
-    private final MenuViewer menuViewer;
+    private final MenuController controller;
+    private final MenuViewer viewer;
 
-    public MenuState(MenuController menuController, GUI gui) {
-        this.menuViewer = new MenuViewer(menuController.getMenu());
-        this.menuController = menuController;
+    public MenuState(MenuController controller, GUI gui) {
+        this.controller = controller;
+        this.viewer = new MenuViewer(controller.getMenu());
     }
 
     @Override
     public void step(GUI gui) {
-        try{
-            gui.clear(); // Limpa a tela
-            menuViewer.draw(gui); // Desenha o menu
-            gui.refresh(); // Atualiza a tela
-            GUI.ACTION action = gui.getNextAction();
-            GameState nextState = menuController.processInput(action);
-            if (nextState != null) {
-                setNextState(nextState);
-            } else {
-                System.out.println("Nenhum próximo estado definido.");
-            }
-    } catch (Exception e) {
-        System.err.println("Erro ao atualizar a GUI: " + e.getMessage());
-        e.printStackTrace();
-    }
-    }
-    /*
-    @Override
-    public void run(GUI gui) {
-        // Desenha o menu inicial antes do loop principal
         try {
             gui.clear();
-            menuViewer.draw(gui);
+            viewer.draw(gui); // Desenha o menu ou as instruções
             gui.refresh();
+
+            GUI.ACTION action = gui.getNextAction();
+            GameState nextState = controller.processInput(action);
+            if (nextState != null) {
+                setNextState(nextState);
+            }
         } catch (Exception e) {
-            System.err.println("Erro ao exibir o menu inicial: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     @Override
-    public void initializeLevel() {
-        // Sem inicialização específica para o menu
-    }
-    */
-    @Override
     public Arena getArena() {
-        // MenuState não usa arenas, então retornamos null
-        return null;
+        return null; // O estado do menu não usa arenas
     }
 }

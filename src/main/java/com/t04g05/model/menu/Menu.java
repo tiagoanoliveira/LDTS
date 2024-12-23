@@ -4,21 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
-    private final List<String> options;
+    public enum Mode { MAIN_MENU, INSTRUCTIONS }
+
+    private final List<String> menuOptions;
+    private final List<String> instructionsOptions;
     private int currentOption;
+    private Mode mode;
 
     public Menu() {
-        this.options = new ArrayList<>();
+        this.menuOptions = new ArrayList<>();
+        this.instructionsOptions = new ArrayList<>();
         this.currentOption = 0;
+        this.mode = Mode.MAIN_MENU;
 
-        // Adicionar as opções do menu
-        options.add("Start Game");
-        options.add("Instructions");
-        options.add("Exit");
-    }
+        // Opções do menu
+        menuOptions.add("Start Game");
+        menuOptions.add("Instructions");
+        menuOptions.add("Exit");
 
-    public List<String> getOptions() {
-        return options;
+        // Texto das instruções
+        instructionsOptions.add("Back");    }
+
+    public List<String> getCurrentOptions() {
+        return mode == Mode.MAIN_MENU ? menuOptions : instructionsOptions;
     }
 
     public int getCurrentOption() {
@@ -26,26 +34,40 @@ public class Menu {
     }
 
     public void nextOption() {
-        currentOption = (currentOption + 1) % options.size();
+        currentOption = (currentOption + 1) % getCurrentOptions().size();
     }
 
     public void previousOption() {
-        currentOption = (currentOption - 1 + options.size()) % options.size();
+        currentOption = (currentOption - 1 + getCurrentOptions().size()) % getCurrentOptions().size();
     }
 
     public String getSelectedOption() {
-        return options.get(currentOption);
+        return getCurrentOptions().get(currentOption);
     }
 
     public boolean isStartGameSelected() {
-        return "Start Game".equals(getSelectedOption());
+        return mode == Mode.MAIN_MENU && "Start Game".equals(getSelectedOption());
     }
 
     public boolean isInstructionsSelected() {
-        return "Instructions".equals(getSelectedOption());
+        return mode == Mode.MAIN_MENU && "Instructions".equals(getSelectedOption());
     }
 
     public boolean isExitSelected() {
-        return "Exit".equals(getSelectedOption());
+        return mode == Mode.MAIN_MENU && "Exit".equals(getSelectedOption());
+    }
+
+    public boolean isBackSelected() {
+        return mode == Mode.INSTRUCTIONS && "Back".equals(getSelectedOption());
+    }
+
+    public void setMode(Mode mode) {
+        this.mode = mode;
+        currentOption = 0; // Reiniciar seleção ao mudar de modo
+    }
+
+    public Mode getMode() {
+        return mode;
     }
 }
+

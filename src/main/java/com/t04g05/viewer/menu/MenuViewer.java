@@ -11,11 +11,21 @@ public class MenuViewer {
     }
 
     public void draw(GUI gui) {
-        gui.drawText(5, 5, "HEROMAN AND THE", "#FFFFFF");
-        gui.drawText(5, 6, "DUNGEONS OF DISGRACE", "#FFFFFF");
-        for (int i = 0; i < menu.getOptions().size(); i++) {
+        if (menu.getMode() == Menu.Mode.MAIN_MENU) {
+            gui.drawText(35, 19, "HEROMAN AND THE", "#FFFFFF");
+            gui.drawText(35, 20, "DUNGEONS OF DISGRACE", "#FFFFFF");
+        } else if (menu.getMode() == Menu.Mode.INSTRUCTIONS) {
+            gui.drawText(20, 15, "INSTRUCTIONS", "#FFFFFF");
+            gui.drawText(20, 18, "Controls:", "#FFFFFF");
+            gui.drawText(20, 19, "UP, DOWN, LEFT, RIGHT", "#FFFFFF");
+            gui.drawText(20, 21, "Goal:", "#FFFFFF");
+            gui.drawText(20, 22, "Find the door in each level, avoiding the", "#FFFFFF");
+            gui.drawText(20, 23, "enemies and collecting the coins along the way.", "#FFFFFF");
+        }
+
+        for (int i = 0; i < menu.getCurrentOptions().size(); i++) {
             String color = menu.getCurrentOption() == i ? "#FFFF00" : "#FFFFFF";
-            gui.drawText(5, 9 + i, menu.getOptions().get(i), color);
+            gui.drawText(38, 25 + i, menu.getCurrentOptions().get(i), color);
         }
     }
 }

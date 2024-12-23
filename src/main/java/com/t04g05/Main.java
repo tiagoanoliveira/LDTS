@@ -1,7 +1,6 @@
 package com.t04g05;
 
 import com.t04g05.controller.game.GameController;
-import com.t04g05.controller.menu.InstructionsController;
 import com.t04g05.controller.menu.MenuController;
 import com.t04g05.gui.GUI;
 import com.t04g05.gui.LanternaGUI;
@@ -33,9 +32,7 @@ public class Main {
     }
     private static GameState initializeMenu(GUI gui) {
         Menu menu = new Menu();
-        MenuController menuController = new MenuController(menu, null,gui);
-        InstructionsController instructionsController = new InstructionsController(menuController, gui);
-        menuController = new MenuController(menu, instructionsController, gui);
-        return new MenuState(menuController, gui);
+        MenuController controller = new MenuController(menu);
+        return new MenuState(controller, gui);
     }
 }

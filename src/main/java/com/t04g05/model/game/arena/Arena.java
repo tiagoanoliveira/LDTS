@@ -5,10 +5,7 @@ import com.t04g05.model.game.elements.*;
 import com.t04g05.model.game.elements.Character;
 import com.t04g05.viewer.game.ArenaViewer;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Arena {
     private final int width;
@@ -77,15 +74,22 @@ public abstract class Arena {
     }
 
     public void checkCoinCollection() {
-        for(Coin coin : coins){
-            if(coin.getPosition().equals(character.getPosition())){
-                coins.remove(coin);
+        Iterator<Coin> iterator = coins.iterator();
+        while (iterator.hasNext()) {
+            Coin coin = iterator.next();
+            System.out.println("Character position: " + character.getPosition());
+            System.out.println("Coin position: " + coin.getPosition());
+            System.out.println("Comparison result: " + coin.getPosition().equals(character.getPosition()));
+            if (coin.getPosition().equals(character.getPosition())) {
+                System.out.println("Moeda encontrada");
+                iterator.remove(); // Remove de forma segura durante a iteração
                 character.increaseScore();
-                System.out.println(character.getScore());
-                break;
+                System.out.println("Score atual: " + character.getScore());
+                break; // Já encontrou uma moeda, não precisa continuar
             }
         }
     }
+
 
     public void updateCharacter(Position newPosition) {
         if (canMoveTo(newPosition)) {

@@ -122,7 +122,11 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawDoor(Position position) throws IOException {
-        drawSprite(position, "sprites/door.png");
+        drawSprite(position, "sprites/Door.png");
+    }
+    @Override
+    public void drawGoldenDoor(Position position) throws IOException {
+        drawSprite(position, "sprites/GoldenDoor.png");
     }
 
     @Override

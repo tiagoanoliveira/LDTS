@@ -2,6 +2,7 @@ package com.t04g05.viewer.game;
 
 import  com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
+import com.t04g05.model.game.arena.Arena4;
 import com.t04g05.model.game.elements.*;
 import com.t04g05.viewer.Viewer;
 
@@ -26,7 +27,11 @@ public class ArenaViewer extends Viewer<Arena> {
             gui.drawCoin(coin.getPosition()); // Desenha a moeda como sprite // Desenha as moedas
         }
         gui.drawScoreLives(arena.getCharacter().getScore(), arena.getCharacter().getLives());
-        gui.drawDoor(arena.getDoorPosition()); // Desenha o objetivo como uma porta
+        if (arena instanceof Arena4) { // Substitua por seu último nível
+            gui.drawGoldenDoor(arena.getDoorPosition()); // Porta dourada
+        } else {
+            gui.drawDoor(arena.getDoorPosition()); // Porta normal
+        }
     }
 
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) throws IOException {

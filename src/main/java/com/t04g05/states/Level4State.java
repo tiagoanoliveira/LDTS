@@ -36,6 +36,11 @@ public class Level4State extends GameState {
             }
             arenaController.update();
             if (arenaController.isGoalReached()) {
+                System.out.println("\n===================================");
+                System.out.println("       YOU WIN - NÍVEL 4     ");
+                System.out.println("===================================");
+                System.out.println("     MUITO BEM, CONSEGUISTE!");
+                System.out.println("===================================\n");
                 setNextState(null);
             } else if (arenaController.getArena().getCharacter().getLives() <= 0) {
                 setNextState(null);

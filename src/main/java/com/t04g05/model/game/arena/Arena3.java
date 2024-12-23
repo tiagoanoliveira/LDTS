@@ -12,8 +12,8 @@ public class Arena3 extends Arena {
     private final Set<Walls> walls;
     private final ArrayList<Coin> coins;
 
-    public Arena3() {
-        super(90, 49, new Character(new Position(82,21)), createEnemies());
+    public Arena3(Character character) {
+        super(90, 49, character, createEnemies());
         this.walls = new HashSet<>();
         this.coins = new ArrayList<>();
         initializeElements();
@@ -151,9 +151,6 @@ public class Arena3 extends Arena {
                 new Enemy(new Position(68, 13)),
                 new Enemy(new Position(62, 5)),
                 new Enemy(new Position(80, 8))
-
-
-
         );
     }
 

@@ -12,8 +12,8 @@ public class Arena4 extends Arena {
     private final Set<Walls> walls;
     private ArrayList<Coin> coins;
 
-    public Arena4() {
-        super(90, 49, new Character(new Position(4,30)), createEnemies());
+    public Arena4(Character character) {
+        super(90, 49, character, createEnemies());
         this.walls = new HashSet<>();
         this.coins = new ArrayList<>();
         initializeElements();

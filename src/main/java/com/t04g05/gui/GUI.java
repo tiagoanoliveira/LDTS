@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public interface GUI {
     void setBackgroundColor(String color);
-    void drawText(int x, int y, String text, String color);
+    void drawText(int x, int y, String text, String color, String background_color);
     void drawElement(Position position, char character, String textColor, String backgroundColor);
     void clear();
     void refresh() throws IOException;

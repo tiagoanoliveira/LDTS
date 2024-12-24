@@ -6,7 +6,6 @@ import com.t04g05.model.game.arena.Arena;
 import com.t04g05.model.game.elements.Character;
 import com.t04g05.viewer.menu.GameOverViewer;
 
-
 import java.io.IOException;
 
 public class GameOverState extends GameState {

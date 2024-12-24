@@ -18,7 +18,7 @@ public class Arena4 extends Arena {
         this.coins = new ArrayList<>();
         initializeElements();
         this.doorPosition = new Position(79, 28);
-        setGoalPositions(79, 85, 28, 33);
+        setGoalPositions(79, 86, 28, 33);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class Arena4 extends Arena {
     }
 
     private void placeCoins() {
-        int numberOfCoins = 20;
+        int numberOfCoins = 25;
         while (coins.size() < numberOfCoins) {
             int x = (int) (Math.random() * (getWidth()-2))+1;
             int y = (int) (Math.random() * (getHeight()-4))+4;

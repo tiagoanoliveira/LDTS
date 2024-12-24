@@ -20,7 +20,7 @@ public class WinViewer {
         gui.drawText(30, 25, "                                      ", "#000", "#00FF00");
         gui.drawText(30, 26, "          Total Score: " + win.score() + "          ", "#000", "#00FF00");
         gui.drawText(30, 27, "                                      ", "#000", "#00FF00");
-        gui.drawText(30, 28, "       Pressione [Q] para sair        ", "#000", "#00FF00");
+        gui.drawText(30, 28, "  Pressione qualquer tecla para sair  ", "#000", "#00FF00");
         gui.drawText(30, 29, "                                      ", "#000", "#00FF00");
     }
 }

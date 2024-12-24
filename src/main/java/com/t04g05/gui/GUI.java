@@ -5,7 +5,8 @@ import com.t04g05.model.Position;
 import java.io.IOException;
 
 public interface GUI {
-    void drawText(int x, int y, String text, String color);
+    void setBackgroundColor(String color);
+    void drawText(int x, int y, String text, String color, String background_color);
     void drawElement(Position position, char character, String textColor, String backgroundColor);
     void clear();
     void refresh() throws IOException;
@@ -16,6 +17,8 @@ public interface GUI {
     void drawEnemy(Position position);
     void drawCoin(Position position) throws IOException;
     void drawDoor(Position position) throws IOException;
+    void drawGoldenDoor(Position position) throws IOException;
+    void drawScoreLives (int score, int lives);
     enum ACTION {
         UP, DOWN, LEFT, RIGHT, ENTER, ESC, NONE, QUIT
     }

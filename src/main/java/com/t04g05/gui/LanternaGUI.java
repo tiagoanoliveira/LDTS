@@ -5,11 +5,9 @@ import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.t04g05.controller.game.ArenaController;
 import com.t04g05.model.Position;
 
 import javax.imageio.ImageIO;
@@ -19,11 +17,11 @@ import java.util.Objects;
 
 public class LanternaGUI implements GUI {
     private final Terminal terminal;
-    private final TerminalScreen screen;
-    private final TextGraphics textGraphics;
+    TerminalScreen screen;
+    TextGraphics textGraphics;
 
     public LanternaGUI() throws IOException {
-        TerminalSize terminalSize = new TerminalSize(90, 46);
+        TerminalSize terminalSize = new TerminalSize(90, 49);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
 
         this.terminal = terminalFactory.createTerminal();
@@ -34,7 +32,13 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawText(int x, int y, String text, String color) {
+    public void setBackgroundColor(String color) {
+        textGraphics.setBackgroundColor(TextColor.Factory.fromString(color));
+        textGraphics.fill(' '); // Preenche a tela inteira com a nova cor de fundo
+    }
+
+    @Override
+    public void drawText(int x, int y, String text, String color, String background_color) {
         textGraphics.setForegroundColor(TextColor.Factory.fromString(color));
         textGraphics.putString(x, y, text);
     }
@@ -66,7 +70,6 @@ public class LanternaGUI implements GUI {
     public ACTION getNextAction() {
         try {
             KeyStroke keyStroke = screen.readInput(); // Aguarda entrada do usuário
-            System.out.println("Tecla capturada: " + keyStroke);
             if (keyStroke == null) {
                 return ACTION.NONE; // Retorna uma ação padrão que não faz nada
             }
@@ -105,7 +108,7 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawWall(Position position) {
-        drawElement(position, '#', "#808080", "#808080");
+        drawElement(position, '#', "#3d3d3d", "#3d3d3d");
     }
 
     @Override
@@ -114,17 +117,27 @@ public class LanternaGUI implements GUI {
     }
     @Override
     public void drawCoin(Position position) throws IOException {
-        drawSprite(position, "sprites/coin.png");
+        drawElement(position, '$', "#000000", "#FFD700");
     }
 
     @Override
     public void drawDoor(Position position) throws IOException {
-        drawSprite(position, "sprites/door.png");
+        drawSprite(position, "sprites/Door.png");
+    }
+    @Override
+    public void drawGoldenDoor(Position position) throws IOException {
+        drawSprite(position, "sprites/GoldenDoor.png");
     }
 
     @Override
     public void drawCharacter(Position position) throws IOException {
-        drawSprite(position, "sprites/hero.png");
+        drawElement(position, 'C', "#000000", "#39FF14");
+    }
+
+    @Override
+    public void drawScoreLives(int score, int lives) {
+        drawText(1, 1, " Score: " + score + " ", "#000", "#FFFF00");
+        drawText(78, 1, " Lives: " + lives + " ", "#000", "#FFFF00");
     }
 
     private void drawSprite(Position position, String spritePath) throws IOException {

@@ -1,67 +1,48 @@
-package com.t04g05.controller.game;
+    package com.t04g05.controller.game;
 
-import com.t04g05.gui.GUI;
-import com.t04g05.model.Position;
-import com.t04g05.model.game.arena.Arena;
+    import com.t04g05.gui.GUI;
+    import com.t04g05.model.game.arena.Arena;
 
-public class ArenaController {
-    private final Arena arena;
+    public class ArenaController {
+        private final Arena arena;
+        private final EnemyController enemyController;
+        private final CharacterController characterController;
 
-    public ArenaController(Arena arena) {
-        this.arena = arena;
-    }
-    public Arena getArena() {
-        return arena;
-    }
-    public boolean isGameOver() {
-        // Verifica se o jogador alcançou o objetivo
-        if (arena.getCharacter().getPosition().equals(arena.getGoalPosition())) {
-            System.out.println("Objetivo alcançado!");
-            return true; // Vitória
+        public ArenaController(Arena arena) {
+            this.arena = arena;
+            this.enemyController = new EnemyController(arena);
+            this.characterController = new CharacterController(arena);
         }
-        // Aqui podes adicionar outras condições, como vidas do jogador
-        return false; // Continua o jogo
-    }
-
-
-    public void processInput(GUI.ACTION action) {
-        System.out.println("Processando ação: " + action);
-        Position newPosition = getNewPosition(action);
-        // Atualiza a posição do personagem se o movimento for válido
-        if (canMoveTo(newPosition)) {
-            arena.getCharacter().setPosition(newPosition);
-            arena.checkCoinCollection();
-        }
-    }
-
-    private Position getNewPosition(GUI.ACTION action) {
-        Position currentPos = arena.getCharacter().getPosition();
-        return switch (action) {
-            case UP -> currentPos.move(0, -1);
-            case DOWN -> currentPos.move(0, 1);
-            case LEFT -> currentPos.move(-1, 0);
-            case RIGHT -> currentPos.move(1, 0);
-            default -> currentPos;
-        };
-    }
-
-    private boolean canMoveTo(Position position) {
-        // Verifica se a nova posição está dentro dos limites da arena e não colide com obstáculos
-        if (position.getX() < 0 || position.getX() >= arena.getWidth() ||
-                position.getY() < 0 || position.getY() >= arena.getHeight()) {
-            return false;
+        public Arena getArena() {
+            return arena;
         }
 
-        return arena.getElements().stream().noneMatch(e -> e.getPosition().equals(position));
+        public boolean isGoalReached() {
+            if (characterController.checkGoal()) {
+                return true;
+            };
+            return false; // Continua o jogo
+        }
+        public void processInput(GUI.ACTION action) {
+            characterController.processInput(action);
+        }
+
+        public void update() {
+            enemyController.updateEnemies();
+            arena.checkCollisions();
+            characterController.updateCharacter();  // Atualiza o personagem
+            characterController.checkCollisions();
+            if (arena.getCharacter().getLives() <= 0) {
+                //Transição para janela de Gameover
+            }
+        }
+
+        public EnemyController getEnemyController() {
+            return this.enemyController;
+        }
+
+        public CharacterController getCharacterController() {
+            return this.characterController;
+        }
     }
-
-
-
-    public void update() {
-        arena.updateEnemies();
-        arena.checkCollisions();
-        arena.checkCoinCollection();
-        arena.updateCharacter(arena.getCharacter().getPosition());
-    }
-}
 

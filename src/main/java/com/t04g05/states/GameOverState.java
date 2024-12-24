@@ -1,28 +1,29 @@
 package com.t04g05.states;
 
-import com.t04g05.controller.menu.InstructionsController;
+import com.t04g05.controller.menu.GameOverController;
 import com.t04g05.gui.GUI;
 import com.t04g05.model.game.arena.Arena;
-import com.t04g05.viewer.menu.InstructionsViewer;
+import com.t04g05.model.game.elements.Character;
+import com.t04g05.viewer.menu.GameOverViewer;
 
 import java.io.IOException;
 
-public class InstructionsState extends GameState {
-    private final InstructionsController instructionsController;
-    private  final InstructionsViewer instructionsViewer;
+public class GameOverState extends GameState {
+    private final GameOverController gameoverController;
+    private  final GameOverViewer gameoverViewer;
 
-    public InstructionsState(InstructionsController instructionsController, GUI gui){
-        this.instructionsViewer = new InstructionsViewer(instructionsController.getInstructions());
-        this.instructionsController = instructionsController;
+    public GameOverState(Character character, GameOverController gameoverController){
+        this.gameoverViewer = new GameOverViewer(character);
+        this.gameoverController = gameoverController;
     }
     @Override
     public void step(GUI gui) {
         try{
             gui.clear();
-            instructionsViewer.draw(gui);
+            gameoverViewer.draw(gui);
             gui.refresh();
             GUI.ACTION action = gui.getNextAction();
-            GameState nextState = instructionsController.processInput(action);
+            GameState nextState = gameoverController.processInput(action);
             if (nextState != null) {
                 setNextState(nextState);
             } else {
@@ -36,7 +37,6 @@ public class InstructionsState extends GameState {
 
     @Override
     public Arena getArena() {
-        // InstructionsState não usa arenas, então retornamos null
         return null;
     }
 }

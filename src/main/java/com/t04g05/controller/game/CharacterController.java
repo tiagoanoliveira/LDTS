@@ -1,61 +1,66 @@
 package com.t04g05.controller.game;
 
-import com.googlecode.lanterna.input.KeyType;
+import com.t04g05.model.Position;
+import com.t04g05.model.game.arena.Arena;
 import com.t04g05.gui.GUI;
-import com.t04g05.model.game.elements.Character;
-import com.t04g05.model.game.elements.Walls;
-import com.t04g05.viewer.game.CharacterViewer;
-import com.googlecode.lanterna.input.KeyStroke;
-
-import java.io.IOException;
-import java.util.Set;
 
 public class CharacterController {
-    private Character character;
-    private Set<Walls> walls;
-    private CharacterViewer characterView;
-    private final GUI gui;
+    private final Arena arena;
 
-    public CharacterController(Character character, Set<Walls> walls, GUI gui) {
-        this.character = character;
-        this.walls = walls;
-        this.characterView = new CharacterViewer();
-        this.gui = gui;
+    public CharacterController(Arena arena) {
+        this.arena = arena;
     }
 
-    public void moveCharacter(KeyStroke keyStroke) throws IOException {
-        int newX = character.getPosition().getX();
-        int newY = character.getPosition().getY();
-
-        switch (keyStroke.getKeyType()) {
-            case ArrowUp -> newY = Math.max(0, newY - 1);
-            case ArrowDown -> newY = Math.min(30, newY + 1);
-            case ArrowLeft -> newX = Math.max(0, newX - 1);
-            case ArrowRight -> newX = Math.min(59, newX + 1);
+    public void processInput(GUI.ACTION action) {
+        Position newPosition = getNewPosition(action);
+        if (canMoveTo(newPosition)) {
+            arena.getCharacter().setPosition(newPosition);
         }
-        if (keyStroke.getKeyType() == KeyType.Character) {
-            char characters = keyStroke.getCharacter();
-            switch (characters) {
-                case 'W', 'w' -> newY = Math.max(0, newY - 1);
-                case 'S', 's' -> newY = Math.min(30, newY + 1);
-                case 'A', 'a' -> newX = Math.max(0, newX - 1);
-                case 'D', 'd' -> newX = Math.min(59, newX + 1);
-            }
-        }
-        if (isMoveValid(newX, newY)) {
-            character.getPosition().setX(newX);
-            character.getPosition().setY(newY);
-        }
-        characterView.draw(gui, character);
     }
 
-    private boolean isMoveValid(int newX, int newY) {
-        // Verifica se o novo movimento colide com uma parede ou um obstáculo
-        for (Walls wall : walls) {
-            if (wall.getPosition().getX() == newX && wall.getPosition().getY() == newY) {
-                return false; // Colidiu com parede
-            }
-        }
-        return true; // Movimento válido
+    private Position getNewPosition(GUI.ACTION action) {
+        Position currentPos = arena.getCharacter().getPosition();
+        return switch (action) {
+            case UP -> currentPos.move(0, -1);
+            case DOWN -> currentPos.move(0, 1);
+            case LEFT -> currentPos.move(-1, 0);
+            case RIGHT -> currentPos.move(1, 0);
+            default -> currentPos;
+        };
     }
+
+    private boolean canMoveTo(Position position) {
+        // Verifica se a nova posição está dentro dos limites e não colide com obstáculos
+        if (position.getX() < 0 || position.getX() >= arena.getWidth() ||
+                position.getY() < 0 || position.getY() >= arena.getHeight()) {
+            return false;
+        }
+
+        return arena.getElements().stream().noneMatch(e -> e.getPosition().equals(position));
+    }
+
+    public void updateCharacter() {
+        // Verifica e atualiza a posição do personagem
+        Position newPosition = arena.getCharacter().getPosition();
+        arena.updateCharacter(newPosition);
+    }
+
+    public void checkCollisions() {
+        if (arena.getCharacter().getLives() <= 0) {
+            System.out.println("\n===================================");
+            System.out.println("              GAME OVER!              ");
+            System.out.println("===================================");
+            System.out.println("   Foste comido por um inimigo!");
+            System.out.println("===================================\n");
+        }
+    }
+
+    public boolean checkGoal() {
+        if (arena.getGoalPositions().contains(arena.getCharacter().getPosition())) {
+            System.out.println("Boa! É assim mesmo");
+            return true;
+        }
+        return false;
+    }
+
 }

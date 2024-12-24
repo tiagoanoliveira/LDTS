@@ -121,7 +121,7 @@ The use of the **Template Method Pattern** in the current design allows the foll
 
 #### **UML**
 
-![Game UML](src/main/resources/UML/ldtsUMLfinal.png)
+![Game UML](src/main/resources/UML/FinalUML.png)
 
 ### CODE 
 #### **Smells**

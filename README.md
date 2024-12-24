@@ -90,6 +90,8 @@ The following classes are the ones we implemented to base our project.
 3. **MVC Pattern** with game, controller and viewer directories
 
 4. **Template Method Pattern** in Arena creation
+   
+5. We analised the design patterns implemented more throughly in the next diagram:  
 
 #### **Consequences**
 

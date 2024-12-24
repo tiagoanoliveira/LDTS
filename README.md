@@ -93,6 +93,8 @@ The following classes are the ones we implemented to base our project.
    
 5. We analised the design patterns implemented more throughly in the next diagram:  
 
+![Game UML](src/main/resources/UML/FinalUML.png)
+
 #### **Consequences**
 
 The use of the **Singleton Pattern** in the current design allows the following benefits:
@@ -119,10 +121,6 @@ The use of the **Template Method Pattern** in the current design allows the foll
   - By centralizing the common step in the parent class, this pattern reduces the duplicate code across the subclasses;
   - Flexibility is ensured because the subclasses only change their specific steps. The main structure is the same;
 
-#### **UML**
-
-![Game UML](src/main/resources/UML/FinalUML.png)
-
 ### CODE 
 #### **Smells**
 In an overall overview, the game code has some smells that influence the code perception and understanding for someone 
@@ -140,9 +138,6 @@ in Main.java, or returning null in *MenuController.processInput* to signal game 
 
 - **Lack of polymorphism**: The overuse of conditionals instead of a Command Pattern to encapsulate actions in separate
 objects makes the code repetitive.
-
-#### **Coverage Report**
-
 
 ### TESTING
 

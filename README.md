@@ -29,7 +29,7 @@ creatures and traps, while collecting coins which makes his adventure even more 
 
 ### MODEL
 
-![Game Image 1](resources/GameScreenshots/LDTSgame1.jpg)
+![Game Image 1](main/resources/GameScreenshots/LDTSgame1.jpg)
 
 
 ### DOCUMENTATION
@@ -119,6 +119,10 @@ The use of the **Template Method Pattern** in the current design allows the foll
   - By centralizing the common step in the parent class, this pattern reduces the duplicate code across the subclasses;
   - Flexibility is ensured because the subclasses only change their specific steps. The main structure is the same;
 
+#### **UML**
+
+![Game UML](main/resources/UML/ldtsUMLfinal.png)
+
 ### CODE 
 #### **Smells**
 In an overall overview, the game code has some smells that influence the code perception and understanding for someone 
@@ -142,3 +146,75 @@ objects makes the code repetitive.
 
 ### TESTING
 
+In each one of the following test files there is a 'Setup()' method which allows every file to have a similar structure specially when Mockito is used. 
+
+#### **Controller**
+- The 'ArenaControllerTest' uses Mocks to test if the *processInput* method is working correctly or if the Goal has been reached successfully.
+
+- Both 'CharacterControllerTest' and 'EnemyControllerTest' focus on unit testing the respective controllers. Both test the movement
+of the respective entities, with tests for valid and invalid moves scenarios only differing because of the enemies random movement.
+
+- the 'MenuControllerTest' also focuses on unit testing to test every possible menu case. In other words, this files tests the processing of 
+each menu button such as the *Start* button or the *Exit* button.
+
+#### **Model**
+- The 'MenuTest' also uses unit testing to check the processing of every option, but also checks the outcome of mode switching 
+between *Menu* and *Instructions* and the lists of the options for each one of these two menus.
+
+![Menu Switch Test](main/resources/TestingScreenshots/Model/MenuSwitchListModeTest.png)
+
+![Menu Option List Test](main/resources/TestingScreenshots/Model/MenuOptionListTest.png)
+
+- The test files 'Arena1Test', 'Arena2Test', 'Arena3Test' and 'Arena4Test' are all similar to each other. They use unit testing
+to test the same things, such as the correct amount of coins in the arena (testPlaceCoins()), if those coins don't spawn inside walls (testCoinPlacement()),
+or if the player can collect the coins normally (testCharacterCollectCoin()).
+
+- The 'CharacterTest' tests every property of Character such as the initial number of lives and the decreasing of those (testInitialLives(), testDecreaseLives()) and
+the player's initial score and the increasing of it (testInitialScore(), testIncreaseScore()).
+
+![Character Lives Test](main/resources/TestingScreenshots/Model/CharacterLivesTest.png)
+
+![Character Lives Test](main/resources/TestingScreenshots/Model/CharacterScoreTest.png)
+
+- The rest of the elements test files, 'CoinTest', 'EnemyTest' and 'WallsTest', are simpler test files that only check each element
+correct creation and its positioning.
+
+#### **GUI**
+In the beginning of the file the 'Setup()' method initializes mocks for TerminalScreen and TextGraphics. After that the interface testing begins with the following tests:
+- **testSetBackgroundColor()**: This test ensures that the background color is correctly set in the GUI.
+
+![Background Color Test](main/resources/TestingScreenshots/gui/BackgroundColorTest.png)
+
+- **testDrawText()**: This test ensures that text is drawn at the correct position with the specified colors.
+
+![Draw Text Test](main/resources/TestingScreenshots/gui/DrawTextTest.png)
+
+- **testDrawElement()**: This test ensures that elements (like characters) are drawn at the correct position with the specified colors.
+
+![Draw Character Test](main/resources/TestingScreenshots/gui/DrawElementTest.png)
+
+- **Screen Operation methods**: These tests were implemented to ensure the correct refresh, closure and clear of the screen.
+
+![Screen Test](main/resources/TestingScreenshots/gui/ScreenTest.png)
+
+- **getNextAction methods**: These tests allowed for specific keys to have the correct output.
+
+![Next Action Test](main/resources/TestingScreenshots/gui/GetNextActionTest.png)
+
+#### **States**
+In the testing of Level States, were implemented several common tests across all Level States, using mainly JUnit tests. Those tests were, for example:
+- **testStepGoalReached()**: This test ensured the game state transitions appropiately when reaching the level goal.
+
+![Level1 checkGoal Test](main/resources/TestingScreenshots/States/lvl1ReachGoalTest.png)
+
+- **testStepGameOver()**: This test ensures the game state transitions correctly when the player’s lives reach zero (game over).
+
+![Level1 gameOver Test](main/resources/TestingScreenshots/States/lvl1GameOverTest.png)
+
+- **testStepQuitAction()**: Test how the game reacts when the player opts to quit the game.
+
+![Level1 Quit Test](main/resources/TestingScreenshots/States/lvl1QuitOptionTest.png)
+
+- **testStepMaintainsState()**: This test ensures that when the goal is not reached and the player still has lives, the game continues to the next state without changing unexpectedly.
+
+![Level1 Maintain State Test](main/resources/TestingScreenshots/States/lvl1MaintainStateTest.png)

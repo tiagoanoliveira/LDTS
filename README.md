@@ -221,6 +221,6 @@ In the testing of Level States, were implemented several common tests across all
 
 ## INDIVIDUAL CONTRIBUTIONS
 
-> Beatriz Bastos - 
-> Luís Ferreira - 
-> Tiago Oliveira - 
+> Beatriz Bastos - 33.3%
+> Luís Ferreira - 33.3%
+> Tiago Oliveira - 33.3%

@@ -5,13 +5,15 @@ import com.t04g05.model.game.elements.Coin;
 import com.t04g05.model.game.elements.Walls;
 import com.t04g05.model.Position;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Arena1 extends Arena {
+    private final Set<Walls> walls;
     private final ArrayList<Coin> coins;
 
     public Arena1() {
         super(90, 49, new Character(new Position(82, 7)), new ArrayList<>());
+        this.walls = new HashSet<>();
         this.coins = new ArrayList<>();
         initializeElements();
         this.doorPosition = new Position(64, 20);
@@ -69,8 +71,8 @@ public class Arena1 extends Arena {
         }
         return false;
     }
-
-    public ArrayList<Coin> getCoins() {
+    @Override
+    public List<Coin> getCoins() {
         return coins;
     }
 }

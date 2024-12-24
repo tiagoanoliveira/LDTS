@@ -119,8 +119,8 @@ public class Arena2 extends Arena {
             new Enemy(new Position(75, 8))
         );
     }
-
-    public ArrayList<Coin> getCoins() {
+    @Override
+    public List<Coin> getCoins() {
         return coins;
     }
 }

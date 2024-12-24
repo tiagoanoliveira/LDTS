@@ -153,7 +153,8 @@ public class Arena3 extends Arena {
         );
     }
 
-    public ArrayList<Coin> getCoins() {
+    @Override
+    public List<Coin> getCoins() {
         return coins;
     }
 }

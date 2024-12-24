@@ -29,7 +29,7 @@ creatures and traps, while collecting coins which makes his adventure even more 
 
 ### MODEL
 
-![Game Image 1](src/main/resources/GameScreenshots/LDTSgame1.jpg)
+![Game Model](src/main/resources/GameScreenshots/finalgameModel.png)
 
 
 ### DOCUMENTATION
@@ -161,7 +161,7 @@ each menu button such as the *Start* button or the *Exit* button.
 - The 'MenuTest' also uses unit testing to check the processing of every option, but also checks the outcome of mode switching 
 between *Menu* and *Instructions* and the lists of the options for each one of these two menus.
 
-![Menu Switch Test](src/main/resources/TestingScreenshots/Model/MenuSwitchListModeTest.png)
+![Menu Switch Test](src/main/resources/TestingScreenshots/Model/MenuSwitchModeTest.png)
 
 ![Menu Option List Test](src/main/resources/TestingScreenshots/Model/MenuOptionListTest.png)
 

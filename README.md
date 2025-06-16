@@ -1,620 +1,221 @@
-# GIT
 
-## 1. O que é Git e por que usá-lo?
+## LDTS - T04_G05
 
-Git é um **sistema de controlo de versões** que permite acompanhar e gerenciar alterações em arquivos ao longo do tempo. Imagina que estás a trabalhar num projeto e queres guardar diferentes versões dele à medida que avanças - o Git faz exatamente isso, mas de forma muito mais eficiente do que criar cópias manuais dos arquivos.
+> This project was made by Beatriz Bastos [(202303793)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202303793), Luís Ferreira [(202208429)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202208429) and Tiago Oliveira [(2020207448)](https://sigarra.up.pt/feup/pt/fest_geral.cursos_list?pv_num_unico=202007448).
 
-### Principais benefícios do Git:
+# Heroman and the Dungeon of Disgrace
+### DESCRIPTION
 
-- **Histórico completo**: Mantém um registro detalhado de todas as alterações feitas no projeto
-- **Trabalho colaborativo**: Permite que várias pessoas trabalhem no mesmo projeto simultaneamente
-- **Segurança**: Dificulta a perda de trabalho, pois todas as versões anteriores ficam guardadas
-- **Experimentação segura**: Possibilita testar novas ideias sem medo de arruinar o projeto principal
-- **Rastreabilidade**: Ajuda a entender quando, por que e por quem as alterações foram feitas
+In this thrilling yet simple game, a hero tries to escape a mysterious and dangerous dungeon filled with all kinds of wild
+creatures and traps, while collecting coins which makes his adventure even more interesting. To survive each different dungeon, he has to find the exit without getting killed.
 
-Git foi criado por Linus Torvalds (o mesmo criador do Linux) em 2005 para ajudar no desenvolvimento do kernel Linux. Hoje, é a ferramenta de controle de versão mais utilizada no mundo do desenvolvimento de software.
+### FEATURES
 
-## 2. Conceitos fundamentais
+- **Game Execution**
+    - **Start Game** - Upon selection, begins a new playthrough.
 
-Antes de começar a usar Git, é importante entender alguns conceitos básicos:
+- **Hero**
+    - **Movement** - The movement of the hero is defined by the arrows (up, down, left, right). Also when the hero touches a wall his movement his blocked.
+    - **Progression** - To complete a level, the Heroman has to reach the final door to progress to a different level.
 
-### Repositório
+- **Menu**
+  - **Exit** - A simple button to exit the game.
+  - **Instructions** - By selecting the option "Instructions" shows the users everything he needs to know to play the game.
 
-Um **repositório** (ou "repo") é onde o Git armazena todas as informações sobre o teu projeto. Basicamente, é uma pasta do teu projeto com um diretório especial oculto chamado `.git` que contém todo o histórico e configurações.
+- **Extras**
+  - **Score** - The score depends on the level reached and the amount of coins collected across the levels.
+  - **HP** - When the Heroman touches a wild creature his HP goes down by one. If it eventually reaches 0, its game over.
+  - **Getting hidden coins** - When the Heroman touches one of the coins available per level he collects it and his score goes up.
 
-Existem dois tipos de repositórios:
-- **Repositório local**: Está no teu computador
-- **Repositório remoto**: Está num servidor (como GitHub, GitLab, Bitbucket)
+### MODEL
 
-### Commits
+![Game Model](src/main/resources/GameScreenshots/finalgameModel.png)
 
-Um **commit** é como uma "fotografia" do teu projeto num determinado momento. Cada commit recebe um identificador único (hash) e contém:
-- As alterações feitas desde o último commit
-- Uma mensagem descrevendo o que foi alterado
-- Informações sobre quem fez as alterações e quando
 
-Commits são a unidade básica do histórico do Git. Eles permitem reverter para estados anteriores do projeto se necessário.
+### DOCUMENTATION
+#### **Implementation**
+The following classes are the ones we implemented to base our project.
 
-### Branches (Ramos)
+- **Main** - It's the starting point of the game. Creates the window for the visualization of the game and initializes the menu. 
 
-Um **branch** é uma linha independente de desenvolvimento. Podes pensar nele como um caminho alternativo que o teu projeto pode seguir.
+- **Arena**
+    - **Arena1, Arena2, Arena3 and Arena4** - Represent the game levels and contain the initialization of the elements of each level, 
+  such as walls, enemies and coins. Control the rendering of each element and the conditions when the player finishes or loses a level.
 
-O branch principal geralmente é chamado de `main` ou `master`. Quando queres adicionar uma nova funcionalidade ou corrigir um problema sem afetar o código principal, crias um novo branch. Depois, quando estiveres satisfeito com as alterações, podes juntar (fazer "merge") esse branch de volta ao branch principal.
+- **Elements**
+    - **Element** - Superclass for other classes like Walls, Obstacle and Enemy because it provides mutual attributes and methods like Position and Draw.
 
-### As três áreas do Git
+    - **Walls** - Represents the level limits.
 
-Git divide o teu trabalho em três áreas distintas:
+    - **Enemy** - Represents the enemies present throughout the level that the player has to avoid.
 
-1. **Working Directory (Diretório de Trabalho)**:
-   - São os arquivos que estás a editar no teu computador
-   - Onde realmente fazes as alterações no código
+    - **Coin** - Represents the elements the player has to collect.
 
-2. **Staging Area (Área de Preparação)**:
-   - Uma área intermediária onde selecionas quais alterações queres incluir no próximo commit
-   - Permite escolher exatamente o que será "fotografado" pelo Git
+    - **Character** - Represents the player himself.
 
-3. **Repository (Repositório Git)**:
-   - Onde o Git armazena o histórico de commits
-   - Contém todos os dados de todas as versões do projeto
+- **Menu**
+  - **Menu** - Represents the main menu and the necessary methods to implement it.
 
-![Git Areas](../Images/gitStages.png)
+  - **Instructions** - Represents the instructions screen and has the respective methods.
 
-A imagem acima mostra o fluxo básico entre estas três áreas:
-- Usas `git add` para mover alterações do Diretório de Trabalho para a Área de Preparação
-- Usas `git commit` para mover alterações da Área de Preparação para o Repositório
-- Usas `git checkout` para trazer alterações do Repositório de volta para o Diretório de Trabalho
+- **Controller**
+  - **ArenaController** - Controls every possible state for the level. Processes the player input to change his character's 
+  position and verifies if the game is over.
 
-### Estados dos arquivos no Git
+  - **CharacterController, EnemyController** - Process the corresponding movement and checks if those movements are valid.
 
-No Git, um arquivo pode estar em quatro estados diferentes:
+  - **MenuController, InstructionsController** - Process what happens according to which keys the user presses.
 
-1. **Untracked (Não rastreado)**:
-   - Git não está a monitorizar este arquivo
-   - Arquivos novos começam neste estado
-   - Git ignora completamente qualquer alteração neste arquivo
+- **States**
+  - **MenuState** - Responsible for controlling the menu interface state and handling the user's actions inside the menu.
 
-2. **Unmodified (Não modificado)**:
-   - O arquivo está a ser rastreado pelo Git e não foi alterado desde o último commit
-   - Está salvo no repositório exatamente como está no teu diretório de trabalho
+  - **InstructionsState** - Responsible for controlling the instructions interface state and handling the user's actions inside the instructions screen.
 
-3. **Modified (Modificado)**:
-   - O arquivo foi alterado desde o último commit
-   - As alterações ainda não foram preparadas para o próximo commit
+  - **LevelsState** - Responsible for controlling the levels interface state and handling the user's actions inside each level or if he wants to quit.
 
-4. **Staged (Preparado)**:
-   - O arquivo foi modificado e marcado para ser incluído no próximo commit
-   - Está na área de preparação esperando ser confirmado
+- **Viewer**
+    - **ArenaViewer** - Responsible for the instantiation of the draw methods for each element in an arena.
 
-![File States](../Images/fileStages.png)
+    - **CharacterViewer, CoinViewer, EnemyViewer, WallsViewer** - Responsible for instantiating the draw methods for the 
+  corresponding elements (player, coin, enemy and walls).
 
-A imagem acima ilustra como os arquivos transitam entre estes estados:
-- Usar `git add` num arquivo não rastreado começa a rastreá-lo e coloca-o no estado "staged"
-- Editar um arquivo não modificado torna-o modificado
-- Usar `git add` num arquivo modificado coloca-o no estado "staged"
-- Usar `git commit` transforma todos os arquivos staged em não modificados
-- Usar `git rm` num arquivo rastreado faz com que ele volte ao estado não rastreado
+    - **MenuViewer, InstructionsViewer** - Responsible for the drawing of the corresponding text and options.
 
-## 3. Primeiros passos com Git
+#### **The Patterns**
 
-### Instalação
+1. **Singleton Pattern** with Main and GUI
 
-Antes de mais nada, precisas de instalar o Git no teu computador:
+2. **State Pattern** in states directory
 
-**Windows**:
-- Descarrega o instalador em [git-scm.com](https://git-scm.com/download/win)
-- Segue as instruções do instalador (as opções padrão geralmente funcionam bem)
+3. **MVC Pattern** with game, controller and viewer directories
 
-**macOS**:
-- Instala através do Terminal: `brew install git` (se tiveres Homebrew)
-- Ou descarrega em [git-scm.com](https://git-scm.com/download/mac)
-
-**Linux (Ubuntu/Debian)**:
-- Instala através do Terminal: `sudo apt-get install git`
-
-### Configuração inicial
-
-Após a instalação, é importante configurar a tua identidade no Git. Isto ajuda a identificar quem fez cada alteração no projeto:
-
-```bash
-# Configurar nome de utilizador global
-git config --global user.name "Teu Nome"
-
-# Configurar email global
-git config --global user.email "teu.email@exemplo.com"
-```
-
-Esta configuração é feita apenas uma vez no teu computador e será usada em todos os teus repositórios Git.
-
-### Criando o teu primeiro repositório
-
-Para começar a usar Git num projeto:
-
-1. **Criar um novo repositório**:
-   ```bash
-   # Navega até a pasta do teu projeto
-   cd caminho/para/teu/projeto
+4. **Template Method Pattern** in Arena creation
    
-   # Inicia um repositório Git
-   git init
-   ```
+5. We analised the design patterns implemented more throughly in the next diagram:  
 
-   Isto cria um diretório oculto `.git` que contém toda a estrutura necessária. O teu projeto agora é um repositório Git!
+![Game UML](src/main/resources/UML/FinalUML.png)
 
-2. **Ou clonar um repositório existente**:
-   Se quiseres trabalhar num projeto que já existe online (por exemplo, no GitHub):
+#### **Consequences**
 
-   ```bash
-   # Cria uma cópia local de um repositório remoto
-   git clone https://github.com/utilizador/nome-do-projeto.git
-   ```
+The use of the **Singleton Pattern** in the current design allows the following benefits:
 
-   Isto descarrega todo o projeto e seu histórico para o teu computador.
+  - Allows a single point of the initialization of the game and allows a single method to call every other method needed
+  to run the game;
+  - Ensures the GUI instance is universally accessible throughout the game, avoiding redundant instances;
 
-## Fluxo de trabalho básico com Git
+The use of the **State Pattern** in the current design allows the following benefits:
 
-O fluxo de trabalho típico com Git segue estes passos:
+  - Encapsulation of the state logic: Each state encapsulates its specific behaviour, making the overall state cleaner and easier to understand;
+  - Allows the game to transition between states dynamically;
+  - Makes the code easier to understand because instead of having a switch-case block in GameController, each state defines its behavior.
 
-### 1. Verificar o estado atual
+The use of the **MVC Pattern** in the current design allows the following benefits:
 
-Antes de fazer qualquer coisa, é sempre bom verificar em que estado está o teu repositório:
+  - This Model/Viewer/Controller separation makes the code easier to understand, test and maintain;
+  - When it comes to testing, each section testing is independent of the others;
+  - Adding new features is straight forward because each component has its own role;
 
-```bash
-git status
-```
+The use of the **Template Method Pattern** in the current design allows the following benefits:
 
-Este comando mostra:
-- Em qual branch estás
-- Quais arquivos foram modificados mas ainda não foram "staged"
-- Quais arquivos estão "staged" e prontos para commit
-- Quais arquivos não estão sendo rastreados
+  - Enforces a consistent structure for the program across subclasses. Even though there are difference, the overall sequence is the same;
+  - By centralizing the common step in the parent class, this pattern reduces the duplicate code across the subclasses;
+  - Flexibility is ensured because the subclasses only change their specific steps. The main structure is the same;
 
-É como uma "bússola" que te orienta sobre o estado atual do teu trabalho e o que podes fazer a seguir.
+### CODE 
+#### **Smells**
+In an overall overview, the game code has some smells that influence the code perception and understanding for someone 
+who is looking at it for the first time. This means it could be better organized and less confusing.
 
-### 2. Preparar alterações para commit
+- **Repetition of logic in MenuState and InstructionsState**: The sequence 'gui.clear()', 'viewer.draw(gui)', 'gui.refresh()' 
+and the action retrieval 'gui.getNextAction()' appears in multiple state classes;
 
-Depois de fazer alterações nos arquivos, precisas decidir quais delas queres incluir no próximo commit:
+- **Using null for dependencies and return values**: For example, in *InstructionsController* receives a null *MenuController* 
+in Main.java, or returning null in *MenuController.processInput* to signal game exit. This can cause 
+"NullPointerException" errors;
 
-```bash
-# Adicionar um arquivo específico à área de preparação
-git add nome_do_arquivo.txt
+- **Usage of primitives**: The usage of primitives requires the repetition of multiple comparisons, just like in 
+*Instructions* in '"Back".equals()', for example;
 
-# Adicionar vários arquivos
-git add arquivo1.txt arquivo2.txt
+- **Lack of polymorphism**: The overuse of conditionals instead of a Command Pattern to encapsulate actions in separate
+objects makes the code repetitive.
 
-# Adicionar todos os arquivos modificados
-git add .
-```
+### TESTING
 
-**Por que usar a área de preparação?** Ela permite controlar exatamente o que entra em cada commit. Imagina que estás a trabalhar em várias alterações, mas queres commitá-las separadamente para manter o histórico organizado - a área de preparação torna isso possível.
+In each one of the following test files there is a 'Setup()' method which allows every file to have a similar structure specially when Mockito is used. 
 
-### 3. Confirmar as alterações (commit)
+#### **Controller**
+- The 'ArenaControllerTest' uses Mocks to test if the *processInput* method is working correctly or if the Goal has been reached successfully.
 
-Quando estiveres satisfeito com o que está na área de preparação, é hora de criar um commit:
+- Both 'CharacterControllerTest' and 'EnemyControllerTest' focus on unit testing the respective controllers. Both test the movement
+of the respective entities, with tests for valid and invalid moves scenarios only differing because of the enemies random movement.
 
-```bash
-git commit -m "Descrição clara do que foi alterado"
-```
+- the 'MenuControllerTest' also focuses on unit testing to test every possible menu case. In other words, this files tests the processing of 
+each menu button such as the *Start* button or the *Exit* button.
 
-A mensagem de commit é muito importante! Uma boa mensagem explica **o que** foi alterado e **por que** foi alterado. Isto será extremamente útil no futuro quando quiseres entender por que certas alterações foram feitas.
+#### **Model**
+- The 'MenuTest' also uses unit testing to check the processing of every option, but also checks the outcome of mode switching 
+between *Menu* and *Instructions* and the lists of the options for each one of these two menus.
 
-**Dica prática**: Pensa no commit como uma entrada num diário do projeto. A mensagem deve ser clara o suficiente para que tu (ou outra pessoa) entenda o propósito da alteração mesmo meses depois.
+![Menu Switch Test](src/main/resources/TestingScreenshots/Model/MenuSwitchModeTest.png)
 
-### 4. Ver o histórico de alterações
+![Menu Option List Test](src/main/resources/TestingScreenshots/Model/MenuOptionListTest.png)
 
-Para ver o histórico de commits do projeto:
+- The test files 'Arena1Test', 'Arena2Test', 'Arena3Test' and 'Arena4Test' are all similar to each other. They use unit testing
+to test the same things, such as the correct amount of coins in the arena (testPlaceCoins()), if those coins don't spawn inside walls (testCoinPlacement()),
+or if the player can collect the coins normally (testCharacterCollectCoin()).
 
-```bash
-# Ver histórico completo
-git log
+- The 'CharacterTest' tests every property of Character such as the initial number of lives and the decreasing of those (testInitialLives(), testDecreaseLives()) and
+the player's initial score and the increasing of it (testInitialScore(), testIncreaseScore()).
 
-# Ver histórico resumido (uma linha por commit)
-git log --oneline
-```
+![Character Lives Test](src/main/resources/TestingScreenshots/Model/CharacterLivesTest.png)
 
-Este comando mostra:
-- O identificador único (hash) de cada commit
-- O autor e data
-- A mensagem de commit
+![Character Lives Test](src/main/resources/TestingScreenshots/Model/CharacterScoreTest.png)
 
-É como uma "máquina do tempo" que te permite ver a evolução do projeto e entender quando e por que cada alteração foi feita.
+- The rest of the elements test files, 'CoinTest', 'EnemyTest' and 'WallsTest', are simpler test files that only check each element
+correct creation and its positioning.
 
-## 4. Trabalhando com branches
+#### **GUI**
+In the beginning of the file the 'Setup()' method initializes mocks for TerminalScreen and TextGraphics. After that the interface testing begins with the following tests:
+- **testSetBackgroundColor()**: This test ensures that the background color is correctly set in the GUI.
 
-Os branches ("ramos") são uma das funcionalidades mais poderosas do Git. Eles permitem trabalhar em diferentes versões do teu projeto em paralelo.
+![Background Color Test](src/main/resources/TestingScreenshots/gui/BackgroundColorTest.png)
 
-### Por que usar branches?
+- **testDrawText()**: This test ensures that text is drawn at the correct position with the specified colors.
 
-Imagine que estás a desenvolver um site que já está online. Queres adicionar uma nova funcionalidade, mas não queres arriscar quebrar o site existente enquanto trabalhas nela. Branches resolvem exatamente este problema!
+![Draw Text Test](src/main/resources/TestingScreenshots/gui/DrawTextTest.png)
 
-### Criando e usando branches
+- **testDrawElement()**: This test ensures that elements (like characters) are drawn at the correct position with the specified colors.
 
-**Criar um novo branch**:
-```bash
-# Criar um novo branch
-git branch nova-funcionalidade
+![Draw Character Test](src/main/resources/TestingScreenshots/gui/DrawElementTest.png)
 
-# Criar e mudar para o novo branch em um só comando
-git checkout -b nova-funcionalidade
-```
+- **Screen Operation methods**: These tests were implemented to ensure the correct refresh, closure and clear of the screen.
 
-**Mudar entre branches**:
-```bash
-git checkout nome-do-branch
-```
+![Screen Test](src/main/resources/TestingScreenshots/gui/ScreenTest.png)
 
-Quando mudas de branch, os arquivos no teu diretório de trabalho mudam automaticamente para refletir o estado daquele branch. É como entrar numa "realidade alternativa" do teu projeto!
+- **getNextAction methods**: These tests allowed for specific keys to have the correct output.
 
-**Ver todos os branches**:
-```bash
-git branch
-```
+![Next Action Test](src/main/resources/TestingScreenshots/gui/GetNextActionTest.png)
 
-O branch atual será marcado com um asterisco (*).
+#### **States**
+In the testing of Level States, were implemented several common tests across all Level States, using mainly JUnit tests. Those tests were, for example:
+- **testStepGoalReached()**: This test ensured the game state transitions appropiately when reaching the level goal.
 
-### Unir branches (merge)
+![Level1 checkGoal Test](src/main/resources/TestingScreenshots/States/lvl1ReachGoalTest.png)
 
-Quando terminares o trabalho num branch e quiseres incorporá-lo ao branch principal:
+- **testStepGameOver()**: This test ensures the game state transitions correctly when the player’s lives reach zero (game over).
 
-```bash
-# Primeiro, volta para o branch de destino (geralmente main ou master)
-git checkout main
+![Level1 gameOver Test](src/main/resources/TestingScreenshots/States/lvl1GameOverTest.png)
 
-# Depois, une o outro branch a este
-git merge nova-funcionalidade
-```
+- **testStepQuitAction()**: Test how the game reacts when the player opts to quit the game.
 
-**O que acontece durante um merge?**
-- Git tenta combinar automaticamente as alterações dos dois branches
-- Se as alterações estiverem em partes diferentes dos arquivos, Git faz isso automaticamente
-- Se houver alterações conflitantes na mesma parte de um arquivo, será necessário resolver manualmente
+![Level1 Quit Test](src/main/resources/TestingScreenshots/States/lvl1QuitOptionTest.png)
 
-### Resolvendo conflitos de merge
+- **testStepMaintainsState()**: This test ensures that when the goal is not reached and the player still has lives, the game continues to the next state without changing unexpectedly.
 
-Conflitos ocorrem quando as mesmas linhas de um arquivo foram alteradas de maneiras diferentes em branches diferentes. Quando isto acontece:
+![Level1 Maintain State Test](src/main/resources/TestingScreenshots/States/lvl1MaintainStateTest.png)
 
-1. Git marca no arquivo as áreas conflitantes:
-   ```
-   <<<<<<< HEAD
-   Conteúdo do branch atual
-   =======
-   Conteúdo do branch que está sendo unido
-   >>>>>>> nova-funcionalidade
-   ```
+## INDIVIDUAL CONTRIBUTIONS
 
-2. Edita o arquivo para resolver o conflito:
-   - Remove os marcadores (`<<<<<<<`, `=======`, `>>>>>>>`)
-   - Ajusta o conteúdo para que fique como desejas
-
-3. Depois de resolver todos os conflitos:
-   ```bash
-   git add arquivo-com-conflito
-   git commit
-   ```
-
-Git abrirá um editor com uma mensagem de commit padrão para o merge. Podes manter essa mensagem ou personalizá-la.
-
-## 5. Trabalhando com repositórios remotos
-
-Para colaborar com outros ou guardar o teu código na nuvem, precisas trabalhar com repositórios remotos (como GitHub, GitLab, Bitbucket).
-
-### Conectando a um repositório remoto
-
-Se iniciaste o teu repositório localmente:
-
-```bash
-# Adicionar um repositório remoto
-git remote add origin https://github.com/teu-usuario/teu-repo.git
-
-# Ver todos os repositórios remotos configurados
-git remote -v
-```
-
-"Origin" é apenas um nome convencionado para o repositório remoto principal, mas podes escolher outro nome se preferires.
-
-### Enviando alterações para o repositório remoto
-
-Depois de fazer commits localmente, podes enviá-los para o remoto:
-
-```bash
-# Enviar um branch para o repositório remoto
-git push origin nome-do-branch
-
-# Se for a primeira vez que envias este branch, configura o rastreamento
-git push -u origin nome-do-branch
-```
-
-O parâmetro `-u` (ou `--set-upstream`) estabelece uma relação entre o teu branch local e o branch remoto. Depois de configurar isso, podes simplesmente usar `git push` nas próximas vezes.
-
-### Obtendo alterações do repositório remoto
-
-Para atualizar o teu repositório local com as alterações feitas por outras pessoas:
-
-```bash
-# Baixar alterações do repositório remoto
-git fetch origin
-
-# Baixar e aplicar alterações ao teu branch atual
-git pull origin nome-do-branch
-```
-
-A diferença entre `fetch` e `pull`:
-- `fetch` apenas baixa as alterações, mas não as aplica ao teu trabalho
-- `pull` é basicamente um `fetch` seguido de um `merge` - baixa e aplica as alterações
-
-## 6. Gerenciando arquivos
-
-### Ignorando arquivos
-
-Nem todos os arquivos precisam ou devem ser controlados pelo Git (como arquivos de configuração pessoal, dependências instaladas, etc.). Para isso, usa-se o arquivo `.gitignore`:
-
-1. Cria um arquivo chamado `.gitignore` na raiz do teu projeto
-2. Lista os padrões de arquivos que devem ser ignorados:
-
-```
-# Ignora arquivos de configuração pessoal
-config.local.ini
-
-# Ignora todos os arquivos de log
-*.log
-
-# Ignora a pasta de dependências
-node_modules/
-```
-
-**Dica prática**: Adiciona o `.gitignore` logo no início do projeto para evitar commitar acidentalmente arquivos que deveriam ser ignorados.
-
-### Removendo arquivos
-
-Para remover arquivos do projeto:
-
-```bash
-# Remove o arquivo do repositório E do sistema de arquivos
-git rm arquivo.txt
-
-# Remove o arquivo apenas do repositório (mantém no sistema de arquivos)
-git rm --cached arquivo.txt
-```
-
-Após usar `git rm`, ainda precisas fazer um commit para confirmar a remoção.
-
-## 7. Desfazendo alterações
-
-Uma das grandes vantagens do Git é que quase tudo pode ser desfeito. Aqui estão várias situações e como resolvê-las:
-
-### Alterações não commitadas
-
-**Descartar alterações em um arquivo**:
-```bash
-git checkout -- nome-do-arquivo
-```
-
-**Descartar todas as alterações**:
-```bash
-git checkout -- .
-```
-
-Estes comandos descartam permanentemente as alterações feitas, restaurando os arquivos para o estado do último commit.
-
-### Alterações staged mas não commitadas
-
-**Remover um arquivo da área de preparação (staging)**:
-```bash
-git reset HEAD nome-do-arquivo
-```
-
-Isto mantém as alterações no arquivo, mas remove-o da área de preparação.
-
-### Desfazer o último commit
-
-**Desfazer o commit mas manter as alterações**:
-```bash
-git reset --soft HEAD~1
-```
-
-Isto move o branch para o commit anterior, mas mantém todas as alterações do commit desfeito na área de preparação, prontas para serem recommitadas.
-
-**Desfazer completamente o último commit**:
-```bash
-git reset --hard HEAD~1
-```
-
-Cuidado! Isto descarta permanentemente todas as alterações do último commit.
-
-### Corrigir o último commit
-
-Se esqueceste de adicionar um arquivo ou queres corrigir a mensagem do último commit:
-
-```bash
-# Adicionar arquivos esquecidos
-git add arquivo-esquecido
-
-# Corrigir o último commit
-git commit --amend -m "Nova mensagem de commit"
-```
-
-Este comando substitui o último commit por um novo. Só use isto se ainda não tiveres enviado o commit para um repositório remoto.
-
-## 8. Exemplos práticos
-
-### Exemplo 1: Iniciando um projeto pessoal
-
-Vamos ver um exemplo prático de como começar um projeto do zero:
-
-```bash
-# 1. Criar uma pasta para o projeto
-mkdir meu-site
-
-# 2. Entrar na pasta
-cd meu-site
-
-# 3. Inicializar o repositório Git
-git init
-
-# 4. Criar alguns arquivos iniciais
-echo "# Meu Site Pessoal" > 'README.md'
-echo "<!DOCTYPE html><html><body><h1>Olá, mundo!</h1></body></html>" > index.html
-
-# 5. Verificar o estado
-git status
-# Verás que README.md e index.html estão como "untracked"
-
-# 6. Adicionar os arquivos à área de preparação
-git add README.md index.html
-
-# 7. Fazer o primeiro commit
-git commit -m "Commit inicial: README e página HTML básica"
-
-# 8. Verificar o histórico
-git log --oneline
-```
-
-### Exemplo 2: Trabalhando com branches
-
-Vamos ver como trabalhar com branches num cenário real:
-
-```bash
-# 1. Criar e mudar para um novo branch para uma nova funcionalidade
-git checkout -b adicionar-estilo
-
-# 2. Criar um arquivo CSS
-echo "body { font-family: Arial; color: #333; }" > estilo.css
-
-# 3. Modificar o HTML para incluir o CSS
-echo '<!DOCTYPE html><html><head><link rel="stylesheet" href="estilo.css"></head><body><h1>Olá, mundo!</h1></body></html>' > index.html
-
-# 4. Adicionar e commitar as alterações
-git add estilo.css index.html
-git commit -m "Adiciona estilo básico à página"
-
-# 5. Voltar para o branch principal
-git checkout main
-
-# 6. Unir o branch de funcionalidade ao principal
-git merge adicionar-estilo
-
-# 7. Verificar o histórico após o merge
-git log --graph --oneline
-```
-
-### Exemplo 3: Colaborando com um repositório remoto
-
-Supondo que tens um projeto no GitHub e queres contribuir:
-
-```bash
-# 1. Clonar o repositório
-git clone https://github.com/utilizador/projeto.git
-cd projeto
-
-# 2. Criar um branch para tua contribuição
-git checkout -b corrigir-bug
-
-# 3. Fazer alterações, adicionar e commitar
-# (editar arquivos...)
-git add arquivo-alterado
-git commit -m "Corrige bug na funcionalidade X"
-
-# 4. Enviar o branch para o GitHub
-git push -u origin corrigir-bug
-
-# 5. Agora podes criar um "Pull Request" no GitHub
-```
-
-## 9. Boas práticas para iniciantes
-
-### Commits eficazes
-
-- **Commit com frequência**: Commits pequenos e frequentes são mais fáceis de entender e reverter
-- **Mensagens claras**: Uma boa mensagem explica "o quê" e "por quê", não o "como"
-- **Um propósito por commit**: Cada commit deve representar uma única alteração lógica
-
-### Organização
-
-- **Crie um README.md**: Documenta o que é o projeto e como usá-lo
-- **Use branches**: Isole o desenvolvimento de novas funcionalidades em branches separados
-- **Commits organizados**: Mantenha commits relacionados juntos e separados de outros assuntos
-
-### Colaboração
-
-- **Pull antes de push**: Sempre baixe as alterações mais recentes antes de enviar as suas
-- **Respeite o trabalho alheio**: Ao modificar código escrito por outros, entenda a intenção original
-- **Comunique**: Use mensagens de commit e pull requests para explicar claramente suas intenções
-
-## 10. Ferramentas visuais para Git
-
-Se preferires uma interface gráfica em vez de linha de comando:
-
-- **GitHub Desktop**: Fácil de usar, integração perfeita com GitHub
-- **GitKraken**: Interface poderosa e intuitiva
-- **Sourcetree**: Rico em recursos, bom para usuários avançados
-- **VS Code**: Editor de código com excelente integração Git integrada
-
-## 11. Resolvendo problemas comuns
-
-### "Help! Commitei no branch errado!"
-
-1. Anota o hash do commit (use `git log`)
-2. Muda para o branch correto: `git checkout branch-correto`
-3. Aplica o commit: `git cherry-pick hash-do-commit`
-4. Volta ao branch original: `git checkout branch-original`
-5. Remove o commit: `git reset --hard HEAD~1`
-
-### "Quero descartar todas as minhas alterações locais!"
-
-```bash
-git fetch origin
-git reset --hard origin/main
-```
-
-Isto substitui completamente o teu branch local pelo estado do branch remoto.
-
-### "Fiz push de algo que não devia!"
-
-Se enviaste informações sensíveis (como senhas):
-
-1. Remove a informação sensível
-2. Commita a correção
-3. Entre em contato com o administrador do repositório, pois o histórico precisa ser reescrito
-
-## 12. Glossário de termos Git
-
-- **Branch**: Uma linha independente de desenvolvimento
-- **Clone**: Cópia local de um repositório remoto
-- **Commit**: Uma "fotografia" das alterações feitas num determinado momento
-- **Fetch**: Baixar alterações do repositório remoto sem aplicá-las
-- **Fork**: Cópia pessoal de um repositório de outra pessoa
-- **HEAD**: Referência ao commit atual em que estás a trabalhar
-- **Master/Main**: O branch principal do repositório
-- **Merge**: Combinar alterações de um branch em outro
-- **Origin**: Nome padrão para o repositório remoto de onde clonaste
-- **Pull**: Baixar alterações do repositório remoto e aplicá-las
-- **Push**: Enviar commits locais para o repositório remoto
-- **Repository**: Coleção de arquivos e histórico do projeto
-- **Stage**: Preparar alterações para serem commitadas
-
-## 13. Recursos para aprender mais
-
-### Tutoriais interativos gratuitos:
-- [Git-it](https://github.com/jlord/git-it-electron): Tutorial desktop interativo
-- [Learn Git Branching](https://learngitbranching.js.org/): Visualizador interativo de branches
-- [GitHub Learning Lab](https://lab.github.com/): Cursos práticos hospedados no GitHub
-
-### Documentação oficial:
-- [Git Book](https://git-scm.com/book/pt-br/v2): Livro completo gratuito sobre Git
-- [Git Reference](https://git-scm.com/docs): Documentação oficial de comandos
-
-### Comunidades para ajuda:
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/git): Perguntas e respostas
-- [GitHub Community Forum](https://github.community/): Fórum da comunidade GitHub
-
-## 14. Conclusão
-
-Git é uma ferramenta poderosa que pode parecer intimidante no início, mas com a prática, torna-se uma aliada indispensável no desenvolvimento de software. Lembra-te:
-
-- Não tenhas medo de experimentar - Git foi feito para permitir experimentação segura
-- A prática leva à perfeição - quanto mais usares, mais confortável te sentirás
-- Todos cometem erros com Git - há quase sempre uma maneira de recuperar
-
-O mais importante é começar a usar Git em projetos reais. Mesmo que comeces apenas com os comandos básicos (`init`, `add`, `commit`, `status`, `log`), já estarás a melhorar significativamente o teu fluxo de trabalho
-
-
-#### @Tiago Oliveira, 2025. Feito com o apoio de Claude.AI
+> Beatriz Bastos - 33.3%
+> Luís Ferreira - 33.3%
+> Tiago Oliveira - 33.3%
